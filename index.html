@@ -112,13 +112,7 @@
             --shadow-xl: 0 32px 64px rgba(0, 0, 0, 0.55);
         }
         
-        *,
-        *::before,
-        *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         
         html {
             scroll-behavior: smooth;
@@ -149,46 +143,14 @@
             transition: opacity 0.6s ease, visibility 0.6s ease;
         }
         
-        .logo-loader-overlay.hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
+        .logo-loader-overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
         
-        .logo-loader-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2rem;
-        }
+        .logo-loader-container { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
         
-        .logo-loader-image {
-            width: 120px;
-            height: 120px;
-            object-fit: contain;
-            animation: logoPulse 1.4s ease-in-out infinite, logoFloat 2.5s ease-in-out infinite;
-        }
-        
-        @keyframes logoPulse {
-            0%, 100% { 
-                transform: scale(1); 
-                filter: drop-shadow(0 0 20px rgba(26, 95, 255, 0.3));
-            }
-            50% { 
-                transform: scale(1.08); 
-                filter: drop-shadow(0 0 40px rgba(26, 95, 255, 0.6));
-            }
-        }
-        
-        @keyframes logoFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
-        }
+        .logo-loader-wrapper { position: relative; display: flex; align-items: center; justify-content: center; }
         
         .logo-loader-ring {
-            width: 160px;
-            height: 160px;
-            position: absolute;
+            width: 160px; height: 160px; position: absolute;
             border: 3px solid transparent;
             border-top: 3px solid var(--color-primary);
             border-right: 3px solid var(--color-accent);
@@ -198,21 +160,30 @@
         
         @keyframes ringSpin { to { transform: rotate(360deg); } }
         
+        .logo-loader-image {
+            width: 120px; height: 120px; object-fit: contain; z-index: 2;
+            animation: logoPulse 1.4s ease-in-out infinite, logoFloat 2.5s ease-in-out infinite;
+        }
+        
+        @keyframes logoPulse {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 20px rgba(26, 95, 255, 0.3)); }
+            50% { transform: scale(1.08); filter: drop-shadow(0 0 40px rgba(26, 95, 255, 0.6)); }
+        }
+        
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+        
         .logo-loader-text {
-            font-size: 2rem;
-            font-weight: 800;
-            letter-spacing: 4px;
+            font-size: 2rem; font-weight: 800; letter-spacing: 4px;
             background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: textGlow 1.5s ease-in-out infinite alternate;
         }
         
-        @keyframes textGlow {
-            from { opacity: 0.7; }
-            to { opacity: 1; }
-        }
+        @keyframes textGlow { from { opacity: 0.7; } to { opacity: 1; } }
         
         .logo-loader-dots { display: flex; gap: 8px; }
         
@@ -241,15 +212,11 @@
             height: var(--navbar-height);
         }
         
-        .navbar.scrolled {
-            box-shadow: var(--shadow-md);
-            background: var(--bg-glass-hover);
-        }
+        .navbar.scrolled { box-shadow: var(--shadow-md); background: var(--bg-glass-hover); }
         
         .navbar-container {
-            max-width: var(--max-width); margin: 0 auto;
-            padding: 0 2rem; height: 100%;
-            display: flex; align-items: center; justify-content: space-between;
+            max-width: var(--max-width); margin: 0 auto; padding: 0 2rem;
+            height: 100%; display: flex; align-items: center; justify-content: space-between;
         }
         
         .navbar-logo {
@@ -258,12 +225,7 @@
         }
         
         .navbar-logo:hover { transform: scale(1.03); }
-        
-        .navbar-logo img {
-            width: 44px; height: 44px; object-fit: contain;
-            transition: transform var(--transition);
-        }
-        
+        .navbar-logo img { width: 44px; height: 44px; object-fit: contain; }
         .navbar-logo:hover img { transform: rotate(-5deg); }
         
         .navbar-logo-text {
@@ -273,9 +235,7 @@
             background-clip: text;
         }
         
-        .navbar-links {
-            display: flex; gap: 2.2rem; align-items: center; list-style: none;
-        }
+        .navbar-links { display: flex; gap: 2.2rem; align-items: center; list-style: none; }
         
         .navbar-link {
             text-decoration: none; color: var(--text-secondary); font-weight: 500;
@@ -284,8 +244,7 @@
         }
         
         .navbar-link::after {
-            content: ''; position: absolute; bottom: -4px; left: 0;
-            width: 0; height: 2.5px;
+            content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2.5px;
             background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
             border-radius: var(--radius-full); transition: width var(--transition);
         }
@@ -317,9 +276,8 @@
             display: inline-flex; align-items: center; gap: 0.55rem;
             padding: 0.75rem 1.6rem; border-radius: var(--radius-full);
             font-weight: 600; font-size: 0.92rem; text-decoration: none;
-            cursor: pointer; border: none;
-            transition: all var(--transition); white-space: nowrap;
-            letter-spacing: -0.2px;
+            cursor: pointer; border: none; transition: all var(--transition);
+            white-space: nowrap; letter-spacing: -0.2px;
         }
         
         .btn-primary {
@@ -338,15 +296,9 @@
             color: var(--color-primary);
         }
         
-        .btn-outline:hover {
-            background: var(--color-primary-bg); border-color: var(--color-primary);
-            transform: translateY(-2px);
-        }
+        .btn-outline:hover { background: var(--color-primary-bg); border-color: var(--color-primary); }
         
-        .btn-whatsapp {
-            background: var(--color-whatsapp); color: #ffffff;
-            box-shadow: var(--shadow-sm);
-        }
+        .btn-whatsapp { background: var(--color-whatsapp); color: #ffffff; box-shadow: var(--shadow-sm); }
         
         .btn-whatsapp:hover {
             background: var(--color-whatsapp-dark); transform: translateY(-3px);
@@ -361,11 +313,7 @@
             background: none; border: none; cursor: pointer; padding: 8px;
         }
         
-        .menu-burger span {
-            width: 26px; height: 2.5px; background: var(--text-primary);
-            border-radius: 3px; transition: all var(--transition);
-        }
-        
+        .menu-burger span { width: 26px; height: 2.5px; background: var(--text-primary); border-radius: 3px; transition: all var(--transition); }
         .menu-burger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
         .menu-burger.active span:nth-child(2) { opacity: 0; }
         .menu-burger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
@@ -444,11 +392,7 @@
             75% { transform: translateY(-4px) rotate(5deg); }
         }
         
-        .hero-title {
-            font-size: 4.2rem; font-weight: 900; line-height: 1.1;
-            margin-bottom: 1.5rem; letter-spacing: -1px;
-        }
-        
+        .hero-title { font-size: 4.2rem; font-weight: 900; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -1px; }
         .hero-title .title-line { display: block; }
         
         .hero-title .gradient-text {
@@ -470,10 +414,7 @@
         
         .hero-actions { display: flex; gap: 1.2rem; flex-wrap: wrap; margin-bottom: 3rem; }
         
-        .hero-stats {
-            display: flex; gap: 3rem; padding-top: 2rem;
-            border-top: 1px solid var(--border-light);
-        }
+        .hero-stats { display: flex; gap: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-light); }
         
         .stat-item { display: flex; flex-direction: column; }
         
@@ -487,27 +428,17 @@
         .stat-label { font-size: 0.9rem; color: var(--text-tertiary); font-weight: 500; }
         
         /* ==================== CAROUSEL ==================== */
-        .hero-carousel-wrapper {
-            position: relative; animation: fadeInUp 0.8s ease-out 0.2s both;
-        }
+        .hero-carousel-wrapper { animation: fadeInUp 0.8s ease-out 0.2s both; }
         
         .carousel {
             position: relative; border-radius: var(--radius-lg); overflow: hidden;
             box-shadow: var(--shadow-xl); aspect-ratio: 4/3; background: #000;
         }
         
-        .carousel-slides {
-            display: flex; height: 100%;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        .carousel-slides { display: flex; height: 100%; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
         
-        .carousel-slide {
-            min-width: 100%; height: 100%; position: relative;
-        }
-        
-        .carousel-slide img {
-            width: 100%; height: 100%; object-fit: cover;
-        }
+        .carousel-slide { min-width: 100%; height: 100%; position: relative; }
+        .carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
         
         .carousel-slide-overlay {
             position: absolute; bottom: 0; left: 0; right: 0;
@@ -521,7 +452,7 @@
         
         .carousel-btn {
             position: absolute; top: 50%; transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.85); border: none;
+            background: rgba(255, 255, 255, 0.9); border: none;
             width: 48px; height: 48px; border-radius: 50%;
             cursor: pointer; font-size: 1rem; z-index: 10;
             transition: all var(--transition); box-shadow: var(--shadow-md);
@@ -529,18 +460,11 @@
             color: var(--text-primary);
         }
         
-        .carousel-btn:hover {
-            background: #ffffff; box-shadow: var(--shadow-lg);
-            transform: translateY(-50%) scale(1.08);
-        }
-        
+        .carousel-btn:hover { background: #fff; box-shadow: var(--shadow-lg); transform: translateY(-50%) scale(1.08); }
         .carousel-prev { left: 16px; }
         .carousel-next { right: 16px; }
         
-        .carousel-dots {
-            position: absolute; bottom: 16px; left: 50%;
-            transform: translateX(-50%); display: flex; gap: 10px; z-index: 10;
-        }
+        .carousel-dots { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 10; }
         
         .carousel-dot {
             width: 10px; height: 10px; border-radius: var(--radius-full);
@@ -548,15 +472,11 @@
             transition: all var(--transition);
         }
         
-        .carousel-dot.active {
-            background: #ffffff; width: 32px;
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
-        }
+        .carousel-dot.active { background: #ffffff; width: 32px; box-shadow: 0 0 12px rgba(255, 255, 255, 0.5); }
         
         .scroll-indicator {
-            position: absolute; bottom: 2rem; left: 50%;
-            transform: translateX(-50%); display: flex;
-            flex-direction: column; align-items: center; gap: 0.5rem;
+            position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
             color: var(--text-tertiary); font-size: 0.85rem; z-index: 3;
             animation: bounceArrow 2s ease-in-out infinite;
         }
@@ -580,10 +500,7 @@
             border: 1px solid var(--color-primary-border);
         }
         
-        .section-title {
-            font-size: 3rem; font-weight: 900; margin-bottom: 1rem;
-            letter-spacing: -0.5px;
-        }
+        .section-title { font-size: 3rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -0.5px; }
         
         .section-title .gradient-text {
             background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
@@ -596,7 +513,7 @@
             max-width: 600px; margin: 0 auto; line-height: 1.7;
         }
         
-        /* ==================== CARDS GRID ==================== */
+        /* ==================== CARDS ==================== */
         .secteurs-grid, .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -618,11 +535,7 @@
             transform: scaleX(0); transition: transform var(--transition);
         }
         
-        .card:hover {
-            transform: translateY(-12px); box-shadow: var(--shadow-xl);
-            border-color: var(--color-primary-border);
-        }
-        
+        .card:hover { transform: translateY(-12px); box-shadow: var(--shadow-xl); border-color: var(--color-primary-border); }
         .card:hover::before { transform: scaleX(1); }
         
         .card-icon {
@@ -633,17 +546,10 @@
         }
         
         .card h3 { font-weight: 700; font-size: 1.15rem; margin-bottom: 0.5rem; }
-        
-        .card p {
-            font-size: 0.9rem; color: var(--text-tertiary); line-height: 1.5;
-        }
+        .card p { font-size: 0.9rem; color: var(--text-tertiary); line-height: 1.5; }
         
         /* ==================== WHY US ==================== */
-        .why-us-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-        }
+        .why-us-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
         
         .why-us-card {
             background: var(--bg-glass); backdrop-filter: blur(16px);
@@ -662,11 +568,9 @@
             margin: 0 auto 1.5rem; transition: all var(--transition);
         }
         
-        .why-us-card:hover .why-us-icon {
-            background: var(--color-primary); color: #ffffff; transform: rotateY(180deg);
-        }
+        .why-us-card:hover .why-us-icon { background: var(--color-primary); color: #fff; transform: rotateY(180deg); }
         
-        /* ==================== TESTIMONIALS ==================== */
+        /* ==================== TÉMOIGNAGES (sans photos) ==================== */
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -678,27 +582,43 @@
             border: 1px solid var(--border-light);
             border-radius: var(--radius-lg); padding: 2.5rem;
             transition: all var(--transition);
+            text-align: center;
         }
         
         .testimonial-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-xl); }
         
-        .testimonial-stars { color: #f59e0b; margin-bottom: 1rem; }
+        .testimonial-quote-icon {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            opacity: 0.4;
+        }
+        
+        .testimonial-stars { color: #f59e0b; margin-bottom: 1rem; font-size: 1.1rem; }
         
         .testimonial-text {
-            font-size: 1rem; color: var(--text-secondary);
+            font-size: 1.05rem; color: var(--text-secondary);
             line-height: 1.7; font-style: italic; margin-bottom: 1.5rem;
         }
         
-        .testimonial-author { display: flex; align-items: center; gap: 1rem; }
-        
-        .testimonial-author img {
-            width: 48px; height: 48px; border-radius: 50%; object-fit: cover;
+        .testimonial-author-name {
+            font-weight: 700; font-size: 1.1rem; color: var(--text-primary);
         }
         
-        .testimonial-author-info h4 { font-weight: 700; margin-bottom: 0.1rem; }
-        .testimonial-author-info span { font-size: 0.85rem; color: var(--text-tertiary); }
+        .testimonial-author-role {
+            font-size: 0.9rem; color: var(--primary); font-weight: 500;
+            margin-top: 0.3rem;
+        }
         
-        /* ==================== CTA BANNER ==================== */
+        .testimonial-divider {
+            width: 40px; height: 3px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+            border-radius: 5px; margin: 1rem auto;
+        }
+        
+        /* ==================== CTA ==================== */
         .cta-banner {
             background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
             border-radius: var(--radius-xl); padding: 4rem 3rem;
@@ -718,17 +638,10 @@
             font-size: 1.1rem; padding: 1rem 2.5rem; position: relative;
         }
         
-        .cta-banner .btn:hover {
-            background: #f0f0f0; transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
+        .cta-banner .btn:hover { background: #f0f0f0; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); }
         
         /* ==================== PROCESS ==================== */
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 2rem;
-        }
+        .process-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 2rem; }
         
         .process-card { text-align: center; padding: 2rem; position: relative; }
         
@@ -761,15 +674,9 @@
         }
         
         /* ==================== FOOTER ==================== */
-        .footer {
-            background: var(--bg-glass); backdrop-filter: blur(24px);
-            border-top: 1px solid var(--border-light); padding: 4rem 2rem 2rem;
-        }
+        .footer { background: var(--bg-glass); backdrop-filter: blur(24px); border-top: 1px solid var(--border-light); padding: 4rem 2rem 2rem; }
         
-        .footer-grid {
-            max-width: var(--max-width); margin: 0 auto;
-            display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 3rem;
-        }
+        .footer-grid { max-width: var(--max-width); margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 3rem; }
         
         .footer-logo { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; }
         .footer-logo img { width: 40px; height: 40px; }
@@ -781,19 +688,13 @@
             width: 42px; height: 42px; border-radius: 50%;
             background: var(--bg-elevated); display: flex;
             align-items: center; justify-content: center;
-            color: var(--text-secondary); transition: all var(--transition);
-            text-decoration: none;
+            color: var(--text-secondary); transition: all var(--transition); text-decoration: none;
         }
         
-        .footer-social a:hover {
-            background: var(--color-primary); color: #ffffff;
-            transform: translateY(-4px);
-        }
+        .footer-social a:hover { background: var(--color-primary); color: #ffffff; transform: translateY(-4px); }
         
         .footer-links h4 { font-weight: 700; margin-bottom: 1.2rem; }
-        
         .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
-        
         .footer-links a { color: var(--text-secondary); text-decoration: none; }
         .footer-links a:hover { color: var(--color-primary); }
         
@@ -803,75 +704,28 @@
             text-align: center; color: var(--text-tertiary); font-size: 0.9rem;
         }
         
-        /* ==================== ANIMATIONS SCROLL AVANCÉES ==================== */
+        /* ==================== ANIMATIONS SCROLL ==================== */
         .reveal {
-            opacity: 0;
-            transform: translateY(60px);
+            opacity: 0; transform: translateY(60px);
             transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
             transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-        
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .reveal-left {
-            opacity: 0;
-            transform: translateX(-60px);
-            transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-            transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        
-        .reveal-left.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .reveal-right {
-            opacity: 0;
-            transform: translateX(60px);
-            transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-            transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        
-        .reveal-right.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
         
         .reveal-scale {
-            opacity: 0;
-            transform: scale(0.85);
+            opacity: 0; transform: scale(0.85);
             transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
             transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
+        .reveal-scale.visible { opacity: 1; transform: scale(1); }
         
-        .reveal-scale.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
-        
-        /* Délais stagger */
-        .stagger-1 { transition-delay: 0.05s; }
-        .stagger-2 { transition-delay: 0.1s; }
-        .stagger-3 { transition-delay: 0.15s; }
-        .stagger-4 { transition-delay: 0.2s; }
-        .stagger-5 { transition-delay: 0.25s; }
-        .stagger-6 { transition-delay: 0.3s; }
-        .stagger-7 { transition-delay: 0.35s; }
-        .stagger-8 { transition-delay: 0.4s; }
-        
-        /* Effet parallaxe léger */
-        .parallax-slow {
-            transition: transform 0.1s linear;
-        }
+        .stagger-1 { transition-delay: 0.05s; } .stagger-2 { transition-delay: 0.1s; }
+        .stagger-3 { transition-delay: 0.15s; } .stagger-4 { transition-delay: 0.2s; }
+        .stagger-5 { transition-delay: 0.25s; } .stagger-6 { transition-delay: 0.3s; }
+        .stagger-7 { transition-delay: 0.35s; } .stagger-8 { transition-delay: 0.4s; }
         
         /* ==================== RESPONSIVE ==================== */
-        @media (max-width: 1200px) {
-            .hero-title { font-size: 3.5rem; }
-            .section-title { font-size: 2.5rem; }
-        }
+        @media (max-width: 1200px) { .hero-title { font-size: 3.5rem; } .section-title { font-size: 2.5rem; } }
         
         @media (max-width: 992px) {
             .hero-container { grid-template-columns: 1fr; text-align: center; }
@@ -905,6 +759,7 @@
             .cta-banner { padding: 2.5rem 1.5rem; }
             .cta-banner h2 { font-size: 1.8rem; }
             .whatsapp-float { width: 54px; height: 54px; font-size: 1.5rem; bottom: 20px; right: 20px; }
+            .testimonials-grid { grid-template-columns: 1fr; }
         }
         
         @media (max-width: 480px) {
@@ -920,7 +775,7 @@
     <!-- ==================== LOGO LOADER ==================== -->
     <div class="logo-loader-overlay" id="logoLoader">
         <div class="logo-loader-container">
-            <div style="position: relative; display: flex; align-items: center; justify-content: center;">
+            <div class="logo-loader-wrapper">
                 <div class="logo-loader-ring"></div>
                 <img src="images/logo.png" alt="SMA Agency Logo" class="logo-loader-image">
             </div>
@@ -955,8 +810,7 @@
             
             <div class="navbar-actions">
                 <button class="btn-icon theme-toggle" id="themeToggle" aria-label="Changer le thème">
-                    <i class="fas fa-moon"></i>
-                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i><i class="fas fa-sun"></i>
                 </button>
                 <a href="configurateur.html" class="btn btn-primary">
                     <i class="fab fa-whatsapp"></i> <span>Commander</span>
@@ -981,27 +835,15 @@
             
             <div class="hero-container">
                 <div class="hero-content">
-                    <span class="hero-badge">
-                        <i class="fas fa-rocket"></i>
-                        <span>Agence Digitale Premium • Lubumbashi</span>
-                    </span>
+                    <span class="hero-badge"><i class="fas fa-rocket"></i><span>Agence Digitale Premium • Lubumbashi</span></span>
                     <h1 class="hero-title">
                         <span class="title-line">Transformez votre</span>
                         <span class="title-line gradient-text">présence digitale</span>
                     </h1>
-                    <p class="hero-description">
-                        Stratégie social media, création de sites web performants, automatisation intelligente et branding impactant pour propulser votre entreprise.
-                    </p>
+                    <p class="hero-description">Stratégie social media, création de sites web performants, automatisation intelligente et branding impactant pour propulser votre entreprise.</p>
                     <div class="hero-actions">
-                        <a href="configurateur.html" class="btn btn-whatsapp btn-lg">
-                            <i class="fab fa-whatsapp"></i>
-                            <span>Commander via WhatsApp</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                        <a href="#secteurs" class="btn btn-outline btn-lg">
-                            <span>Découvrir nos offres</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </a>
+                        <a href="configurateur.html" class="btn btn-whatsapp btn-lg"><i class="fab fa-whatsapp"></i><span>Commander via WhatsApp</span><i class="fas fa-arrow-right"></i></a>
+                        <a href="#secteurs" class="btn btn-outline btn-lg"><span>Découvrir nos offres</span><i class="fas fa-chevron-down"></i></a>
                     </div>
                     <div class="hero-stats">
                         <div class="stat-item"><span class="stat-number" data-target="20">0+</span><span class="stat-label">Projets réalisés</span></div>
@@ -1020,11 +862,7 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="scroll-indicator">
-                <span>Scrollez pour découvrir</span>
-                <i class="fas fa-chevron-down"></i>
-            </div>
+            <div class="scroll-indicator"><span>Scrollez pour découvrir</span><i class="fas fa-chevron-down"></i></div>
         </section>
         
         <!-- ==================== SECTEURS ==================== -->
@@ -1036,11 +874,8 @@
                     <p class="section-description">Nous comprenons les spécificités de votre domaine.</p>
                 </div>
                 <div class="secteurs-grid" id="secteursGrid"></div>
-                <div style="text-align: center; margin-top: 3rem;">
-                    <a href="services.html" class="btn btn-primary btn-lg reveal">
-                        <span>Voir tous les secteurs</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
+                <div style="text-align:center;margin-top:3rem;">
+                    <a href="services.html" class="btn btn-primary btn-lg reveal"><span>Voir tous les secteurs</span><i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </section>
@@ -1054,11 +889,8 @@
                     <p class="section-description">Une gamme complète pour votre transformation numérique.</p>
                 </div>
                 <div class="services-grid" id="servicesGrid"></div>
-                <div style="text-align: center; margin-top: 3rem;">
-                    <a href="configurateur.html" class="btn btn-whatsapp btn-lg reveal">
-                        <i class="fab fa-whatsapp"></i>
-                        <span>Configurer mon projet maintenant</span>
-                    </a>
+                <div style="text-align:center;margin-top:3rem;">
+                    <a href="configurateur.html" class="btn btn-whatsapp btn-lg reveal"><i class="fab fa-whatsapp"></i><span>Configurer mon projet maintenant</span></a>
                 </div>
             </div>
         </section>
@@ -1066,10 +898,7 @@
         <!-- ==================== PROCESS ==================== -->
         <section class="section" id="process">
             <div class="section-container">
-                <div class="section-header reveal">
-                    <span class="section-badge">Notre méthode</span>
-                    <h2 class="section-title">Comment nous <span class="gradient-text">travaillons</span></h2>
-                </div>
+                <div class="section-header reveal"><span class="section-badge">Notre méthode</span><h2 class="section-title">Comment nous <span class="gradient-text">travaillons</span></h2></div>
                 <div class="process-grid" id="processGrid"></div>
             </div>
         </section>
@@ -1077,20 +906,18 @@
         <!-- ==================== POURQUOI SMA ==================== -->
         <section class="section" id="pourquoi" style="background: var(--bg-secondary);">
             <div class="section-container">
-                <div class="section-header reveal">
-                    <span class="section-badge">Avantages</span>
-                    <h2 class="section-title">Pourquoi choisir <span class="gradient-text">SMA</span></h2>
-                </div>
+                <div class="section-header reveal"><span class="section-badge">Avantages</span><h2 class="section-title">Pourquoi choisir <span class="gradient-text">SMA</span></h2></div>
                 <div class="why-us-grid" id="whyUsGrid"></div>
             </div>
         </section>
         
-        <!-- ==================== TÉMOIGNAGES ==================== -->
+        <!-- ==================== TÉMOIGNAGES (SANS PHOTOS) ==================== -->
         <section class="section" id="temoignages">
             <div class="section-container">
                 <div class="section-header reveal">
                     <span class="section-badge">Témoignages</span>
                     <h2 class="section-title">Ce que disent <span class="gradient-text">nos clients</span></h2>
+                    <p class="section-description">La satisfaction de nos clients est notre plus grande fierté.</p>
                 </div>
                 <div class="testimonials-grid" id="testimonialsGrid"></div>
             </div>
@@ -1102,10 +929,7 @@
                 <div class="cta-banner reveal-scale">
                     <h2>Prêt à digitaliser votre activité ?</h2>
                     <p>Contactez-nous dès aujourd'hui pour un devis personnalisé.</p>
-                    <a href="configurateur.html" class="btn">
-                        <i class="fab fa-whatsapp"></i> Démarrer mon projet
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
+                    <a href="configurateur.html" class="btn"><i class="fab fa-whatsapp"></i> Démarrer mon projet <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </section>
@@ -1113,18 +937,10 @@
         <!-- ==================== EQUIPE PREVIEW ==================== -->
         <section class="section" id="equipe-preview" style="background: var(--bg-secondary);">
             <div class="section-container">
-                <div class="section-header reveal">
-                    <span class="section-badge">Notre équipe</span>
-                    <h2 class="section-title">Les talents derrière <span class="gradient-text">SMA</span></h2>
-                </div>
-                <div style="text-align: center;">
-                    <p style="font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 2rem;">
-                        Découvrez les visages et compétences qui font la force de notre agence.
-                    </p>
-                    <a href="equipe.html" class="btn btn-primary btn-lg reveal">
-                        <i class="fas fa-users"></i> Voir toute l'équipe
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
+                <div class="section-header reveal"><span class="section-badge">Notre équipe</span><h2 class="section-title">Les talents derrière <span class="gradient-text">SMA</span></h2></div>
+                <div style="text-align:center;">
+                    <p style="font-size:1.2rem;color:var(--text-secondary);margin-bottom:2rem;">Découvrez les visages et compétences qui font la force de notre agence.</p>
+                    <a href="equipe.html" class="btn btn-primary btn-lg reveal"><i class="fas fa-users"></i> Voir toute l'équipe <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </section>
@@ -1135,168 +951,106 @@
     <footer class="footer" id="footer">
         <div class="footer-grid">
             <div>
-                <div class="footer-logo">
-                    <img src="images/logo.png" alt="SMA Logo">
-                    <span>SMA Agency</span>
-                </div>
-                <p style="color: var(--text-secondary); margin-bottom: 0.5rem;">
-                    Agence digitale premium à Lubumbashi.
-                </p>
-                <p style="color: var(--text-tertiary); font-size: 0.9rem;">
-                    📍 Lubumbashi, République Démocratique du Congo
-                </p>
+                <div class="footer-logo"><img src="images/logo.png" alt="SMA Logo"><span>SMA Agency</span></div>
+                <p style="color:var(--text-secondary);margin-bottom:0.5rem;">Agence digitale premium à Lubumbashi.</p>
+                <p style="color:var(--text-tertiary);font-size:0.9rem;">📍 Lubumbashi, République Démocratique du Congo</p>
                 <div class="footer-social">
                     <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                     <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
                 </div>
             </div>
-            <div class="footer-links">
-                <h4>Navigation</h4>
-                <ul>
-                    <li><a href="#hero">Accueil</a></li>
-                    <li><a href="#secteurs">Secteurs</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="equipe.html">Équipe</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Services</h4>
-                <ul>
-                    <li><a href="services.html">Création web</a></li>
-                    <li><a href="services.html">Applications</a></li>
-                    <li><a href="services.html">Marketing digital</a></li>
-                    <li><a href="services.html">Branding</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Contact</h4>
-                <ul>
-                    <li><i class="fas fa-phone"></i> +243 844 464 423</li>
-                    <li><i class="fas fa-envelope"></i> contact@sma-agency.com</li>
-                    <li><i class="fas fa-map-marker-alt"></i> Lubumbashi, RDC</li>
-                    <li><i class="fas fa-clock"></i> Lun-Ven : 8h-18h</li>
-                </ul>
-            </div>
+            <div class="footer-links"><h4>Navigation</h4><ul><li><a href="#hero">Accueil</a></li><li><a href="#secteurs">Secteurs</a></li><li><a href="#services">Services</a></li><li><a href="equipe.html">Équipe</a></li></ul></div>
+            <div class="footer-links"><h4>Services</h4><ul><li><a href="services.html">Création web</a></li><li><a href="services.html">Applications</a></li><li><a href="services.html">Marketing digital</a></li><li><a href="services.html">Branding</a></li></ul></div>
+            <div class="footer-links"><h4>Contact</h4><ul><li><i class="fas fa-phone"></i> +243 844 464 423</li><li><i class="fas fa-envelope"></i> contact@sma-agency.com</li><li><i class="fas fa-map-marker-alt"></i> Lubumbashi, RDC</li><li><i class="fas fa-clock"></i> Lun-Ven : 8h-18h</li></ul></div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 SMA Agency. Tous droits réservés.</p>
-        </div>
+        <div class="footer-bottom"><p>&copy; 2026 SMA Agency. Tous droits réservés.</p></div>
     </footer>
     
-    <a href="https://wa.me/243844464423" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <a href="https://wa.me/243844464423" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
     
     <script>
         (function() {
             'use strict';
             
             // ==================== LOGO LOADER ====================
-            function initLogoLoader() {
-                const loader = document.getElementById('logoLoader');
-                if (!loader) return;
+            const loader = document.getElementById('logoLoader');
+            if (loader) {
                 window.addEventListener('load', () => {
-                    setTimeout(() => {
-                        loader.classList.add('hidden');
-                        setTimeout(() => { if (loader.parentNode) loader.parentNode.removeChild(loader); }, 700);
-                    }, 1800);
+                    setTimeout(() => { loader.classList.add('hidden'); setTimeout(() => loader.remove(), 700); }, 1800);
                 });
-                setTimeout(() => {
-                    if (loader && !loader.classList.contains('hidden')) {
-                        loader.classList.add('hidden');
-                    }
-                }, 5000);
+                setTimeout(() => { if (loader && !loader.classList.contains('hidden')) { loader.classList.add('hidden'); setTimeout(() => loader.remove(), 700); } }, 5000);
             }
             
             // ==================== DARK MODE ====================
-            function initDarkMode() {
-                const toggle = document.getElementById('themeToggle');
-                if (!toggle) return;
-                if (localStorage.getItem('sma-dark-mode') === 'true') document.body.classList.add('dark');
-                toggle.addEventListener('click', () => {
-                    document.body.classList.toggle('dark');
-                    localStorage.setItem('sma-dark-mode', document.body.classList.contains('dark'));
-                });
-            }
+            const themeToggle = document.getElementById('themeToggle');
+            if (localStorage.getItem('sma-dark-mode') === 'true') document.body.classList.add('dark');
+            themeToggle?.addEventListener('click', () => {
+                document.body.classList.toggle('dark');
+                localStorage.setItem('sma-dark-mode', document.body.classList.contains('dark'));
+            });
             
             // ==================== MOBILE MENU ====================
-            function initMobileMenu() {
-                const burger = document.getElementById('menuBurger');
-                const navLinks = document.getElementById('navLinks');
-                if (!burger || !navLinks) return;
-                burger.addEventListener('click', () => {
-                    burger.classList.toggle('active');
-                    navLinks.classList.toggle('active');
-                });
-                navLinks.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        burger.classList.remove('active');
-                        navLinks.classList.remove('active');
-                    });
-                });
-            }
+            const burger = document.getElementById('menuBurger');
+            const navLinks = document.getElementById('navLinks');
+            burger?.addEventListener('click', () => { burger.classList.toggle('active'); navLinks.classList.toggle('active'); });
+            navLinks?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { burger.classList.remove('active'); navLinks.classList.remove('active'); }));
             
             // ==================== NAVBAR SCROLL ====================
-            function initNavbarScroll() {
-                const navbar = document.getElementById('navbar');
-                if (!navbar) return;
-                window.addEventListener('scroll', () => {
-                    navbar.classList.toggle('scrolled', window.scrollY > 50);
-                });
-            }
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => navbar?.classList.toggle('scrolled', window.scrollY > 50));
             
-            // ==================== CAROUSEL AVEC IMAGES LOCALES ====================
-            function initCarousel() {
-                const slidesContainer = document.getElementById('carouselSlides');
-                const dotsContainer = document.getElementById('carouselDots');
-                const prevBtn = document.getElementById('carouselPrev');
-                const nextBtn = document.getElementById('carouselNext');
-                if (!slidesContainer || !dotsContainer) return;
-                
-                // Images locales prioritaires + fallback Unsplash
-                const slides = [
-                    {
-                        local: 'images/carousel-1.jpg',
-                        fallback: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=550&fit=crop',
-                        title: 'Stratégie Social Media',
-                        description: 'Campagnes engageantes à Lubumbashi et en RDC'
-                    },
-                    {
-                        local: 'images/carousel-2.jpg',
-                        fallback: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=550&fit=crop',
-                        title: 'Création Web Premium',
-                        description: 'Sites modernes, rapides et optimisés SEO'
-                    },
-                    {
-                        local: 'images/carousel-3.jpg',
-                        fallback: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=550&fit=crop',
-                        title: 'Automatisation Intelligente',
-                        description: 'Optimisez vos processus métier en RDC'
-                    },
-                    {
-                        local: 'images/carousel-4.jpg',
-                        fallback: 'https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800&h=550&fit=crop',
-                        title: 'Branding Impactant',
-                        description: 'Une identité visuelle qui vous démarque'
-                    }
-                ];
-                
+            // ==================== CAROUSEL - IMAGES AFRICAINES ====================
+            /*
+             * ⚠️ POUR CHANGER LES IMAGES DU CAROUSEL :
+             * Remplacez les URLs ci-dessous par vos propres images.
+             * Format recommandé : 800×550 pixels
+             * Dossier : /images/carousel-1.jpg, carousel-2.jpg, etc.
+             */
+            const carouselSlidesData = [
+                {
+                    local: 'images/intel.png',
+                    fallback: 'https://images.unsplash.com/photo-1523803326055-b6b44c32e1a6?w=800&h=550&fit=crop',
+                    title: 'Innovation Digitale en Afrique',
+                    description: 'Des solutions tech adaptées au marché congolais'
+                },
+                {
+                    local: 'images/carousel-2.jpg',
+                    fallback: 'https://images.unsplash.com/photo-1573164574572-cb89e39749b4?w=800&h=550&fit=crop',
+                    title: 'Stratégie Social Media',
+                    description: 'Campagnes engageantes pour le public africain'
+                },
+                {
+                    local: 'images/carousel-3.jpg',
+                    fallback: 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=800&h=550&fit=crop',
+                    title: 'Empowerment Digital',
+                    description: 'Former et accompagner les entrepreneurs locaux'
+                },
+                {
+                    local: 'images/carousel-4.jpg',
+                    fallback: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=550&fit=crop',
+                    title: 'Business Africain 2.0',
+                    description: 'Propulser votre entreprise vers le futur digital'
+                }
+            ];
+            
+            const slidesContainer = document.getElementById('carouselSlides');
+            const dotsContainer = document.getElementById('carouselDots');
+            const prevBtn = document.getElementById('carouselPrev');
+            const nextBtn = document.getElementById('carouselNext');
+            
+            if (slidesContainer && dotsContainer) {
                 let currentSlide = 0;
                 let autoplayInterval;
                 
-                slides.forEach((slide, index) => {
+                carouselSlidesData.forEach((slide, index) => {
                     const slideEl = document.createElement('div');
                     slideEl.className = 'carousel-slide';
                     slideEl.innerHTML = `
                         <img src="${slide.local}" alt="${slide.title}" loading="${index === 0 ? 'eager' : 'lazy'}"
                         onerror="this.onerror=null; this.src='${slide.fallback}';">
-                        <div class="carousel-slide-overlay">
-                            <h3>${slide.title}</h3>
-                            <p>${slide.description}</p>
-                        </div>
+                        <div class="carousel-slide-overlay"><h3>${slide.title}</h3><p>${slide.description}</p></div>
                     `;
                     slidesContainer.appendChild(slideEl);
                     
@@ -1313,11 +1067,10 @@
                     slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
                     allDots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
                 }
-                
-                function nextSlide() { goToSlide((currentSlide + 1) % slides.length); }
-                function prevSlide() { goToSlide((currentSlide - 1 + slides.length) % slides.length); }
-                function resetAutoplay() { clearInterval(autoplayInterval); startAutoplay(); }
+                function nextSlide() { goToSlide((currentSlide + 1) % carouselSlidesData.length); }
+                function prevSlide() { goToSlide((currentSlide - 1 + carouselSlidesData.length) % carouselSlidesData.length); }
                 function startAutoplay() { autoplayInterval = setInterval(nextSlide, 4500); }
+                function resetAutoplay() { clearInterval(autoplayInterval); startAutoplay(); }
                 
                 prevBtn?.addEventListener('click', () => { prevSlide(); resetAutoplay(); });
                 nextBtn?.addEventListener('click', () => { nextSlide(); resetAutoplay(); });
@@ -1326,8 +1079,10 @@
                 let touchStartX = 0;
                 slidesContainer.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
                 slidesContainer.addEventListener('touchend', e => {
-                    const diff = touchStartX - e.changedTouches[0].clientX;
-                    if (Math.abs(diff) > 50) { diff > 0 ? nextSlide() : prevSlide(); resetAutoplay(); }
+                    if (Math.abs(touchStartX - e.changedTouches[0].clientX) > 50) {
+                        touchStartX > e.changedTouches[0].clientX ? nextSlide() : prevSlide();
+                        resetAutoplay();
+                    }
                 });
                 
                 startAutoplay();
@@ -1336,167 +1091,126 @@
             }
             
             // ==================== POPULATE CONTENT ====================
-            function populateSecteurs() {
-                const grid = document.getElementById('secteursGrid');
-                if (!grid) return;
-                const secteurs = [
-                    { name: 'Écoles & Universités', icon: 'fa-graduation-cap', desc: 'Plateformes e-learning, inscriptions en ligne' },
-                    { name: 'Magasins & E-commerce', icon: 'fa-store', desc: 'Boutiques en ligne, catalogues digitaux' },
-                    { name: 'PME & Startups', icon: 'fa-rocket', desc: 'Sites vitrine, branding complet' },
-                    { name: 'ONG & Associations', icon: 'fa-hand-holding-heart', desc: 'Visibilité, collecte de dons' },
-                    { name: 'Hôtels & Restaurants', icon: 'fa-hotel', desc: 'Réservation en ligne, menus digitaux' },
-                    { name: 'Hôpitaux & Cliniques', icon: 'fa-hospital', desc: 'RDV en ligne, information patient' },
-                    { name: 'Industrie Minière', icon: 'fa-gem', desc: 'Communication corporate, rapports digitaux' },
-                    { name: 'Autres secteurs', icon: 'fa-building', desc: 'Solution sur mesure' }
-                ];
-                grid.innerHTML = secteurs.map((s, i) => `
-                    <div class="card reveal stagger-${i + 1}">
-                        <div class="card-icon"><i class="fas ${s.icon}"></i></div>
-                        <h3>${s.name}</h3><p>${s.desc}</p>
-                    </div>`).join('');
-            }
+            const secteurs = [
+                { name: 'Écoles & Universités', icon: 'fa-graduation-cap', desc: 'Plateformes e-learning, inscriptions en ligne' },
+                { name: 'Magasins & E-commerce', icon: 'fa-store', desc: 'Boutiques en ligne, catalogues digitaux' },
+                { name: 'PME & Startups', icon: 'fa-rocket', desc: 'Sites vitrine, branding complet' },
+                { name: 'ONG & Associations', icon: 'fa-hand-holding-heart', desc: 'Visibilité, collecte de dons' },
+                { name: 'Hôtels & Restaurants', icon: 'fa-hotel', desc: 'Réservation en ligne, menus digitaux' },
+                { name: 'Hôpitaux & Cliniques', icon: 'fa-hospital', desc: 'RDV en ligne, information patient' },
+                { name: 'Industrie Minière', icon: 'fa-gem', desc: 'Communication corporate, rapports digitaux' },
+                { name: 'Autres secteurs', icon: 'fa-building', desc: 'Solution sur mesure' }
+            ];
             
-            function populateServices() {
-                const grid = document.getElementById('servicesGrid');
-                if (!grid) return;
-                const services = [
-                    { name: 'Création Sites Web', icon: 'fa-globe', desc: 'Sites vitrine, e-commerce, institutionnels' },
-                    { name: 'Applications Web', icon: 'fa-mobile-screen', desc: 'PWAs, dashboards, outils métier' },
-                    { name: 'Automatisation', icon: 'fa-robot', desc: 'Chatbots, workflows, CRM' },
-                    { name: 'Marketing Digital', icon: 'fa-bullhorn', desc: 'SEO, SEA, réseaux sociaux' },
-                    { name: 'Branding & Design', icon: 'fa-palette', desc: 'Logo, charte graphique complète' },
-                    { name: 'Community Management', icon: 'fa-comments', desc: 'Contenu engageant, veille' }
-                ];
-                grid.innerHTML = services.map((s, i) => `
-                    <div class="card reveal stagger-${i + 1}">
-                        <div class="card-icon"><i class="fas ${s.icon}"></i></div>
-                        <h3>${s.name}</h3><p>${s.desc}</p>
-                    </div>`).join('');
-            }
+            const services = [
+                { name: 'Création Sites Web', icon: 'fa-globe', desc: 'Sites vitrine, e-commerce, institutionnels' },
+                { name: 'Applications Web', icon: 'fa-mobile-screen', desc: 'PWAs, dashboards, outils métier' },
+                { name: 'Automatisation', icon: 'fa-robot', desc: 'Chatbots, workflows, CRM' },
+                { name: 'Marketing Digital', icon: 'fa-bullhorn', desc: 'SEO, SEA, réseaux sociaux' },
+                { name: 'Branding & Design', icon: 'fa-palette', desc: 'Logo, charte graphique complète' },
+                { name: 'Community Management', icon: 'fa-comments', desc: 'Contenu engageant, veille' }
+            ];
             
-            function populateProcess() {
-                const grid = document.getElementById('processGrid');
-                if (!grid) return;
-                const steps = [
-                    { number: 1, title: 'Découverte', desc: 'Analyse de vos besoins' },
-                    { number: 2, title: 'Stratégie', desc: 'Plan d\'action sur mesure' },
-                    { number: 3, title: 'Création', desc: 'Design et développement' },
-                    { number: 4, title: 'Lancement', desc: 'Déploiement et mise en ligne' },
-                    { number: 5, title: 'Suivi', desc: 'Optimisation continue' }
-                ];
-                grid.innerHTML = steps.map((s, i) => `
-                    <div class="process-card reveal stagger-${i + 1}">
-                        <div class="process-number">${s.number}</div>
-                        <h3>${s.title}</h3><p style="color:var(--text-tertiary);">${s.desc}</p>
-                    </div>`).join('');
-            }
+            const processSteps = [
+                { number: 1, title: 'Découverte', desc: 'Analyse de vos besoins' },
+                { number: 2, title: 'Stratégie', desc: 'Plan d\'action sur mesure' },
+                { number: 3, title: 'Création', desc: 'Design et développement' },
+                { number: 4, title: 'Lancement', desc: 'Déploiement et mise en ligne' },
+                { number: 5, title: 'Suivi', desc: 'Optimisation continue' }
+            ];
             
-            function populateWhyUs() {
-                const grid = document.getElementById('whyUsGrid');
-                if (!grid) return;
-                const reasons = [
-                    { icon: 'fa-bolt', title: 'Réactivité', desc: 'Disponibilité permanente' },
-                    { icon: 'fa-medal', title: 'Expertise', desc: 'Plus de 2 ans en RDC' },
-                    { icon: 'fa-handshake', title: 'Proximité', desc: 'Basés à Lubumbashi' },
-                    { icon: 'fa-chart-line', title: 'Performance', desc: 'Solutions orientées résultats' },
-                    { icon: 'fa-shield-halved', title: 'Fiabilité', desc: 'Respect des délais' },
-                    { icon: 'fa-wallet', title: 'Tarifs adaptés', desc: 'Prix compétitifs' }
-                ];
-                grid.innerHTML = reasons.map((r, i) => `
-                    <div class="why-us-card reveal stagger-${i + 1}">
-                        <div class="why-us-icon"><i class="fas ${r.icon}"></i></div>
-                        <h3>${r.title}</h3><p style="color:var(--text-tertiary);">${r.desc}</p>
-                    </div>`).join('');
-            }
+            const whyUs = [
+                { icon: 'fa-bolt', title: 'Réactivité', desc: 'Disponibilité permanente' },
+                { icon: 'fa-medal', title: 'Expertise', desc: 'Plus de 2 ans en RDC' },
+                { icon: 'fa-handshake', title: 'Proximité', desc: 'Basés à Lubumbashi' },
+                { icon: 'fa-chart-line', title: 'Performance', desc: 'Solutions orientées résultats' },
+                { icon: 'fa-shield-halved', title: 'Fiabilité', desc: 'Respect des délais' },
+                { icon: 'fa-wallet', title: 'Tarifs adaptés', desc: 'Prix compétitifs' }
+            ];
             
-            function populateTestimonials() {
-                const grid = document.getElementById('testimonialsGrid');
-                if (!grid) return;
-                const testimonials = [
-                    { stars: 5, text: 'SMA a transformé notre présence en ligne. Résultats impressionnants !', author: 'Marie K.', role: 'Directrice, Lubumbashi' },
-                    { stars: 5, text: 'Excellente compréhension de nos besoins locaux. Je recommande vivement.', author: 'Dr. Jean M.', role: 'Fondateur ONG' },
-                    { stars: 5, text: 'Notre restaurant a gagné +80% de réservations grâce à leur stratégie.', author: 'Sophie L.', role: 'Restaurant Le Saveur'}
-                ];
-                grid.innerHTML = testimonials.map(t => `
-                    <div class="testimonial-card reveal">
-                        <div class="testimonial-stars">${Array(t.stars).fill('<i class="fas fa-star"></i>').join('')}</div>
-                        <p class="testimonial-text">"${t.text}"</p>
-                        <div class="testimonial-author">
-                            <img src="${t.avatar}" alt="${t.author}" loading="lazy">
-                            <div class="testimonial-author-info"><h4>${t.author}</h4><span>${t.role}</span></div>
-                        </div>
-                    </div>`).join('');
-            }
+            // Témoignages SANS PHOTOS - uniquement noms et rôles
+            const testimonials = [
+                {
+                    stars: 5,
+                    text: 'SMA a complètement transformé notre présence en ligne. Notre activité a connu une croissance remarquable grâce à leur expertise digitale.',
+                    author: 'Marie Kabanga',
+                    role: 'Directrice, Boutique Élégance - Lubumbashi'
+                },
+                {
+                    stars: 5,
+                    text: 'Professionnalisme et créativité exceptionnels. L\'équipe a su comprendre exactement ce dont notre organisation avait besoin pour se développer.',
+                    author: 'Dr. Jean Mutombo',
+                    role: 'Fondateur, Aide Humanitaire RDC'
+                },
+                {
+                    stars: 5,
+                    text: 'Notre restaurant a gagné en visibilité grâce à leur stratégie digitale. Les réservations ont augmenté de façon spectaculaire.',
+                    author: 'Sophie Lukusa',
+                    role: 'Propriétaire, Restaurant Le Saveur - Lubumbashi'
+                },
+                {
+                    stars: 5,
+                    text: 'Un accompagnement de qualité du début à la fin. SMA a su digitaliser notre PME avec des solutions parfaitement adaptées.',
+                    author: 'Patrick Mwamba',
+                    role: 'Gérant, Tech Solutions RDC'
+                },
+                {
+                    stars: 5,
+                    text: 'La meilleure agence digitale de la région. Résultats concrets et mesurables dès les premiers mois de collaboration.',
+                    author: 'Christine Kalenga',
+                    role: 'CEO, StartUp Innov Congo'
+                },
+                {
+                    stars: 4,
+                    text: 'Très satisfait du site web créé pour notre école. Design moderne et fonctionnel, nos étudiants et parents l\'adorent !',
+                    author: 'Prof. André Ilunga',
+                    role: 'Directeur, Collège Avenir - Lubumbashi'
+                }
+            ];
             
-            // ==================== SCROLL REVEAL AVANCÉ ====================
-            function initScrollReveal() {
-                const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('visible');
-                        }
-                    });
-                }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
-                reveals.forEach(el => observer.observe(el));
-            }
+            // Remplir les grilles
+            document.getElementById('secteursGrid').innerHTML = secteurs.map((s, i) => `<div class="card reveal stagger-${i+1}"><div class="card-icon"><i class="fas ${s.icon}"></i></div><h3>${s.name}</h3><p>${s.desc}</p></div>`).join('');
+            document.getElementById('servicesGrid').innerHTML = services.map((s, i) => `<div class="card reveal stagger-${i+1}"><div class="card-icon"><i class="fas ${s.icon}"></i></div><h3>${s.name}</h3><p>${s.desc}</p></div>`).join('');
+            document.getElementById('processGrid').innerHTML = processSteps.map((s, i) => `<div class="process-card reveal stagger-${i+1}"><div class="process-number">${s.number}</div><h3>${s.title}</h3><p style="color:var(--text-tertiary);">${s.desc}</p></div>`).join('');
+            document.getElementById('whyUsGrid').innerHTML = whyUs.map((r, i) => `<div class="why-us-card reveal stagger-${i+1}"><div class="why-us-icon"><i class="fas ${r.icon}"></i></div><h3>${r.title}</h3><p style="color:var(--text-tertiary);">${r.desc}</p></div>`).join('');
+            
+            // Témoignages - Nouveau design SANS PHOTOS
+            document.getElementById('testimonialsGrid').innerHTML = testimonials.map((t, i) => `
+                <div class="testimonial-card reveal stagger-${i+1}">
+                    <div class="testimonial-quote-icon"><i class="fas fa-quote-right"></i></div>
+                    <div class="testimonial-stars">${Array(t.stars).fill('<i class="fas fa-star"></i>').join('')}${t.stars < 5 ? Array(5-t.stars).fill('<i class="far fa-star"></i>').join('') : ''}</div>
+                    <p class="testimonial-text">"${t.text}"</p>
+                    <div class="testimonial-divider"></div>
+                    <div class="testimonial-author-name">${t.author}</div>
+                    <div class="testimonial-author-role">${t.role}</div>
+                </div>
+            `).join('');
+            
+            // ==================== SCROLL REVEAL ====================
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+            }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+            document.querySelectorAll('.reveal, .reveal-scale').forEach(el => observer.observe(el));
             
             // ==================== STATS COUNTER ====================
-            function initStatsCounter() {
-                const statNumbers = document.querySelectorAll('.stat-number[data-target]');
-                if (!statNumbers.length) return;
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const el = entry.target;
-                            const target = parseInt(el.dataset.target);
-                            let current = 0;
-                            const duration = 1800;
-                            const increment = target / (duration / 16);
-                            const counter = setInterval(() => {
-                                current += increment;
-                                if (current >= target) { el.textContent = target + '+'; clearInterval(counter); }
-                                else { el.textContent = Math.floor(current) + '+'; }
-                            }, 16);
-                            observer.unobserve(el);
-                        }
-                    });
-                }, { threshold: 0.6 });
-                statNumbers.forEach(el => observer.observe(el));
-            }
-            
-            // ==================== PARALLAXE LÉGER ====================
-            function initParallax() {
-                const parallaxEls = document.querySelectorAll('.hero-carousel-wrapper, .cta-banner');
-                window.addEventListener('scroll', () => {
-                    const scrolled = window.scrollY;
-                    parallaxEls.forEach(el => {
-                        const speed = 0.03;
-                        el.style.transform = `translateY(${scrolled * speed}px)`;
-                    });
+            const statObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const target = parseInt(el.dataset.target);
+                        let current = 0;
+                        const counter = setInterval(() => {
+                            current += target / 112;
+                            if (current >= target) { el.textContent = target + '+'; clearInterval(counter); }
+                            else { el.textContent = Math.floor(current) + '+'; }
+                        }, 16);
+                        statObserver.unobserve(el);
+                    }
                 });
-            }
+            }, { threshold: 0.6 });
+            document.querySelectorAll('.stat-number[data-target]').forEach(el => statObserver.observe(el));
             
-            // ==================== INIT ====================
-            function init() {
-                initLogoLoader();
-                initDarkMode();
-                initMobileMenu();
-                initNavbarScroll();
-                initCarousel();
-                populateSecteurs();
-                populateServices();
-                populateProcess();
-                populateWhyUs();
-                populateTestimonials();
-                initScrollReveal();
-                initStatsCounter();
-                initParallax();
-                console.log('🚀 SMA Agency Lubumbashi - Prêt !');
-            }
-            
-            if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-            else init();
+            console.log('🚀 SMA Agency Lubumbashi - Prêt !');
         })();
     </script>
 </body>
