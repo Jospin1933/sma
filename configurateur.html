@@ -2,8 +2,18 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="SMA Agency - Configurateur intelligent. Commandez votre projet digital en quelques clics.">
+    <meta name="theme-color" content="#2563eb">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="SMA Agency - Configurateur Intelligent">
+    <meta property="og:description" content="Configurez votre projet digital et obtenez une estimation en Dollars.">
+    <meta property="og:image" content="https://votresite.com/images/logo.png">
+    <meta property="og:type" content="website">
+    
     <title>SMA Agency - Configurateur Intelligent</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
@@ -37,515 +47,273 @@
             --border: rgba(148, 163, 184, 0.2);
         }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: 'Inter', sans-serif;
             background: var(--bg);
             color: var(--text);
             transition: background 0.4s, color 0.3s;
+            overflow-x: hidden;
         }
         
         /* ==================== LOGO LOADER ==================== */
         .logo-loader-overlay {
-            position: fixed;
-            inset: 0;
-            background: var(--bg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: fixed; inset: 0; background: var(--bg);
+            display: flex; align-items: center; justify-content: center;
             z-index: 99999;
             transition: opacity 0.6s ease, visibility 0.6s ease;
         }
-        
-        .logo-loader-overlay.hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-        
-        .logo-loader-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2rem;
-        }
-        
-        .logo-loader-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        .logo-loader-overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        .logo-loader-container { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
+        .logo-loader-wrapper { position: relative; display: flex; align-items: center; justify-content: center; }
         
         .logo-loader-ring {
-            width: 150px;
-            height: 150px;
-            position: absolute;
+            width: 150px; height: 150px; position: absolute;
             border: 3px solid transparent;
             border-top: 3px solid var(--primary);
             border-right: 3px solid var(--accent);
             border-radius: 50%;
             animation: ringSpin 1.2s linear infinite;
         }
-        
-        @keyframes ringSpin {
-            to { transform: rotate(360deg); }
-        }
+        @keyframes ringSpin { to { transform: rotate(360deg); } }
         
         .logo-loader-image {
-            width: 100px;
-            height: 100px;
-            object-fit: contain;
+            width: 100px; height: 100px; object-fit: contain; z-index: 2;
             animation: logoPulse 1.4s ease-in-out infinite, logoFloat 2.5s ease-in-out infinite;
-            z-index: 2;
         }
-        
         @keyframes logoPulse {
-            0%, 100% { 
-                transform: scale(1); 
-                filter: drop-shadow(0 0 20px rgba(37, 99, 235, 0.3));
-            }
-            50% { 
-                transform: scale(1.08); 
-                filter: drop-shadow(0 0 40px rgba(37, 99, 235, 0.6));
-            }
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 20px rgba(37, 99, 235, 0.3)); }
+            50% { transform: scale(1.08); filter: drop-shadow(0 0 40px rgba(37, 99, 235, 0.6)); }
         }
-        
-        @keyframes logoFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
-        }
+        @keyframes logoFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
         
         .logo-loader-text {
-            font-size: 2rem;
-            font-weight: 800;
-            letter-spacing: 4px;
+            font-size: 2rem; font-weight: 800; letter-spacing: 4px;
             background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        
-        .logo-loader-dots {
-            display: flex;
-            gap: 8px;
-        }
-        
+        .logo-loader-dots { display: flex; gap: 8px; }
         .logo-loader-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--primary);
+            width: 8px; height: 8px; border-radius: 50%; background: var(--primary);
             animation: dotBounce 1.2s ease-in-out infinite;
         }
-        
         .logo-loader-dot:nth-child(2) { animation-delay: 0.2s; background: var(--accent); }
         .logo-loader-dot:nth-child(3) { animation-delay: 0.4s; }
-        
-        @keyframes dotBounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-16px); }
-        }
+        @keyframes dotBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-16px); } }
         
         /* ==================== NAVBAR ==================== */
         .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
             background: var(--glass);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
             height: 70px;
         }
+        .navbar.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
         
         .navbar-container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            max-width: 1300px; margin: 0 auto; padding: 0 2rem;
+            height: 100%; display: flex; align-items: center; justify-content: space-between;
+            gap: 1rem;
         }
         
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            transition: transform var(--transition);
+            display: flex; align-items: center; gap: 0.5rem;
+            text-decoration: none; transition: transform var(--transition);
+            flex-shrink: 0;
         }
-        
-        .logo:hover {
-            transform: scale(1.03);
-        }
-        
-        .logo img {
-            width: 40px;
-            height: 40px;
-            object-fit: contain;
-            transition: transform var(--transition);
-        }
-        
-        .logo:hover img {
-            transform: rotate(-5deg);
-        }
-        
+        .logo:hover { transform: scale(1.03); }
+        .logo img { width: 40px; height: 40px; object-fit: contain; }
+        .logo:hover img { transform: rotate(-5deg); }
         .logo span {
-            font-size: 1.5rem;
-            font-weight: 800;
+            font-size: 1.5rem; font-weight: 800;
             background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
         
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-        
+        .nav-links { display: flex; gap: 1.8rem; list-style: none; align-items: center; }
         .nav-links a {
-            text-decoration: none;
-            color: var(--text);
-            font-weight: 500;
-            transition: color 0.2s;
-            position: relative;
-            padding: 0.3rem 0;
+            text-decoration: none; color: var(--text); font-weight: 500;
+            font-size: 0.92rem; transition: color 0.2s;
+            position: relative; padding: 0.3rem 0; white-space: nowrap;
         }
-        
         .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            border-radius: 10px;
-            transition: width 0.3s;
+            content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+            background: var(--primary); border-radius: 10px; transition: width 0.3s;
         }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
         
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
+        .navbar-actions-group {
+            display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0;
         }
         
         .btn-icon {
-            background: transparent;
-            border: 1.5px solid var(--border);
-            border-radius: 50%;
-            width: 42px;
-            height: 42px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            color: var(--text);
-            transition: all 0.3s;
+            background: transparent; border: 1.5px solid var(--border);
+            border-radius: 50%; width: 40px; height: 40px; min-width: 40px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; color: var(--text); transition: all 0.3s;
         }
-        
-        .btn-icon:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
+        .btn-icon:hover { border-color: var(--primary); color: var(--primary); }
         
         .theme-toggle .fa-moon { display: inline; }
         .theme-toggle .fa-sun { display: none; }
         body.dark .theme-toggle .fa-moon { display: none; }
         body.dark .theme-toggle .fa-sun { display: inline; }
         
+        .btn {
+            display: inline-flex; align-items: center; gap: 0.45rem;
+            padding: 0.65rem 1.3rem; border-radius: 50px;
+            font-weight: 600; cursor: pointer; border: none;
+            transition: all 0.3s; font-size: 0.9rem;
+            font-family: 'Inter', sans-serif; text-decoration: none;
+            white-space: nowrap;
+        }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3); }
+        .btn-outline { background: transparent; border: 2px solid var(--primary); color: var(--primary); }
+        .btn-outline:hover { background: var(--primary); color: white; }
+        .btn-whatsapp { background: var(--whatsapp); color: white; }
+        .btn-whatsapp:hover { background: #128C7E; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3); }
+        .btn-block { width: 100%; justify-content: center; }
+        .btn-sm { padding: 0.5rem 1rem; font-size: 0.82rem; }
+        
+        /* Menu burger */
+        .menu-burger {
+            display: none; flex-direction: column; gap: 4px;
+            background: none; border: none; cursor: pointer;
+            padding: 6px; width: 40px; height: 40px;
+            align-items: center; justify-content: center;
+        }
+        .menu-burger span {
+            width: 24px; height: 2.5px; background: var(--text);
+            border-radius: 3px; transition: all var(--transition);
+        }
+        .menu-burger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .menu-burger.active span:nth-child(2) { opacity: 0; }
+        .menu-burger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        
         /* ==================== CONFIGURATEUR ==================== */
         .config-section {
             padding: 8rem 2rem 4rem;
-            max-width: 950px;
-            margin: 0 auto;
+            max-width: 950px; margin: 0 auto;
         }
-        
         .config-card {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
+            background: var(--glass); backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 3rem;
-            box-shadow: var(--shadow);
+            border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 3rem; box-shadow: var(--shadow);
         }
-        
         .gradient-text {
             background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
-        .steps-indicator {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 2rem;
-        }
-        
+        .steps-indicator { display: flex; justify-content: space-between; margin-bottom: 2rem; }
         .step-dot {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1rem;
-            background: var(--border);
-            color: var(--text-light);
-            transition: all 0.3s;
+            width: 42px; height: 42px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 1rem; background: var(--border);
+            color: var(--text-light); transition: all 0.3s;
         }
-        
-        .step-dot.active {
-            background: var(--primary);
-            color: white;
-            box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
-        }
-        
-        .step-dot.done {
-            background: #10b981;
-            color: white;
-        }
-        
-        .progress-bar {
-            height: 6px;
-            background: var(--border);
-            border-radius: 10px;
-            margin-bottom: 2rem;
-            overflow: hidden;
-        }
-        
+        .step-dot.active { background: var(--primary); color: white; box-shadow: 0 0 20px rgba(37, 99, 235, 0.4); }
+        .step-dot.done { background: #10b981; color: white; }
+        .progress-bar { height: 6px; background: var(--border); border-radius: 10px; margin-bottom: 2rem; overflow: hidden; }
         .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            border-radius: 10px;
-            transition: width 0.5s ease;
+            height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 10px; transition: width 0.5s ease;
         }
+        .step-content { display: none; animation: fadeIn 0.4s ease; }
+        .step-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
-        .step-content {
-            display: none;
-            animation: fadeIn 0.4s ease;
-        }
-        
-        .step-content.active {
-            display: block;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .option-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-        
+        .option-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
         .option-card {
-            padding: 1.4rem 1rem;
-            border: 2px solid var(--border);
-            border-radius: var(--radius);
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            background: var(--surface);
+            padding: 1.3rem 1rem; border: 2px solid var(--border); border-radius: var(--radius);
+            text-align: center; cursor: pointer; transition: all 0.3s; background: var(--surface);
         }
+        .option-card:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); }
+        .option-card.selected { border-color: var(--primary); background: rgba(37, 99, 235, 0.06); box-shadow: 0 4px 15px rgba(37, 99, 235, 0.15); }
+        .option-card i { font-size: 1.5rem; margin-bottom: 0.4rem; color: var(--primary); display: block; }
+        .option-card small { display: block; color: var(--primary); font-weight: 600; margin-top: 0.3rem; font-size: 0.82rem; }
         
-        .option-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .option-card.selected {
-            border-color: var(--primary);
-            background: rgba(37, 99, 235, 0.06);
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.15);
-        }
-        
-        .option-card i {
-            font-size: 1.6rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-            display: block;
-        }
-        
-        .option-card small {
-            display: block;
-            color: var(--primary);
-            font-weight: 600;
-            margin-top: 0.4rem;
-            font-size: 0.85rem;
-        }
-        
-        .summary-box {
-            background: var(--surface);
-            border-radius: var(--radius);
-            padding: 2rem;
-            margin: 1.5rem 0;
-            border: 1px solid var(--border);
-        }
-        
-        .summary-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.9rem 0;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.95rem;
-        }
-        
-        .summary-item:last-child {
-            border-bottom: none;
-        }
-        
-        .summary-total {
-            text-align: center;
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 2px solid var(--primary);
-        }
-        
-        .total-price {
-            font-size: 2.2rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+        .summary-box { background: var(--surface); border-radius: var(--radius); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border); }
+        .summary-item { display: flex; justify-content: space-between; padding: 0.9rem 0; border-bottom: 1px solid var(--border); font-size: 0.95rem; }
+        .summary-item:last-child { border-bottom: none; }
+        .summary-total { text-align: center; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 2px solid var(--primary); }
+        .total-price { font-size: 2.2rem; font-weight: 900; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         
         .estimate-note {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            justify-content: center;
-            margin-top: 1rem;
-            padding: 0.8rem 1.2rem;
-            background: rgba(245, 158, 11, 0.1);
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            border-radius: 12px;
-            color: #b45309;
-            font-size: 0.9rem;
-            font-weight: 500;
+            display: flex; align-items: center; gap: 0.5rem; justify-content: center;
+            margin-top: 1rem; padding: 0.8rem 1.2rem;
+            background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 12px; color: #b45309; font-size: 0.9rem; font-weight: 500;
         }
+        body.dark .estimate-note { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+        .estimate-note i { font-size: 1.2rem; }
         
-        body.dark .estimate-note {
-            background: rgba(245, 158, 11, 0.15);
-            color: #fbbf24;
-        }
+        .nav-buttons { display: flex; justify-content: space-between; margin-top: 2rem; gap: 1rem; }
         
-        .estimate-note i {
-            font-size: 1.2rem;
-        }
-        
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.85rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            transition: all 0.3s;
-            font-size: 0.95rem;
-            font-family: 'Inter', sans-serif;
-        }
-        
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-        
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-        }
-        
-        .btn-whatsapp {
-            background: var(--whatsapp);
-            color: white;
-        }
-        
-        .btn-whatsapp:hover {
-            background: #128C7E;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
-        }
-        
-        .btn-block {
-            width: 100%;
-            justify-content: center;
-        }
-        
-        .nav-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 2rem;
-            gap: 1rem;
-        }
-        
-        /* WhatsApp Float */
         .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 62px;
-            height: 62px;
-            background: #25D366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.7rem;
-            color: white;
-            text-decoration: none;
-            z-index: 999;
-            box-shadow: 0 8px 32px rgba(37, 211, 102, 0.4);
-            transition: all 0.3s;
-            animation: floatPulse 2.5s ease-in-out infinite;
+            position: fixed; bottom: 28px; right: 28px; width: 58px; height: 58px;
+            background: #25D366; border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; font-size: 1.6rem; color: white; text-decoration: none;
+            z-index: 999; box-shadow: 0 8px 32px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s; animation: floatPulse 2.5s ease-in-out infinite;
         }
-        
-        .whatsapp-float:hover {
-            transform: scale(1.12);
-        }
-        
+        .whatsapp-float:hover { transform: scale(1.12); }
         @keyframes floatPulse {
             0%, 100% { box-shadow: 0 8px 32px rgba(37, 211, 102, 0.4); }
             50% { box-shadow: 0 8px 55px rgba(37, 211, 102, 0.7); }
         }
         
+        /* ==================== RESPONSIVE ==================== */
         @media (max-width: 768px) {
+            .navbar-container { padding: 0 1rem; gap: 0.5rem; }
+            .logo img { width: 34px; height: 34px; }
+            .logo span { font-size: 1.3rem; }
+            
+            .nav-links {
+                display: none; position: fixed; top: 70px; left: 0; right: 0;
+                background: var(--glass); backdrop-filter: blur(24px);
+                flex-direction: column; padding: 1.5rem; gap: 1rem;
+                border-bottom: 1px solid var(--border);
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                z-index: 999;
+            }
+            .nav-links.active { display: flex; }
+            
+            .menu-burger { display: flex; }
+            
             .config-section { padding: 5rem 1rem 2rem; }
             .config-card { padding: 1.5rem; }
-            .option-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
-            .nav-links { display: none; }
-            .total-price { font-size: 1.6rem; }
+            .option-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 0.7rem; }
+            .option-card { padding: 1rem 0.7rem; }
+            .option-card i { font-size: 1.2rem; }
+            .option-card small { font-size: 0.75rem; }
+            .total-price { font-size: 1.5rem; }
+            .steps-indicator { gap: 0.5rem; }
+            .step-dot { width: 36px; height: 36px; font-size: 0.85rem; }
+            
+            .navbar-container {
+                display: grid;
+                grid-template-columns: auto 1fr auto;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            .logo { justify-self: center; }
+            .navbar-actions-group { justify-self: end; }
+        }
+        
+        @media (max-width: 480px) {
+            .config-card { padding: 1.2rem; }
+            .config-section { padding: 4.5rem 0.7rem 1.5rem; }
+            .option-grid { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+            .option-card { padding: 0.8rem 0.5rem; font-size: 0.85rem; }
+            .total-price { font-size: 1.3rem; }
+            .whatsapp-float { width: 50px; height: 50px; font-size: 1.3rem; bottom: 16px; right: 16px; }
         }
     </style>
 </head>
@@ -556,9 +324,9 @@
         <div class="logo-loader-container">
             <div class="logo-loader-wrapper">
                 <div class="logo-loader-ring"></div>
-                <img src="images/logo.png" alt="SMA Agency Logo" class="logo-loader-image" onerror="this.style.display='none';">
+                <img src="images/logo.png" alt="SMA Agency Logo" class="logo-loader-image">
             </div>
-            <div class="logo-loader-text">SMA</div>
+            <div class="logo-loader-text" style="display:none;">SMA</div>
             <div class="logo-loader-dots">
                 <div class="logo-loader-dot"></div>
                 <div class="logo-loader-dot"></div>
@@ -568,33 +336,43 @@
     </div>
     
     <!-- ==================== NAVBAR ==================== -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="navbar-container">
+            <!-- Logo centré sur mobile -->
             <a href="index.html" class="logo">
-                <img src="images/logo.png" alt="SMA Logo" onerror="this.style.display='none';">
+                <img src="images/logo.png" alt="SMA Logo">
                 <span>SMA</span>
             </a>
-            <ul class="nav-links">
+            
+            <!-- Menu desktop -->
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="configurateur.html" class="active">Configurateur</a></li>
                 <li><a href="equipe.html">Équipe</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-            <button class="btn-icon theme-toggle" id="themeToggle" aria-label="Changer le thème">
-                <i class="fas fa-moon"></i>
-                <i class="fas fa-sun"></i>
-            </button>
+            
+            <!-- Actions : Dark mode + Menu burger -->
+            <div class="navbar-actions-group">
+                <button class="btn-icon theme-toggle" id="themeToggle" aria-label="Changer le thème">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button class="menu-burger" id="menuBurger" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
         </div>
     </nav>
     
     <!-- ==================== CONFIGURATEUR ==================== -->
     <section class="config-section">
         <div class="config-card">
-            <h2 style="font-size:2rem;font-weight:800;margin-bottom:2rem;text-align:center;">
+            <h2 style="font-size:2rem;font-weight:800;margin-bottom:1.5rem;text-align:center;">
                 🎯 <span class="gradient-text">Configurateur</span> Intelligent
             </h2>
-            <p style="text-align:center;color:var(--text-light);margin-bottom:2rem;">
+            <p style="text-align:center;color:var(--text-light);margin-bottom:2rem;font-size:0.95rem;">
                 Configurez votre projet et obtenez une estimation en Dollars (USD)
             </p>
             
@@ -608,55 +386,43 @@
                 <div class="progress-fill" id="progressFill" style="width:25%;"></div>
             </div>
             
-            <!-- Step 1: Secteur -->
+            <!-- Step 1 -->
             <div class="step-content active" id="step1">
                 <h3 style="margin-bottom:1.5rem;">1️⃣ Choisissez votre secteur d'activité</h3>
                 <div class="option-grid" id="sectorOptions"></div>
             </div>
             
-            <!-- Step 2: Services -->
+            <!-- Step 2 -->
             <div class="step-content" id="step2">
                 <h3 style="margin-bottom:1.5rem;">2️⃣ Sélectionnez les services souhaités</h3>
                 <p style="color:var(--text-light);margin-bottom:1rem;font-size:0.9rem;">Cochez tous les services qui vous intéressent</p>
                 <div class="option-grid" id="serviceOptions"></div>
             </div>
             
-            <!-- Step 3: Options supplémentaires -->
+            <!-- Step 3 -->
             <div class="step-content" id="step3">
                 <h3 style="margin-bottom:1.5rem;">3️⃣ Options supplémentaires</h3>
-                <div style="display:flex;flex-direction:column;gap:1.2rem;" id="extraOptions">
+                <div style="display:flex;flex-direction:column;gap:1rem;" id="extraOptions">
                     <label style="display:flex;align-items:center;gap:0.8rem;cursor:pointer;padding:1rem;border:2px solid var(--border);border-radius:12px;transition:all 0.3s;">
                         <input type="checkbox" id="maintenance" style="width:20px;height:20px;accent-color:var(--primary);">
-                        <div>
-                            <strong>Maintenance mensuelle</strong>
-                            <span style="display:block;color:var(--text-light);font-size:0.85rem;">+50$/mois - Mises à jour et support continu</span>
-                        </div>
+                        <div><strong>Maintenance mensuelle</strong><span style="display:block;color:var(--text-light);font-size:0.85rem;">+50$/mois - Mises à jour et support continu</span></div>
                     </label>
                     <label style="display:flex;align-items:center;gap:0.8rem;cursor:pointer;padding:1rem;border:2px solid var(--border);border-radius:12px;transition:all 0.3s;">
                         <input type="checkbox" id="seo" style="width:20px;height:20px;accent-color:var(--primary);">
-                        <div>
-                            <strong>Référencement SEO</strong>
-                            <span style="display:block;color:var(--text-light);font-size:0.85rem;">+200$ - Optimisation pour les moteurs de recherche</span>
-                        </div>
+                        <div><strong>Référencement SEO</strong><span style="display:block;color:var(--text-light);font-size:0.85rem;">+200$ - Optimisation pour les moteurs de recherche</span></div>
                     </label>
                     <label style="display:flex;align-items:center;gap:0.8rem;cursor:pointer;padding:1rem;border:2px solid var(--border);border-radius:12px;transition:all 0.3s;">
                         <input type="checkbox" id="hosting" style="width:20px;height:20px;accent-color:var(--primary);">
-                        <div>
-                            <strong>Hébergement Premium</strong>
-                            <span style="display:block;color:var(--text-light);font-size:0.85rem;">+30$/mois - Hébergement rapide et sécurisé</span>
-                        </div>
+                        <div><strong>Hébergement Premium</strong><span style="display:block;color:var(--text-light);font-size:0.85rem;">+30$/mois - Hébergement rapide et sécurisé</span></div>
                     </label>
                     <label style="display:flex;align-items:center;gap:0.8rem;cursor:pointer;padding:1rem;border:2px solid var(--border);border-radius:12px;transition:all 0.3s;">
                         <input type="checkbox" id="formation" style="width:20px;height:20px;accent-color:var(--primary);">
-                        <div>
-                            <strong>Formation utilisateur</strong>
-                            <span style="display:block;color:var(--text-light);font-size:0.85rem;">+100$ - Prise en main de votre outil</span>
-                        </div>
+                        <div><strong>Formation utilisateur</strong><span style="display:block;color:var(--text-light);font-size:0.85rem;">+100$ - Prise en main de votre outil</span></div>
                     </label>
                 </div>
             </div>
             
-            <!-- Step 4: Résumé -->
+            <!-- Step 4 -->
             <div class="step-content" id="step4">
                 <h3 style="margin-bottom:1.5rem;">📋 Récapitulatif de votre projet</h3>
                 <div class="summary-box" id="summaryBox"></div>
@@ -695,26 +461,30 @@
             
             // ==================== LOGO LOADER ====================
             const logoLoader = document.getElementById('logoLoader');
-            window.addEventListener('load', () => {
-                setTimeout(() => {
-                    logoLoader.classList.add('hidden');
-                    setTimeout(() => { if (logoLoader.parentNode) logoLoader.parentNode.removeChild(logoLoader); }, 700);
-                }, 1800);
-            });
-            setTimeout(() => {
-                if (logoLoader && !logoLoader.classList.contains('hidden')) {
-                    logoLoader.classList.add('hidden');
-                    setTimeout(() => { if (logoLoader.parentNode) logoLoader.parentNode.removeChild(logoLoader); }, 700);
-                }
-            }, 5000);
+            if (logoLoader) {
+                window.addEventListener('load', () => {
+                    setTimeout(() => { logoLoader.classList.add('hidden'); setTimeout(() => { if (logoLoader.parentNode) logoLoader.parentNode.removeChild(logoLoader); }, 700); }, 1800);
+                });
+                setTimeout(() => { if (logoLoader && !logoLoader.classList.contains('hidden')) { logoLoader.classList.add('hidden'); setTimeout(() => { if (logoLoader.parentNode) logoLoader.parentNode.removeChild(logoLoader); }, 700); } }, 5000);
+            }
             
             // ==================== DARK MODE ====================
             const themeToggle = document.getElementById('themeToggle');
             if (localStorage.getItem('sma-dark') === 'true') document.body.classList.add('dark');
-            themeToggle.addEventListener('click', () => {
+            themeToggle?.addEventListener('click', () => {
                 document.body.classList.toggle('dark');
                 localStorage.setItem('sma-dark', document.body.classList.contains('dark'));
             });
+            
+            // ==================== MOBILE MENU ====================
+            const burger = document.getElementById('menuBurger');
+            const navLinks = document.getElementById('navLinks');
+            burger?.addEventListener('click', () => { burger.classList.toggle('active'); navLinks.classList.toggle('active'); });
+            navLinks?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { burger.classList.remove('active'); navLinks.classList.remove('active'); }));
+            
+            // ==================== NAVBAR SCROLL ====================
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => navbar?.classList.toggle('scrolled', window.scrollY > 50));
             
             // ==================== CONFIGURATEUR ====================
             const steps = document.querySelectorAll('.step-content');
@@ -732,9 +502,7 @@
             let selectedSector = null;
             let selectedServices = [];
             
-            // Prix en Dollars (adaptés au marché RDC)
             const secteursList = ['Écoles', 'Magasins & E-commerce', 'PME & Startups', 'ONG', 'Hôtels & Restaurants', 'Hôpitaux & Cliniques', 'Industrie Minière', 'Autres'];
-            
             const servicesList = [
                 { name: 'Création Site Web', price: 500, icon: 'fa-globe' },
                 { name: 'Application Web', price: 800, icon: 'fa-mobile-screen' },
@@ -744,117 +512,67 @@
                 { name: 'Community Management', price: 250, icon: 'fa-comments' }
             ];
             
-            // Générer options secteurs
             secteursList.forEach(s => {
                 const card = document.createElement('div');
                 card.className = 'option-card';
                 card.innerHTML = `<i class="fas fa-building"></i> ${s}`;
                 card.addEventListener('click', () => {
-                    document.querySelectorAll('#sectorOptions .option-card').forEach(c => c.classList.remove('selected'));
+                    sectorOptions.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
                     card.classList.add('selected');
                     selectedSector = s;
                 });
                 sectorOptions.appendChild(card);
             });
             
-            // Générer options services
             servicesList.forEach(s => {
                 const card = document.createElement('div');
                 card.className = 'option-card';
                 card.innerHTML = `<i class="fas ${s.icon}"></i> ${s.name}<small>+${s.price}$</small>`;
                 card.addEventListener('click', () => {
                     card.classList.toggle('selected');
-                    if (card.classList.contains('selected')) {
-                        selectedServices.push(s);
-                    } else {
-                        selectedServices = selectedServices.filter(sv => sv.name !== s.name);
-                    }
+                    if (card.classList.contains('selected')) selectedServices.push(s);
+                    else selectedServices = selectedServices.filter(sv => sv.name !== s.name);
                 });
                 serviceOptions.appendChild(card);
             });
             
             function updateUI() {
                 steps.forEach((s, i) => s.classList.toggle('active', i === currentStep));
-                stepDots.forEach((d, i) => {
-                    d.classList.remove('active', 'done');
-                    if (i < currentStep) d.classList.add('done');
-                    if (i === currentStep) d.classList.add('active');
-                });
+                stepDots.forEach((d, i) => { d.classList.remove('active', 'done'); if (i < currentStep) d.classList.add('done'); if (i === currentStep) d.classList.add('active'); });
                 progressFill.style.width = ((currentStep + 1) / steps.length * 100) + '%';
-                
                 prevBtn.style.display = currentStep === 0 ? 'none' : 'inline-flex';
                 
                 if (currentStep === 3) {
-                    nextBtn.style.display = 'none';
-                    whatsappLink.style.display = 'inline-flex';
-                    
+                    nextBtn.style.display = 'none'; whatsappLink.style.display = 'inline-flex';
                     const maintenance = document.getElementById('maintenance')?.checked || false;
                     const seo = document.getElementById('seo')?.checked || false;
                     const hosting = document.getElementById('hosting')?.checked || false;
                     const formation = document.getElementById('formation')?.checked || false;
-                    
                     let total = selectedServices.reduce((sum, s) => sum + s.price, 0);
-                    if (maintenance) total += 50;
-                    if (seo) total += 200;
-                    if (hosting) total += 30;
-                    if (formation) total += 100;
+                    if (maintenance) total += 50; if (seo) total += 200; if (hosting) total += 30; if (formation) total += 100;
                     
-                    // Résumé
-                    let summaryHTML = '';
-                    summaryHTML += `<div class="summary-item"><span><strong>Secteur</strong></span><span>${selectedSector || 'Non sélectionné'}</span></div>`;
+                    let summaryHTML = `<div class="summary-item"><span><strong>Secteur</strong></span><span>${selectedSector || 'Non sélectionné'}</span></div>`;
                     summaryHTML += `<div class="summary-item"><span><strong>Services</strong></span><span>${selectedServices.map(s => s.name).join(', ') || 'Aucun'}</span></div>`;
                     if (maintenance) summaryHTML += `<div class="summary-item"><span>Maintenance mensuelle</span><span>+50$/mois</span></div>`;
                     if (seo) summaryHTML += `<div class="summary-item"><span>Référencement SEO</span><span>+200$</span></div>`;
                     if (hosting) summaryHTML += `<div class="summary-item"><span>Hébergement Premium</span><span>+30$/mois</span></div>`;
                     if (formation) summaryHTML += `<div class="summary-item"><span>Formation utilisateur</span><span>+100$</span></div>`;
-                    
                     summaryBox.innerHTML = summaryHTML;
                     totalPriceEl.textContent = total + ' $';
                     
-                    // WhatsApp message
                     const message = `🛒 *Nouvelle commande SMA Agency*%0A%0A🏢 Secteur: ${selectedSector || 'N/A'}%0A🛠 Services: ${selectedServices.map(s => s.name).join(', ') || 'N/A'}%0A%0A📋 Options supplémentaires:%0A${maintenance ? '✅ Maintenance: +50$/mois%0A' : ''}${seo ? '✅ SEO: +200$%0A' : ''}${hosting ? '✅ Hébergement: +30$/mois%0A' : ''}${formation ? '✅ Formation: +100$%0A' : ''}%0A💰 Estimation totale: *${total}$*%0A%0A⚠️ Cette estimation peut varier selon la complexité du projet.%0A%0AMerci de me recontacter pour un devis précis !`;
-                    whatsappLink.href = `https://wa.me/243817098280?text=${message}`;
-                    
+                    whatsappLink.href = `https://wa.me/243844464423?text=${message}`;
                     localStorage.setItem('sma-config', JSON.stringify({ sector: selectedSector, services: selectedServices, maintenance, seo, hosting, formation, total }));
                 } else {
-                    nextBtn.style.display = 'inline-flex';
-                    whatsappLink.style.display = 'none';
+                    nextBtn.style.display = 'inline-flex'; whatsappLink.style.display = 'none';
                 }
             }
             
-            nextBtn.addEventListener('click', () => {
-                if (currentStep < steps.length - 1) {
-                    currentStep++;
-                    updateUI();
-                }
-            });
-            
-            prevBtn.addEventListener('click', () => {
-                if (currentStep > 0) {
-                    currentStep--;
-                    updateUI();
-                }
-            });
-            
+            nextBtn.addEventListener('click', () => { if (currentStep < steps.length - 1) { currentStep++; updateUI(); } });
+            prevBtn.addEventListener('click', () => { if (currentStep > 0) { currentStep--; updateUI(); } });
             updateUI();
             
-            // Animation scroll
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            document.querySelectorAll('.option-card, .summary-box').forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                observer.observe(el);
-            });
-            
+            console.log('🚀 Configurateur SMA - Prêt !');
         })();
     </script>
 </body>
