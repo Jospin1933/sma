@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMA Agency - Contact</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg: #f8fafc; --surface: #ffffff; --glass: rgba(255,255,255,0.75);
+            --text: #0f172a; --text-light: #64748b; --primary: #2563eb;
+            --accent: #06b6d4; --whatsapp: #25D366; --border: rgba(203,213,225,0.5);
+            --shadow: 0 20px 50px rgba(0,0,0,0.08); --radius: 20px;
+        }
+        body.dark {
+            --bg: #0f172a; --surface: #1e293b; --glass: rgba(30,41,59,0.8);
+            --text: #f1f5f9; --text-light: #94a3b8; --primary: #3b82f6;
+            --border: rgba(148,163,184,0.2);
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); transition:0.4s; }
+        
+        .loader { position:fixed; inset:0; background:var(--bg); display:flex; align-items:center; justify-content:center; z-index:9999; }
+        .loader.hidden { opacity:0; visibility:hidden; }
+        .loader-ring { width:60px; height:60px; border:4px solid rgba(37,99,235,0.15); border-top:4px solid var(--primary); border-radius:50%; animation:spin 0.8s linear infinite; }
+        @keyframes spin { to { transform:rotate(360deg); } }
+        
+        .navbar { position:fixed; top:0; left:0; right:0; z-index:1000; background:var(--glass); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
+        .navbar-container { max-width:1300px; margin:0 auto; padding:1rem 2rem; display:flex; align-items:center; justify-content:space-between; }
+        .logo { font-size:1.8rem; font-weight:800; text-decoration:none; background:linear-gradient(135deg,#2563eb,#06b6d4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .nav-links { display:flex; gap:2rem; list-style:none; }
+        .nav-links a { text-decoration:none; color:var(--text); font-weight:500; }
+        
+        .section-padding { padding:7rem 2rem 4rem; }
+        .section-container { max-width:900px; margin:0 auto; }
+        .contact-card {
+            background:var(--glass); backdrop-filter:blur(20px); border:1px solid var(--border);
+            border-radius:var(--radius); padding:3rem; box-shadow:var(--shadow);
+        }
+        .form-group { margin-bottom:1.5rem; }
+        .form-group label { display:block; font-weight:600; margin-bottom:0.5rem; }
+        .form-group input, .form-group select, .form-group textarea {
+            width:100%; padding:0.85rem 1rem; border:2px solid var(--border);
+            border-radius:12px; background:var(--surface); color:var(--text);
+            font-family:'Inter',sans-serif; font-size:1rem; transition:border 0.3s;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline:none; border-color:var(--primary);
+        }
+        .btn { display:inline-flex; align-items:center; gap:0.5rem; padding:0.85rem 2rem; border-radius:50px; font-weight:600; cursor:pointer; border:none; transition:all 0.3s; }
+        .btn-primary { background:var(--primary); color:white; }
+        .btn-whatsapp { background:var(--whatsapp); color:white; width:100%; justify-content:center; }
+        
+        footer {
+            background:var(--glass); backdrop-filter:blur(20px); border-top:1px solid var(--border);
+            padding:3rem 2rem; margin-top:4rem;
+        }
+        .footer-grid { max-width:1300px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr 1fr; gap:3rem; }
+        .social-links { display:flex; gap:1rem; margin-top:1rem; }
+        .social-links a { color:var(--text); font-size:1.3rem; transition:color 0.3s; }
+        .social-links a:hover { color:var(--primary); }
+        
+        @media (max-width:768px) {
+            .nav-links { display:none; }
+            .section-padding { padding:5rem 1rem 2rem; }
+            .contact-card { padding:1.5rem; }
+            .footer-grid { grid-template-columns:1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="loader" id="loader"><div class="loader-ring"></div></div>
+    
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo"><i class="fas fa-bolt"></i> SMA</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="configurateur.html">Configurateur</a></li>
+                <li><a href="equipe.html">Équipe</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section class="section-padding">
+        <div class="section-container">
+            <div class="contact-card">
+                <h2 style="font-size:2.2rem;font-weight:800;margin-bottom:0.5rem;">Contactez-<span class="gradient-text" style="background:linear-gradient(135deg,#2563eb,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">nous</span></h2>
+                <p style="color:var(--text-light);margin-bottom:2rem;">Remplissez ce formulaire et recevez un devis personnalisé.</p>
+                
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nom complet *</label>
+                        <input type="text" id="name" name="name" placeholder="Votre nom" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Entreprise</label>
+                        <input type="text" id="company" name="company" placeholder="Nom de l'entreprise">
+                    </div>
+                    <div class="form-group">
+                        <label for="budget">Budget estimé</label>
+                        <select id="budget" name="budget">
+                            <option value="">Sélectionnez...</option>
+                            <option value="500-1000">500€ - 1 000€</option>
+                            <option value="1000-3000">1 000€ - 3 000€</option>
+                            <option value="3000-5000">3 000€ - 5 000€</option>
+                            <option value="5000+">5 000€ et plus</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description du projet</label>
+                        <textarea id="description" name="description" rows="4" placeholder="Décrivez votre projet..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> Envoyer via WhatsApp
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <h3 style="font-size:1.5rem;font-weight:800;">SMA Agency</h3>
+                <p style="color:var(--text-light);margin-top:0.5rem;">Agence digitale premium à Kinshasa.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 style="margin-bottom:1rem;">Liens rapides</h4>
+                <ul style="list-style:none;display:flex;flex-direction:column;gap:0.5rem;">
+                    <li><a href="index.html" style="color:var(--text-light);text-decoration:none;">Accueil</a></li>
+                    <li><a href="services.html" style="color:var(--text-light);text-decoration:none;">Services</a></li>
+                    <li><a href="configurateur.html" style="color:var(--text-light);text-decoration:none;">Configurateur</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="margin-bottom:1rem;">Contact</h4>
+                <ul style="list-style:none;display:flex;flex-direction:column;gap:0.5rem;color:var(--text-light);">
+                    <li><i class="fas fa-phone"></i> +243 123 456 789</li>
+                    <li><i class="fas fa-envelope"></i> contact@sma-agency.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Kinshasa, RDC</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const company = document.getElementById('company').value;
+            const budget = document.getElementById('budget').value;
+            const description = document.getElementById('description').value;
+            
+            const message = `Bonjour SMA Agency,%0A%0A👤 Nom: ${name}%0A🏢 Entreprise: ${company || 'N/A'}%0A💰 Budget: ${budget || 'N/A'}%0A📝 Description: ${description || 'N/A'}%0A%0AMerci de me recontacter !`;
+            window.open(`https://wa.me/243123456789?text=${message}`, '_blank');
+        });
+    </script>
+    <script src="js/app.js"></script>
+</body>
+</html>

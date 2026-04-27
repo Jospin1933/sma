@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMA Agency - Configurateur</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg: #f8fafc; --surface: #ffffff; --glass: rgba(255,255,255,0.75);
+            --text: #0f172a; --text-light: #64748b; --primary: #2563eb;
+            --primary-dark: #1d4ed8; --accent: #06b6d4; --whatsapp: #25D366;
+            --border: rgba(203,213,225,0.5); --shadow: 0 20px 50px rgba(0,0,0,0.08);
+            --radius: 20px; --transition: 0.35s;
+        }
+        body.dark {
+            --bg: #0f172a; --surface: #1e293b; --glass: rgba(30,41,59,0.8);
+            --text: #f1f5f9; --text-light: #94a3b8; --primary: #3b82f6;
+            --accent: #22d3ee; --border: rgba(148,163,184,0.2);
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); transition:background 0.4s,color 0.3s; }
+        
+        .loader { position:fixed; inset:0; background:var(--bg); display:flex; align-items:center; justify-content:center; z-index:9999; }
+        .loader.hidden { opacity:0; visibility:hidden; }
+        .loader-ring { width:60px; height:60px; border:4px solid rgba(37,99,235,0.15); border-top:4px solid var(--primary); border-radius:50%; animation:spin 0.8s linear infinite; }
+        @keyframes spin { to { transform:rotate(360deg); } }
+        
+        .navbar { position:fixed; top:0; left:0; right:0; z-index:1000; background:var(--glass); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
+        .navbar-container { max-width:1300px; margin:0 auto; padding:1rem 2rem; display:flex; align-items:center; justify-content:space-between; }
+        .logo { font-size:1.8rem; font-weight:800; text-decoration:none; background:linear-gradient(135deg,#2563eb,#06b6d4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .nav-links { display:flex; gap:2rem; list-style:none; }
+        .nav-links a { text-decoration:none; color:var(--text); font-weight:500; }
+        .btn { display:inline-flex; align-items:center; gap:0.5rem; padding:0.85rem 2rem; border-radius:50px; font-weight:600; cursor:pointer; border:none; transition:all 0.3s; font-size:0.95rem; }
+        .btn-primary { background:var(--primary); color:white; }
+        .btn-primary:hover { background:var(--primary-dark); transform:translateY(-2px); box-shadow:0 10px 30px rgba(37,99,235,0.3); }
+        .btn-outline { background:transparent; border:2px solid var(--primary); color:var(--primary); }
+        .btn-whatsapp { background:var(--whatsapp); color:white; }
+        
+        .config-section { padding:7rem 2rem 4rem; max-width:900px; margin:0 auto; }
+        .config-card { background:var(--glass); backdrop-filter:blur(20px); border:1px solid var(--border); border-radius:var(--radius); padding:3rem; box-shadow:var(--shadow); }
+        .steps-indicator { display:flex; justify-content:space-between; margin-bottom:2rem; }
+        .step-dot { width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; background:var(--border); color:var(--text-light); transition:all 0.3s; }
+        .step-dot.active { background:var(--primary); color:white; box-shadow:0 0 20px rgba(37,99,235,0.4); }
+        .step-dot.done { background:#10b981; color:white; }
+        .progress-bar { height:6px; background:var(--border); border-radius:10px; margin-bottom:2rem; overflow:hidden; }
+        .progress-fill { height:100%; background:linear-gradient(90deg,#2563eb,#06b6d4); border-radius:10px; transition:width 0.5s; }
+        
+        .step-content { display:none; animation:fadeIn 0.4s; }
+        .step-content.active { display:block; }
+        @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+        
+        .option-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:1rem; margin:1.5rem 0; }
+        .option-card { padding:1.2rem; border:2px solid var(--border); border-radius:var(--radius); text-align:center; cursor:pointer; transition:all 0.3s; background:var(--glass); }
+        .option-card:hover { border-color:var(--primary); }
+        .option-card.selected { border-color:var(--primary); background:rgba(37,99,235,0.08); }
+        .option-card i { font-size:1.5rem; margin-bottom:0.5rem; color:var(--primary); }
+        
+        .summary-box { background:var(--surface); border-radius:var(--radius); padding:2rem; margin:1.5rem 0; }
+        .summary-item { display:flex; justify-content:space-between; padding:0.8rem 0; border-bottom:1px solid var(--border); }
+        .total-price { font-size:1.8rem; font-weight:800; background:linear-gradient(135deg,#2563eb,#06b6d4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        
+        .nav-buttons { display:flex; justify-content:space-between; margin-top:2rem; }
+        
+        @media (max-width:768px) {
+            .config-section { padding:5rem 1rem 2rem; }
+            .config-card { padding:1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="loader" id="loader"><div class="loader-ring"></div></div>
+    
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo"><i class="fas fa-bolt"></i> SMA</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="configurateur.html" class="active">Configurateur</a></li>
+                <li><a href="equipe.html">Équipe</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section class="config-section">
+        <div class="config-card">
+            <h2 style="font-size:2rem;font-weight:800;margin-bottom:2rem;text-align:center;">
+                🎯 <span class="gradient-text">Configurateur</span> intelligent
+            </h2>
+            
+            <div class="steps-indicator">
+                <div class="step-dot active" data-step="1">1</div>
+                <div class="step-dot" data-step="2">2</div>
+                <div class="step-dot" data-step="3">3</div>
+                <div class="step-dot" data-step="4">4</div>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:25%;"></div></div>
+            
+            <!-- Step 1: Secteur -->
+            <div class="step-content active" id="step1">
+                <h3 style="margin-bottom:1.5rem;">Choisissez votre secteur d'activité</h3>
+                <div class="option-grid" id="sectorOptions"></div>
+            </div>
+            
+            <!-- Step 2: Services -->
+            <div class="step-content" id="step2">
+                <h3 style="margin-bottom:1.5rem;">Sélectionnez les services souhaités</h3>
+                <div class="option-grid" id="serviceOptions"></div>
+            </div>
+            
+            <!-- Step 3: Options supplémentaires -->
+            <div class="step-content" id="step3">
+                <h3 style="margin-bottom:1.5rem;">Options supplémentaires</h3>
+                <div style="display:flex;flex-direction:column;gap:1rem;" id="extraOptions">
+                    <label style="display:flex;align-items:center;gap:0.8rem;cursor:pointer;">
+                        <input type="checkbox" id="maintenance" style="width:20px;height:20px;"> Maintenance mensuelle (+100€/mois)
+                    </label>
+                    <label style="display:flex;align-items:center;gap:0.8rem;cursor:pointer;">
+                        <input type="checkbox" id="seo" style="width:20px;height:20px;"> Référencement SEO (+300€)
+                    </label>
+                    <label style="display:flex;align-items:center;gap:0.8rem;cursor:pointer;">
+                        <input type="checkbox" id="hosting" style="width:20px;height:20px;"> Hébergement (+50€/mois)
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Step 4: Résumé -->
+            <div class="step-content" id="step4">
+                <h3 style="margin-bottom:1.5rem;">📋 Récapitulatif de votre projet</h3>
+                <div class="summary-box" id="summaryBox"></div>
+                <div style="text-align:center;margin-top:1.5rem;">
+                    <span class="total-price" id="totalPrice">0€</span>
+                </div>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="btn btn-outline" id="prevBtn" style="display:none;">← Précédent</button>
+                <button class="btn btn-primary" id="nextBtn">Suivant →</button>
+                <button class="btn btn-whatsapp" id="whatsappBtn" style="display:none;">
+                    <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <a href="https://wa.me/243123456789" class="whatsapp-float" target="_blank" style="position:fixed;bottom:30px;right:30px;width:60px;height:60px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:1.6rem;z-index:999;box-shadow:0 8px 30px rgba(37,211,102,0.4);"><i class="fab fa-whatsapp"></i></a>
+    
+    <script src="js/app.js"></script>
+</body>
+</html>

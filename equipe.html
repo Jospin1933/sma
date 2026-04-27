@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMA Agency - Notre Équipe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg: #f5f7fa;
+            --surface: #ffffff;
+            --glass: rgba(255,255,255,0.72);
+            --text: #0a0f1f;
+            --text-light: #3a4560;
+            --text-muted: #6b7a99;
+            --primary: #1a5fff;
+            --accent: #00c2d1;
+            --whatsapp: #25D366;
+            --border: rgba(180,190,210,0.35);
+            --shadow: 0 16px 40px rgba(0,0,0,0.08);
+            --radius: 22px;
+            --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        body.dark {
+            --bg: #070b18;
+            --surface: #0f1425;
+            --glass: rgba(15,20,37,0.78);
+            --text: #edf0f7;
+            --text-light: #bcc5da;
+            --text-muted: #8895b8;
+            --primary: #4d8aff;
+            --accent: #00e0f0;
+            --border: rgba(100,115,150,0.3);
+            --shadow: 0 16px 40px rgba(0,0,0,0.4);
+        }
+        
+        * { margin:0; padding:0; box-sizing:border-box; }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            transition: background 0.5s, color 0.3s;
+            overflow-x: hidden;
+        }
+        
+        .navbar {
+            position: fixed; top:0; left:0; right:0; z-index:1000;
+            background: var(--glass); backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--border);
+            height: 70px;
+        }
+        .navbar-container {
+            max-width: 1300px; margin:0 auto; padding:0 2rem;
+            height:100%; display:flex; align-items:center; justify-content:space-between;
+        }
+        .logo {
+            display:flex; align-items:center; gap:0.5rem; text-decoration:none;
+            font-size:1.6rem; font-weight:800;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+        }
+        .logo img { width:40px; height:40px; object-fit:contain; }
+        .nav-links { display:flex; gap:2rem; list-style:none; }
+        .nav-links a { text-decoration:none; color:var(--text-light); font-weight:500; transition:color 0.2s; }
+        .nav-links a:hover, .nav-links a.active { color:var(--primary); }
+        .btn-icon {
+            background:transparent; border:1.5px solid var(--border); border-radius:50%;
+            width:42px; height:42px; display:flex; align-items:center; justify-content:center;
+            cursor:pointer; color:var(--text); transition:all 0.3s;
+        }
+        .btn-icon:hover { border-color:var(--primary); color:var(--primary); }
+        
+        .section { padding: 7rem 2rem 5rem; }
+        .section-container { max-width: 1200px; margin: 0 auto; }
+        
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-badge {
+            display: inline-block; background: rgba(26,95,255,0.08);
+            color: var(--primary); padding: 0.4rem 1.3rem; border-radius: 50px;
+            font-weight: 600; font-size: 0.88rem; margin-bottom: 1rem;
+        }
+        .section-title { font-size: 3rem; font-weight: 900; margin-bottom: 1rem; }
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .team-card {
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all var(--transition);
+            text-align: center;
+        }
+        .team-card:hover {
+            transform: translateY(-14px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.18);
+            border-color: var(--primary);
+        }
+        
+        .team-card-image {
+            position: relative;
+            height: 280px;
+            overflow: hidden;
+        }
+        .team-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .team-card:hover .team-card-image img {
+            transform: scale(1.08);
+        }
+        .team-card-image-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(transparent 50%, rgba(0,0,0,0.6));
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .team-card:hover .team-card-image-overlay {
+            opacity: 1;
+        }
+        
+        .team-card-content {
+            padding: 2rem 1.5rem;
+        }
+        .team-card-name {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 0.3rem;
+        }
+        .team-card-role {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #fff;
+            padding: 0.35rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .team-card-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+        }
+        .team-card-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--whatsapp);
+            color: #fff;
+            text-decoration: none;
+            padding: 0.6rem 1.4rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        .team-card-whatsapp:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37,211,102,0.4);
+        }
+        
+        .whatsapp-float {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 62px; height: 62px; background: var(--whatsapp);
+            border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; font-size: 1.7rem; color: #fff;
+            text-decoration: none; z-index: 999;
+            box-shadow: 0 8px 32px rgba(37,211,102,0.4);
+            transition: all 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.12); }
+        
+        .footer {
+            background: var(--glass); backdrop-filter: blur(24px);
+            border-top: 1px solid var(--border); padding: 3rem 2rem;
+            text-align: center; color: var(--text-muted);
+        }
+        
+        @media (max-width: 768px) {
+            .section-title { font-size: 2.2rem; }
+            .team-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="SMA Logo" onerror="this.style.display='none';"> SMA
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="equipe.html" class="active">Équipe</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="configurateur.html">Configurateur</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="btn-icon" id="themeToggle" aria-label="Thème">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <section class="section" style="padding-top: 8rem;">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">Notre Équipe</span>
+                <h2 class="section-title">Les talents derrière <span class="gradient-text">SMA Agency</span></h2>
+                <p style="color:var(--text-light); max-width:600px; margin:0 auto;">
+                    Une équipe passionnée, experte et dédiée à votre réussite digitale.
+                    Chaque membre apporte son expertise unique pour créer des solutions exceptionnelles.
+                </p>
+            </div>
+            
+            <div class="team-grid" id="teamGrid">
+                
+                <!-- Responsable Marketing : Melkys Meys -->
+                <div class="team-card">
+                    <div class="team-card-image">
+                        <img src="images/melkys.jpg" alt="Melkys Meys" onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=350&fit=crop';">
+                        <div class="team-card-image-overlay">
+                            <span style="color:#fff; font-weight:600;">📊 Stratège Marketing</span>
+                        </div>
+                    </div>
+                    <div class="team-card-content">
+                        <h3 class="team-card-name">Melkys Meys</h3>
+                        <span class="team-card-role">
+                            <i class="fas fa-bullhorn"></i> Responsable Marketing
+                        </span>
+                        <p class="team-card-desc">
+                            Experte en stratégie marketing digital, Melkys conçoit des campagnes percutantes qui génèrent des résultats mesurables. Elle maîtrise l'art de transformer les objectifs business en actions concrètes.
+                        </p>
+                        <a href="https://wa.me/+243819187942?text=Bonjour%20Melkys%20Meys,%20je%20souhaite%20échanger%20sur%20une%20stratégie%20marketing." 
+                           class="team-card-whatsapp" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Contacter Melkys
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Designer & Graphiste : Dan Nday -->
+                <div class="team-card">
+                    <div class="team-card-image">
+                        <img src="images/dan.jpeg" alt="Dan Nday" onerror="this.src='https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=350&fit=crop';">
+                        <div class="team-card-image-overlay">
+                            <span style="color:#fff; font-weight:600;">🎨 Créatif Designer</span>
+                        </div>
+                    </div>
+                    <div class="team-card-content">
+                        <h3 class="team-card-name">Dan Nday</h3>
+                        <span class="team-card-role">
+                            <i class="fas fa-palette"></i> Designer & Graphiste
+                        </span>
+                        <p class="team-card-desc">
+                            Artiste visuel passionné, Dan transforme les idées en designs uniques et mémorables. Logo, charte graphique, UI/UX : il donne vie à votre identité de marque avec créativité et précision.
+                        </p>
+                        <a href="https://wa.me/+243844464423?text=Bonjour%20Dan%20Nday,%20je%20souhaite%20discuter%20d'un%20projet%20design." 
+                           class="team-card-whatsapp" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Contacter Dan
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Chargé de Communication / Community Manager : Joy Ngoy -->
+                <div class="team-card">
+                    <div class="team-card-image">
+                        <img src="images/logo.png" alt="Joy Ngoy" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=350&fit=crop';">
+                        <div class="team-card-image-overlay">
+                            <span style="color:#fff; font-weight:600;">💬 Community Builder</span>
+                        </div>
+                    </div>
+                    <div class="team-card-content">
+                        <h3 class="team-card-name">Joy Ngoy</h3>
+                        <span class="team-card-role">
+                            <i class="fas fa-comments"></i> Chargée de Communication & Community Manager
+                        </span>
+                        <p class="team-card-desc">
+                            Joy est la voix de vos marques. Elle crée du contenu engageant, anime vos communautés et bâtit des relations authentiques avec votre audience. Sa plume et son sens du relationnel font la différence.
+                        </p>
+                        <a href="https://wa.me/+243856689965?text=Bonjour%20Joy%20Ngoy,%20je%20souhaite%20échanger%20sur%20la%20gestion%20de%20communauté." 
+                           class="team-card-whatsapp" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Contacter Joy
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Développeur & Ingénieur Logiciel -->
+                <div class="team-card">
+                    <div class="team-card-image">
+                        <img src="images/spinos.jpeg" alt="Développeur" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=350&fit=crop';">
+                        <div class="team-card-image-overlay">
+                            <span style="color:#fff; font-weight:600;">⚙️ Architecte Technique</span>
+                        </div>
+                    </div>
+                    <div class="team-card-content">
+                        <h3 class="team-card-name">Notre Lead Developer</h3>
+                        <span class="team-card-role">
+                            <i class="fas fa-code"></i> Développeur & Ingénieur Logiciel
+                        </span>
+                        <p class="team-card-desc">
+                            Architecte de solutions digitales, notre développeur transforme vos besoins en applications performantes et évolutives. Expert full-stack, il maîtrise les technologies les plus récentes.
+                        </p>
+                        <a href="https://wa.me/+243817098280?text=Bonjour,%20je%20souhaite%20discuter%20d'un%20projet%20de%20développement." 
+                           class="team-card-whatsapp" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Contacter le Dev
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <p>&copy; 2024 SMA Agency. Tous droits réservés. | <a href="index.html" style="color:var(--primary);">Retour à l'accueil</a></p>
+    </footer>
+    
+    <a href="https://wa.me/243123456789" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    
+    <script>
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('sma-dark', document.body.classList.contains('dark'));
+        });
+        
+        if (localStorage.getItem('sma-dark') === 'true') {
+            document.body.classList.add('dark');
+        }
+        
+        // Animation au scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.team-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
