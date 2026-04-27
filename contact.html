@@ -6,78 +6,314 @@
     <title>SMA Agency - Contact</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
         :root {
-            --bg: #f8fafc; --surface: #ffffff; --glass: rgba(255,255,255,0.75);
-            --text: #0f172a; --text-light: #64748b; --primary: #2563eb;
-            --accent: #06b6d4; --whatsapp: #25D366; --border: rgba(203,213,225,0.5);
-            --shadow: 0 20px 50px rgba(0,0,0,0.08); --radius: 20px;
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --glass: rgba(255, 255, 255, 0.75);
+            --text: #0f172a;
+            --text-light: #64748b;
+            --primary: #2563eb;
+            --accent: #06b6d4;
+            --whatsapp: #25D366;
+            --border: rgba(203, 213, 225, 0.5);
+            --shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+            --radius: 20px;
+            --transition: 0.35s;
         }
+        
         body.dark {
-            --bg: #0f172a; --surface: #1e293b; --glass: rgba(30,41,59,0.8);
-            --text: #f1f5f9; --text-light: #94a3b8; --primary: #3b82f6;
-            --border: rgba(148,163,184,0.2);
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --glass: rgba(30, 41, 59, 0.8);
+            --text: #f1f5f9;
+            --text-light: #94a3b8;
+            --primary: #3b82f6;
+            --accent: #22d3ee;
+            --border: rgba(148, 163, 184, 0.2);
         }
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); transition:0.4s; }
         
-        .loader { position:fixed; inset:0; background:var(--bg); display:flex; align-items:center; justify-content:center; z-index:9999; }
-        .loader.hidden { opacity:0; visibility:hidden; }
-        .loader-ring { width:60px; height:60px; border:4px solid rgba(37,99,235,0.15); border-top:4px solid var(--primary); border-radius:50%; animation:spin 0.8s linear infinite; }
-        @keyframes spin { to { transform:rotate(360deg); } }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        .navbar { position:fixed; top:0; left:0; right:0; z-index:1000; background:var(--glass); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
-        .navbar-container { max-width:1300px; margin:0 auto; padding:1rem 2rem; display:flex; align-items:center; justify-content:space-between; }
-        .logo { font-size:1.8rem; font-weight:800; text-decoration:none; background:linear-gradient(135deg,#2563eb,#06b6d4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-        .nav-links { display:flex; gap:2rem; list-style:none; }
-        .nav-links a { text-decoration:none; color:var(--text); font-weight:500; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            transition: 0.4s;
+            overflow-x: hidden;
+        }
         
-        .section-padding { padding:7rem 2rem 4rem; }
-        .section-container { max-width:900px; margin:0 auto; }
+        /* ==================== LOGO LOADER ==================== */
+        .logo-loader-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+        
+        .logo-loader-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        
+        .logo-loader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .logo-loader-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo-loader-ring {
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            border: 3px solid transparent;
+            border-top: 3px solid var(--primary);
+            border-right: 3px solid var(--accent);
+            border-radius: 50%;
+            animation: ringSpin 1.2s linear infinite;
+        }
+        
+        @keyframes ringSpin { to { transform: rotate(360deg); } }
+        
+        .logo-loader-image {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            animation: logoPulse 1.4s ease-in-out infinite, logoFloat 2.5s ease-in-out infinite;
+            z-index: 2;
+        }
+        
+        @keyframes logoPulse {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 20px rgba(37, 99, 235, 0.3)); }
+            50% { transform: scale(1.08); filter: drop-shadow(0 0 40px rgba(37, 99, 235, 0.6)); }
+        }
+        
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+        
+        .logo-loader-text {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .logo-loader-dots { display: flex; gap: 8px; }
+        
+        .logo-loader-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--primary);
+            animation: dotBounce 1.2s ease-in-out infinite;
+        }
+        
+        .logo-loader-dot:nth-child(2) { animation-delay: 0.2s; background: var(--accent); }
+        .logo-loader-dot:nth-child(3) { animation-delay: 0.4s; }
+        
+        @keyframes dotBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-16px); }
+        }
+        
+        /* Navbar */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: var(--glass); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border); height: 70px;
+        }
+        
+        .navbar-container {
+            max-width: 1300px; margin: 0 auto; padding: 0 2rem;
+            height: 100%; display: flex; align-items: center; justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex; align-items: center; gap: 0.5rem;
+            text-decoration: none; transition: transform 0.3s;
+        }
+        
+        .logo:hover { transform: scale(1.03); }
+        
+        .logo img {
+            width: 40px; height: 40px; object-fit: contain;
+            transition: transform 0.3s;
+        }
+        
+        .logo:hover img { transform: rotate(-5deg); }
+        
+        .logo span {
+            font-size: 1.5rem; font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        
+        .nav-links a {
+            text-decoration: none; color: var(--text); font-weight: 500;
+            transition: color 0.2s; position: relative; padding: 0.3rem 0;
+        }
+        
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 0; height: 2px; background: var(--primary);
+            border-radius: 10px; transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        
+        .btn-icon {
+            background: transparent; border: 1.5px solid var(--border);
+            border-radius: 50%; width: 42px; height: 42px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; color: var(--text); transition: all 0.3s;
+        }
+        
+        .btn-icon:hover { border-color: var(--primary); color: var(--primary); }
+        
+        .theme-toggle .fa-moon { display: inline; }
+        .theme-toggle .fa-sun { display: none; }
+        body.dark .theme-toggle .fa-moon { display: none; }
+        body.dark .theme-toggle .fa-sun { display: inline; }
+        
+        /* Contact Section */
+        .section-padding { padding: 8rem 2rem 4rem; }
+        .section-container { max-width: 900px; margin: 0 auto; }
+        
         .contact-card {
-            background:var(--glass); backdrop-filter:blur(20px); border:1px solid var(--border);
-            border-radius:var(--radius); padding:3rem; box-shadow:var(--shadow);
+            background: var(--glass); backdrop-filter: blur(20px);
+            border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 3rem; box-shadow: var(--shadow);
         }
-        .form-group { margin-bottom:1.5rem; }
-        .form-group label { display:block; font-weight:600; margin-bottom:0.5rem; }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .form-group { margin-bottom: 1.5rem; }
+        
+        .form-group label {
+            display: block; font-weight: 600; margin-bottom: 0.5rem;
+        }
+        
         .form-group input, .form-group select, .form-group textarea {
-            width:100%; padding:0.85rem 1rem; border:2px solid var(--border);
-            border-radius:12px; background:var(--surface); color:var(--text);
-            font-family:'Inter',sans-serif; font-size:1rem; transition:border 0.3s;
+            width: 100%; padding: 0.9rem 1rem; border: 2px solid var(--border);
+            border-radius: 12px; background: var(--surface); color: var(--text);
+            font-family: 'Inter', sans-serif; font-size: 1rem; transition: border 0.3s;
         }
+        
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            outline:none; border-color:var(--primary);
+            outline: none; border-color: var(--primary);
         }
-        .btn { display:inline-flex; align-items:center; gap:0.5rem; padding:0.85rem 2rem; border-radius:50px; font-weight:600; cursor:pointer; border:none; transition:all 0.3s; }
-        .btn-primary { background:var(--primary); color:white; }
-        .btn-whatsapp { background:var(--whatsapp); color:white; width:100%; justify-content:center; }
         
+        .btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.9rem 2rem; border-radius: 50px; font-weight: 600;
+            cursor: pointer; border: none; transition: all 0.3s; font-family: 'Inter', sans-serif;
+        }
+        
+        .btn-whatsapp {
+            background: var(--whatsapp); color: white; width: 100%; justify-content: center;
+        }
+        
+        .btn-whatsapp:hover {
+            background: #128C7E; transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+        }
+        
+        /* Footer */
         footer {
-            background:var(--glass); backdrop-filter:blur(20px); border-top:1px solid var(--border);
-            padding:3rem 2rem; margin-top:4rem;
+            background: var(--glass); backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border); padding: 3rem 2rem; margin-top: 4rem;
         }
-        .footer-grid { max-width:1300px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr 1fr; gap:3rem; }
-        .social-links { display:flex; gap:1rem; margin-top:1rem; }
-        .social-links a { color:var(--text); font-size:1.3rem; transition:color 0.3s; }
-        .social-links a:hover { color:var(--primary); }
         
-        @media (max-width:768px) {
-            .nav-links { display:none; }
-            .section-padding { padding:5rem 1rem 2rem; }
-            .contact-card { padding:1.5rem; }
-            .footer-grid { grid-template-columns:1fr; }
+        .footer-grid {
+            max-width: 1300px; margin: 0 auto;
+            display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
+        }
+        
+        .social-links { display: flex; gap: 1rem; margin-top: 1rem; }
+        
+        .social-links a {
+            color: var(--text); font-size: 1.3rem; transition: color 0.3s;
+        }
+        
+        .social-links a:hover { color: var(--primary); }
+        
+        .whatsapp-float {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 62px; height: 62px; background: #25D366;
+            border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; font-size: 1.7rem; color: white;
+            text-decoration: none; z-index: 999;
+            box-shadow: 0 8px 32px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s; animation: floatPulse 2.5s infinite;
+        }
+        
+        .whatsapp-float:hover { transform: scale(1.12); }
+        
+        @keyframes floatPulse {
+            0%, 100% { box-shadow: 0 8px 32px rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 8px 55px rgba(37, 211, 102, 0.7); }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .section-padding { padding: 5rem 1rem 2rem; }
+            .contact-card { padding: 1.5rem; }
+            .footer-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <div class="loader" id="loader"><div class="loader-ring"></div></div>
     
+    <!-- ==================== LOGO LOADER ==================== -->
+    <div class="logo-loader-overlay" id="logoLoader">
+        <div class="logo-loader-container">
+            <div class="logo-loader-wrapper">
+                <div class="logo-loader-ring"></div>
+                <img src="images/logo.png" alt="SMA Agency Logo" class="logo-loader-image" onerror="this.style.display='none';">
+            </div>
+            <div class="logo-loader-text">SMA</div>
+            <div class="logo-loader-dots">
+                <div class="logo-loader-dot"></div>
+                <div class="logo-loader-dot"></div>
+                <div class="logo-loader-dot"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ==================== NAVBAR ==================== -->
     <nav class="navbar">
         <div class="navbar-container">
-            <a href="index.html" class="logo"><i class="fas fa-bolt"></i> SMA</a>
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="SMA Logo" onerror="this.style.display='none';">
+                <span>SMA</span>
+            </a>
             <ul class="nav-links">
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="services.html">Services</a></li>
@@ -85,37 +321,46 @@
                 <li><a href="equipe.html">Équipe</a></li>
                 <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
+            <button class="btn-icon theme-toggle" id="themeToggle" aria-label="Changer le thème">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
+            </button>
         </div>
     </nav>
     
+    <!-- ==================== FORMULAIRE ==================== -->
     <section class="section-padding">
         <div class="section-container">
             <div class="contact-card">
-                <h2 style="font-size:2.2rem;font-weight:800;margin-bottom:0.5rem;">Contactez-<span class="gradient-text" style="background:linear-gradient(135deg,#2563eb,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">nous</span></h2>
-                <p style="color:var(--text-light);margin-bottom:2rem;">Remplissez ce formulaire et recevez un devis personnalisé.</p>
+                <h2 style="font-size:2.2rem;font-weight:800;margin-bottom:0.5rem;">
+                    Contactez-<span class="gradient-text">nous</span>
+                </h2>
+                <p style="color:var(--text-light);margin-bottom:2rem;">
+                    Remplissez ce formulaire et recevez un devis personnalisé directement sur WhatsApp.
+                </p>
                 
                 <form id="contactForm">
                     <div class="form-group">
                         <label for="name">Nom complet *</label>
-                        <input type="text" id="name" name="name" placeholder="Votre nom" required>
+                        <input type="text" id="name" name="name" placeholder="Votre nom complet" required>
                     </div>
                     <div class="form-group">
-                        <label for="company">Entreprise</label>
-                        <input type="text" id="company" name="company" placeholder="Nom de l'entreprise">
+                        <label for="company">Entreprise / Organisation</label>
+                        <input type="text" id="company" name="company" placeholder="Nom de votre entreprise">
                     </div>
                     <div class="form-group">
-                        <label for="budget">Budget estimé</label>
+                        <label for="budget">Budget estimé (en Dollars USD)</label>
                         <select id="budget" name="budget">
-                            <option value="">Sélectionnez...</option>
-                            <option value="500-1000">500€ - 1 000€</option>
-                            <option value="1000-3000">1 000€ - 3 000€</option>
-                            <option value="3000-5000">3 000€ - 5 000€</option>
-                            <option value="5000+">5 000€ et plus</option>
+                            <option value="">Sélectionnez une fourchette...</option>
+                            <option value="300-800">300$ - 800$</option>
+                            <option value="800-2000">800$ - 2 000$</option>
+                            <option value="2000-5000">2 000$ - 5 000$</option>
+                            <option value="5000+">5 000$ et plus</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="description">Description du projet</label>
-                        <textarea id="description" name="description" rows="4" placeholder="Décrivez votre projet..."></textarea>
+                        <label for="description">Description de votre projet *</label>
+                        <textarea id="description" name="description" rows="5" placeholder="Décrivez votre projet, vos objectifs et vos besoins spécifiques..." required></textarea>
                     </div>
                     <button type="submit" class="btn btn-whatsapp">
                         <i class="fab fa-whatsapp"></i> Envoyer via WhatsApp
@@ -125,49 +370,85 @@
         </div>
     </section>
     
+    <!-- ==================== FOOTER ==================== -->
     <footer>
         <div class="footer-grid">
             <div>
-                <h3 style="font-size:1.5rem;font-weight:800;">SMA Agency</h3>
-                <p style="color:var(--text-light);margin-top:0.5rem;">Agence digitale premium à Kinshasa.</p>
+                <h3 style="font-size:1.5rem;font-weight:800;display:flex;align-items:center;gap:0.5rem;">
+                    <img src="images/logo.png" alt="Logo" style="width:35px;height:35px;" onerror="this.style.display='none';">
+                    SMA Agency
+                </h3>
+                <p style="color:var(--text-light);margin-top:0.5rem;">Agence digitale premium à LUBUMBASHI, RDC.</p>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://wa.me/243817098280" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
             <div>
-                <h4 style="margin-bottom:1rem;">Liens rapides</h4>
-                <ul style="list-style:none;display:flex;flex-direction:column;gap:0.5rem;">
+                <h4 style="margin-bottom:1rem;">Navigation</h4>
+                <ul style="list-style:none;display:flex;flex-direction:column;gap:0.6rem;">
                     <li><a href="index.html" style="color:var(--text-light);text-decoration:none;">Accueil</a></li>
                     <li><a href="services.html" style="color:var(--text-light);text-decoration:none;">Services</a></li>
                     <li><a href="configurateur.html" style="color:var(--text-light);text-decoration:none;">Configurateur</a></li>
+                    <li><a href="equipe.html" style="color:var(--text-light);text-decoration:none;">Équipe</a></li>
                 </ul>
             </div>
             <div>
                 <h4 style="margin-bottom:1rem;">Contact</h4>
-                <ul style="list-style:none;display:flex;flex-direction:column;gap:0.5rem;color:var(--text-light);">
-                    <li><i class="fas fa-phone"></i> +243 123 456 789</li>
+                <ul style="list-style:none;display:flex;flex-direction:column;gap:0.6rem;color:var(--text-light);">
+                    <li><i class="fas fa-phone"></i> +243844464423</li>
                     <li><i class="fas fa-envelope"></i> contact@sma-agency.com</li>
-                    <li><i class="fas fa-map-marker-alt"></i> Kinshasa, RDC</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Lubumbashi, RDC</li>
+                    <li><i class="fas fa-clock"></i> Lun-Ven : 8h-18h</li>
                 </ul>
             </div>
         </div>
+        <div style="text-align:center;padding-top:2rem;margin-top:2rem;border-top:1px solid var(--border);color:var(--text-light);font-size:0.9rem;">
+            <p>&copy; 2026 SMA Agency. Tous droits réservés.</p>
+        </div>
     </footer>
     
+    <!-- ==================== WHATSAPP FLOAT ==================== -->
+    <a href="https://wa.me/243844464423" class="whatsapp-float" target="_blank" aria-label="Contact WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
     <script>
+        // Logo Loader
+        const logoLoader = document.getElementById('logoLoader');
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                logoLoader.classList.add('hidden');
+                setTimeout(() => { if (logoLoader.parentNode) logoLoader.parentNode.removeChild(logoLoader); }, 700);
+            }, 1800);
+        });
+        setTimeout(() => {
+            if (logoLoader && !logoLoader.classList.contains('hidden')) {
+                logoLoader.classList.add('hidden');
+            }
+        }, 5000);
+        
+        // Dark Mode
+        const themeToggle = document.getElementById('themeToggle');
+        if (localStorage.getItem('sma-dark') === 'true') document.body.classList.add('dark');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('sma-dark', document.body.classList.contains('dark'));
+        });
+        
+        // Formulaire WhatsApp
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const name = document.getElementById('name').value;
-            const company = document.getElementById('company').value;
+            const name = document.getElementById('name').value.trim();
+            const company = document.getElementById('company').value.trim();
             const budget = document.getElementById('budget').value;
-            const description = document.getElementById('description').value;
+            const description = document.getElementById('description').value.trim();
             
-            const message = `Bonjour SMA Agency,%0A%0A👤 Nom: ${name}%0A🏢 Entreprise: ${company || 'N/A'}%0A💰 Budget: ${budget || 'N/A'}%0A📝 Description: ${description || 'N/A'}%0A%0AMerci de me recontacter !`;
-            window.open(`https://wa.me/243123456789?text=${message}`, '_blank');
+            const message = `📩 *Nouveau message de contact SMA Agency*%0A%0A👤 *Nom:* ${name}%0A🏢 *Entreprise:* ${company || 'Non spécifié'}%0A💰 *Budget:* ${budget || 'Non spécifié'}%0A📝 *Description:* ${description}%0A%0A⚠️ Merci de me recontacter rapidement pour un devis personnalisé.`;
+            window.open(`https://wa.me/243844464423?text=${message}`, '_blank');
         });
     </script>
-    <script src="js/app.js"></script>
 </body>
 </html>
