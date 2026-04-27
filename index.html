@@ -3,19 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta name="description" content="SMA - Inventeurs de solutions intelligentes. Creation web, automatisation, marketing digital et branding a Lubumbashi.">
+    <meta name="description" content="SMA - Inventeurs de solutions intelligentes. Création web, automatisation, marketing digital et branding à Lubumbashi.">
     <meta name="theme-color" content="#2563eb">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <!-- ============================================
-    ✅ OPEN GRAPH - AFFICHAGE DU LOGO EN MINIATURE
-    Image hebergee sur ImgBB
-    ============================================ -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://sma-agency.netlify.app/">
     <meta property="og:title" content="SMA - Inventeurs de solutions intelligentes">
-    <meta property="og:description" content="Nous inventons des solutions intelligentes pour propulser votre entreprise. Creation web, automatisation et branding a Lubumbashi.">
+    <meta property="og:description" content="Nous inventons des solutions intelligentes pour propulser votre entreprise. Création web, automatisation et branding à Lubumbashi.">
     <meta property="og:image" content="https://i.ibb.co/tM4Z34k2/logo.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -141,6 +138,7 @@
             min-height: 100vh;
         }
 
+        /* ==================== LOGO LOADER ==================== */
         .logo-loader-overlay { position: fixed; inset: 0; background: var(--bg-primary); display: flex; align-items: center; justify-content: center; z-index: 99999; transition: opacity 0.6s ease, visibility 0.6s ease; }
         .logo-loader-overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
         .logo-loader-container { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
@@ -158,6 +156,7 @@
         .logo-loader-dot:nth-child(3) { animation-delay: 0.4s; background: var(--color-primary-light); }
         @keyframes dotBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-16px); } }
 
+        /* ==================== NAVBAR ==================== */
         .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--bg-glass); backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%); border-bottom: 1px solid var(--border-light); transition: all var(--transition); height: var(--navbar-height); }
         .navbar.scrolled { box-shadow: var(--shadow-md); background: var(--bg-glass-hover); }
         .navbar-container { max-width: var(--max-width); margin: 0 auto; padding: 0 2rem; height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
@@ -175,6 +174,27 @@
         .btn-icon:hover { background: var(--bg-elevated); border-color: var(--color-primary); color: var(--color-primary); }
         .theme-toggle .fa-moon { display: inline; } .theme-toggle .fa-sun { display: none; }
         body.dark .theme-toggle .fa-moon { display: none; } body.dark .theme-toggle .fa-sun { display: inline; }
+
+        /* ==================== BOUTON LANGUE ==================== */
+        .lang-toggle {
+            background: transparent;
+            border: 1.5px solid var(--border-medium);
+            border-radius: var(--radius-full);
+            padding: 0.4rem 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.82rem;
+            transition: all var(--transition-fast);
+            white-space: nowrap;
+        }
+        .lang-toggle:hover { background: var(--bg-elevated); border-color: var(--color-primary); color: var(--color-primary); }
+        .lang-toggle .lang-flag { font-size: 1rem; }
+        .lang-toggle .lang-code { font-weight: 700; }
+
         .btn { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.65rem 1.4rem; border-radius: var(--radius-full); font-weight: 600; font-size: 0.88rem; text-decoration: none; cursor: pointer; border: none; transition: all var(--transition); white-space: nowrap; }
         .btn-primary { background: linear-gradient(135deg, var(--color-primary), #0047cc); color: #ffffff; box-shadow: var(--shadow-sm); }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg), var(--shadow-glow); }
@@ -189,6 +209,7 @@
         .menu-burger.active span:nth-child(2) { opacity: 0; }
         .menu-burger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
+        /* ==================== HERO ==================== */
         .hero { min-height: 100vh; display: flex; align-items: center; padding: calc(var(--navbar-height) + 2rem) 2rem 5rem; position: relative; overflow: hidden; background: var(--bg-primary); }
         .hero-bg-shapes { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
         .hero-shape { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.35; animation: shapeFloat 10s ease-in-out infinite; }
@@ -214,6 +235,7 @@
         .stat-number { font-size: 2.4rem; font-weight: 900; background: linear-gradient(135deg, var(--color-primary), var(--color-accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .stat-label { font-size: 0.85rem; color: var(--text-tertiary); font-weight: 500; }
 
+        /* ==================== CAROUSEL ==================== */
         .hero-carousel-wrapper { animation: fadeInUp 0.8s ease-out 0.2s both; }
         .carousel { position: relative; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-xl); aspect-ratio: 4/3; background: #000; }
         .carousel-slides { display: flex; height: 100%; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
@@ -231,6 +253,7 @@
         .scroll-indicator { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.4rem; color: var(--text-tertiary); font-size: 0.8rem; z-index: 3; animation: bounceArrow 2s ease-in-out infinite; }
         @keyframes bounceArrow { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(10px); } }
 
+        /* ==================== SECTIONS ==================== */
         .section { padding: 6rem 2rem; }
         .section-container { max-width: var(--max-width); margin: 0 auto; }
         .section-header { text-align: center; margin-bottom: 3.5rem; }
@@ -326,11 +349,13 @@
             .cta-banner { padding: 2.5rem 1.5rem; }
             .cta-banner h2 { font-size: 1.6rem; }
             .whatsapp-float { width: 50px; height: 50px; font-size: 1.4rem; bottom: 18px; right: 18px; }
+            .lang-toggle { padding: 0.3rem 0.6rem; font-size: 0.75rem; }
         }
         @media (max-width: 480px) { .hero-title { font-size: 1.7rem; } .hero-stats { flex-direction: column; gap: 0.8rem; } .section-title { font-size: 1.6rem; } }
     </style>
 </head>
 <body>
+    <!-- ==================== LOGO LOADER ==================== -->
     <div class="logo-loader-overlay" id="logoLoader">
         <div class="logo-loader-container">
             <div class="logo-loader-wrapper"><div class="logo-loader-ring"></div><img src="images/logo.png" alt="SMA Agency Logo" class="logo-loader-image"></div>
@@ -339,37 +364,55 @@
         </div>
     </div>
 
+    <!-- ==================== NAVBAR ==================== -->
     <header class="navbar" id="navbar">
         <div class="navbar-container">
             <a href="#hero" class="navbar-logo"><img src="images/logo.png" alt="SMA Logo"><span class="navbar-logo-text">SMA</span></a>
             <ul class="navbar-links" id="navLinks">
-                <li><a href="#hero" class="navbar-link active">Accueil</a></li><li><a href="#secteurs" class="navbar-link">Secteurs</a></li><li><a href="#services" class="navbar-link">Services</a></li><li><a href="#process" class="navbar-link">Processus</a></li><li><a href="#pourquoi" class="navbar-link">Pourquoi SMA</a></li><li><a href="#temoignages" class="navbar-link">Temoignages</a></li><li><a href="equipe.html" class="navbar-link">Equipe</a></li>
+                <li><a href="#hero" class="navbar-link active" data-fr="Accueil" data-en="Home">Accueil</a></li>
+                <li><a href="#secteurs" class="navbar-link" data-fr="Secteurs" data-en="Sectors">Secteurs</a></li>
+                <li><a href="#services" class="navbar-link" data-fr="Services" data-en="Services">Services</a></li>
+                <li><a href="#process" class="navbar-link" data-fr="Processus" data-en="Process">Processus</a></li>
+                <li><a href="#pourquoi" class="navbar-link" data-fr="Pourquoi SMA" data-en="Why SMA">Pourquoi SMA</a></li>
+                <li><a href="#temoignages" class="navbar-link" data-fr="Témoignages" data-en="Testimonials">Témoignages</a></li>
+                <li><a href="equipe.html" class="navbar-link" data-fr="Équipe" data-en="Team">Équipe</a></li>
             </ul>
             <div class="navbar-actions-group">
-                <button class="btn-icon theme-toggle" id="themeToggle" aria-label="Theme"><i class="fas fa-moon"></i><i class="fas fa-sun"></i></button>
+                <!-- Bouton Langue -->
+                <button class="lang-toggle" id="langToggle" aria-label="Changer la langue">
+                    <span class="lang-flag">🇫🇷</span>
+                    <span class="lang-code">FR</span>
+                </button>
+                <!-- Dark Mode -->
+                <button class="btn-icon theme-toggle" id="themeToggle" aria-label="Thème"><i class="fas fa-moon"></i><i class="fas fa-sun"></i></button>
+                <!-- Menu Burger -->
                 <button class="menu-burger" id="menuBurger" aria-label="Menu"><span></span><span></span><span></span></button>
             </div>
         </div>
     </header>
 
     <main>
+        <!-- ==================== HERO ==================== -->
         <section class="hero" id="hero">
             <div class="hero-bg-shapes"><div class="hero-shape hero-shape-1"></div><div class="hero-shape hero-shape-2"></div></div>
             <div class="hero-grid-pattern"></div>
             <div class="hero-container">
                 <div class="hero-content">
-                    <span class="hero-badge"><i class="fas fa-lightbulb"></i><span>Inventeurs de solutions intelligentes - Lubumbashi</span></span>
-                    <h1 class="hero-title"><span class="title-line">Nous inventons votre</span><span class="title-line gradient-text">futur digital</span></h1>
-                    <p class="hero-description">Nous concevons des strategies sur mesure, des sites web performants et des automatisations intelligentes qui propulsent votre entreprise vers de nouveaux horizons.</p>
+                    <span class="hero-badge"><i class="fas fa-lightbulb"></i><span data-fr="Inventeurs de solutions intelligentes - Lubumbashi" data-en="Inventors of smart solutions - Lubumbashi">Inventeurs de solutions intelligentes - Lubumbashi</span></span>
+                    <h1 class="hero-title">
+                        <span class="title-line" data-fr="Nous inventons votre" data-en="We invent your">Nous inventons votre</span>
+                        <span class="title-line gradient-text" data-fr="futur digital" data-en="digital future">futur digital</span>
+                    </h1>
+                    <p class="hero-description" data-fr="Nous concevons des stratégies sur mesure, des sites web performants et des automatisations intelligentes qui propulsent votre entreprise vers de nouveaux horizons." data-en="We design tailor-made strategies, high-performance websites and intelligent automations that propel your business to new heights.">Nous concevons des stratégies sur mesure, des sites web performants et des automatisations intelligentes qui propulsent votre entreprise vers de nouveaux horizons.</p>
                     <div class="hero-actions">
-                        <a href="#secteurs" class="btn btn-outline btn-lg"><span>Decouvrir nos offres</span><i class="fas fa-chevron-down"></i></a>
-                        <a href="configurateur.html" class="btn btn-whatsapp btn-lg"><i class="fab fa-whatsapp"></i><span>Commander via WhatsApp</span><i class="fas fa-arrow-right"></i></a>
+                        <a href="#secteurs" class="btn btn-outline btn-lg"><span data-fr="Découvrir nos offres" data-en="Discover our offers">Découvrir nos offres</span><i class="fas fa-chevron-down"></i></a>
+                        <a href="configurateur.html" class="btn btn-whatsapp btn-lg"><i class="fab fa-whatsapp"></i><span data-fr="Commander via WhatsApp" data-en="Order via WhatsApp">Commander via WhatsApp</span><i class="fas fa-arrow-right"></i></a>
                     </div>
                     <div class="hero-stats">
-                        <div class="stat-item"><span class="stat-number" data-target="20">0+</span><span class="stat-label">Projets realises</span></div>
-                        <div class="stat-item"><span class="stat-number" data-target="15">0+</span><span class="stat-label">Clients satisfaits</span></div>
-                        <div class="stat-item"><span class="stat-number" data-target="2">2+</span><span class="stat-label">Ans d innovation</span></div>
-                        <div class="stat-item"><span class="stat-number" data-target="5">5+</span><span class="stat-label">Experts dedies</span></div>
+                        <div class="stat-item"><span class="stat-number" data-target="20">0+</span><span class="stat-label" data-fr="Projets réalisés" data-en="Projects completed">Projets réalisés</span></div>
+                        <div class="stat-item"><span class="stat-number" data-target="15">0+</span><span class="stat-label" data-fr="Clients satisfaits" data-en="Satisfied clients">Clients satisfaits</span></div>
+                        <div class="stat-item"><span class="stat-number" data-target="2">2+</span><span class="stat-label" data-fr="Ans d'innovation" data-en="Years of innovation">Ans d'innovation</span></div>
+                        <div class="stat-item"><span class="stat-number" data-target="5">5+</span><span class="stat-label" data-fr="Experts dédiés" data-en="Dedicated experts">Experts dédiés</span></div>
                     </div>
                 </div>
                 <div class="hero-carousel-wrapper">
@@ -381,51 +424,119 @@
                     </div>
                 </div>
             </div>
-            <div class="scroll-indicator"><span>Scrollez pour decouvrir</span><i class="fas fa-chevron-down"></i></div>
+            <div class="scroll-indicator"><span data-fr="Scrollez pour découvrir" data-en="Scroll to discover">Scrollez pour découvrir</span><i class="fas fa-chevron-down"></i></div>
         </section>
 
-        <section class="section" id="secteurs"><div class="section-container"><div class="section-header reveal"><span class="section-badge">Expertise sectorielle</span><h2 class="section-title">Des solutions adaptees a <span class="gradient-text">chaque secteur</span></h2><p class="section-description">Nous comprenons les specificites de votre domaine pour inventer la solution qu il vous faut.</p></div><div class="secteurs-grid" id="secteursGrid"></div><div style="text-align:center;margin-top:2.5rem;"><a href="services.html" class="btn btn-primary btn-lg reveal"><span>Voir tous les secteurs</span><i class="fas fa-arrow-right"></i></a></div></div></section>
-        <section class="section" id="services" style="background:var(--bg-secondary);"><div class="section-container"><div class="section-header reveal"><span class="section-badge">Nos services</span><h2 class="section-title">Ce que nous <span class="gradient-text">maitrisons</span></h2><p class="section-description">Une gamme complete de services intelligents pour transformer votre entreprise.</p></div><div class="services-grid" id="servicesGrid"></div><div style="text-align:center;margin-top:2.5rem;"><a href="configurateur.html" class="btn btn-whatsapp btn-lg reveal"><i class="fab fa-whatsapp"></i><span>Configurer mon projet maintenant</span></a></div></div></section>
-        <section class="section" id="process"><div class="section-container"><div class="section-header reveal"><span class="section-badge">Notre methode</span><h2 class="section-title">Comment nous <span class="gradient-text">travaillons</span></h2></div><div class="process-grid" id="processGrid"></div></div></section>
-        <section class="section" id="pourquoi" style="background:var(--bg-secondary);"><div class="section-container"><div class="section-header reveal"><span class="section-badge">Avantages</span><h2 class="section-title">Pourquoi choisir <span class="gradient-text">SMA</span></h2></div><div class="why-us-grid" id="whyUsGrid"></div></div></section>
-        <section class="section" id="temoignages"><div class="section-container"><div class="section-header reveal"><span class="section-badge">Temoignages</span><h2 class="section-title">Ce que disent <span class="gradient-text">nos clients</span></h2><p class="section-description">La satisfaction de nos clients est notre plus grande fierte.</p></div><div class="testimonials-grid" id="testimonialsGrid"></div></div></section>
-        <section class="section"><div class="section-container"><div class="cta-banner reveal-scale"><h2>Pret a inventer votre futur digital ?</h2><p>Contactez-nous des aujourd hui pour une solution sur mesure.</p><a href="configurateur.html" class="btn"><i class="fab fa-whatsapp"></i> Demarrer mon projet <i class="fas fa-arrow-right"></i></a></div></div></section>
-        <section class="section" id="equipe-preview" style="background:var(--bg-secondary);"><div class="section-container"><div class="section-header reveal"><span class="section-badge">Notre equipe</span><h2 class="section-title">Les talents derriere <span class="gradient-text">SMA</span></h2></div><div style="text-align:center;"><p style="font-size:1.1rem;color:var(--text-secondary);margin-bottom:1.8rem;">Decouvrez les inventeurs qui donnent vie a vos projets digitaux.</p><a href="equipe.html" class="btn btn-primary btn-lg reveal"><i class="fas fa-users"></i> Voir toute l equipe <i class="fas fa-arrow-right"></i></a></div></div></section>
+        <!-- ==================== SECTEURS ==================== -->
+        <section class="section" id="secteurs"><div class="section-container"><div class="section-header reveal"><span class="section-badge" data-fr="Expertise sectorielle" data-en="Sector expertise">Expertise sectorielle</span><h2 class="section-title"><span data-fr="Des solutions adaptées à " data-en="Solutions tailored to ">Des solutions adaptées à </span><span class="gradient-text" data-fr="chaque secteur" data-en="every sector">chaque secteur</span></h2><p class="section-description" data-fr="Nous comprenons les spécificités de votre domaine pour inventer la solution qu'il vous faut." data-en="We understand the specifics of your field to invent the solution you need.">Nous comprenons les spécificités de votre domaine pour inventer la solution qu'il vous faut.</p></div><div class="secteurs-grid" id="secteursGrid"></div><div style="text-align:center;margin-top:2.5rem;"><a href="services.html" class="btn btn-primary btn-lg reveal"><span data-fr="Voir tous les secteurs" data-en="See all sectors">Voir tous les secteurs</span><i class="fas fa-arrow-right"></i></a></div></div></section>
+
+        <!-- ==================== SERVICES ==================== -->
+        <section class="section" id="services" style="background:var(--bg-secondary);"><div class="section-container"><div class="section-header reveal"><span class="section-badge" data-fr="Nos services" data-en="Our services">Nos services</span><h2 class="section-title"><span data-fr="Ce que nous " data-en="What we ">Ce que nous </span><span class="gradient-text" data-fr="maîtrisons" data-en="master">maîtrisons</span></h2><p class="section-description" data-fr="Une gamme complète de services intelligents pour transformer votre entreprise." data-en="A full range of smart services to transform your business.">Une gamme complète de services intelligents pour transformer votre entreprise.</p></div><div class="services-grid" id="servicesGrid"></div><div style="text-align:center;margin-top:2.5rem;"><a href="configurateur.html" class="btn btn-whatsapp btn-lg reveal"><i class="fab fa-whatsapp"></i><span data-fr="Configurer mon projet maintenant" data-en="Configure my project now">Configurer mon projet maintenant</span></a></div></div></section>
+
+        <!-- ==================== PROCESS ==================== -->
+        <section class="section" id="process"><div class="section-container"><div class="section-header reveal"><span class="section-badge" data-fr="Notre méthode" data-en="Our method">Notre méthode</span><h2 class="section-title"><span data-fr="Comment nous " data-en="How we ">Comment nous </span><span class="gradient-text" data-fr="travaillons" data-en="work">travaillons</span></h2></div><div class="process-grid" id="processGrid"></div></div></section>
+
+        <!-- ==================== POURQUOI SMA ==================== -->
+        <section class="section" id="pourquoi" style="background:var(--bg-secondary);"><div class="section-container"><div class="section-header reveal"><span class="section-badge" data-fr="Avantages" data-en="Advantages">Avantages</span><h2 class="section-title"><span data-fr="Pourquoi choisir " data-en="Why choose ">Pourquoi choisir </span><span class="gradient-text">SMA</span></h2></div><div class="why-us-grid" id="whyUsGrid"></div></div></section>
+
+        <!-- ==================== TÉMOIGNAGES ==================== -->
+        <section class="section" id="temoignages"><div class="section-container"><div class="section-header reveal"><span class="section-badge" data-fr="Témoignages" data-en="Testimonials">Témoignages</span><h2 class="section-title"><span data-fr="Ce que disent " data-en="What ">Ce que disent </span><span class="gradient-text" data-fr="nos clients" data-en="our clients say">nos clients</span></h2><p class="section-description" data-fr="La satisfaction de nos clients est notre plus grande fierté." data-en="Our clients' satisfaction is our greatest pride.">La satisfaction de nos clients est notre plus grande fierté.</p></div><div class="testimonials-grid" id="testimonialsGrid"></div></div></section>
+
+        <!-- ==================== CTA ==================== -->
+        <section class="section"><div class="section-container"><div class="cta-banner reveal-scale"><h2 data-fr="Prêt à inventer votre futur digital ?" data-en="Ready to invent your digital future?">Prêt à inventer votre futur digital ?</h2><p data-fr="Contactez-nous dès aujourd'hui pour une solution sur mesure." data-en="Contact us today for a tailor-made solution.">Contactez-nous dès aujourd'hui pour une solution sur mesure.</p><a href="configurateur.html" class="btn"><i class="fab fa-whatsapp"></i> <span data-fr="Démarrer mon projet" data-en="Start my project">Démarrer mon projet</span> <i class="fas fa-arrow-right"></i></a></div></div></section>
+
+        <!-- ==================== EQUIPE PREVIEW ==================== -->
+        <section class="section" id="equipe-preview" style="background:var(--bg-secondary);"><div class="section-container"><div class="section-header reveal"><span class="section-badge" data-fr="Notre équipe" data-en="Our team">Notre équipe</span><h2 class="section-title"><span data-fr="Les talents derrière " data-en="The talents behind ">Les talents derrière </span><span class="gradient-text">SMA</span></h2></div><div style="text-align:center;"><p style="font-size:1.1rem;color:var(--text-secondary);margin-bottom:1.8rem;" data-fr="Découvrez les inventeurs qui donnent vie à vos projets digitaux." data-en="Discover the inventors who bring your digital projects to life.">Découvrez les inventeurs qui donnent vie à vos projets digitaux.</p><a href="equipe.html" class="btn btn-primary btn-lg reveal"><i class="fas fa-users"></i> <span data-fr="Voir toute l'équipe" data-en="See the whole team">Voir toute l'équipe</span> <i class="fas fa-arrow-right"></i></a></div></div></section>
     </main>
 
+    <!-- ==================== FOOTER ==================== -->
     <footer class="footer">
         <div class="footer-grid">
-            <div><div class="footer-logo"><img src="images/logo.png" alt="SMA Logo"><span>SMA Agency</span></div><p style="color:var(--text-secondary);margin-bottom:0.4rem;">Inventeurs de solutions intelligentes a Lubumbashi.</p><p style="color:var(--text-tertiary);font-size:0.85rem;">Lubumbashi, Republique Democratique du Congo</p><div class="footer-social"><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a></div></div>
-            <div class="footer-links"><h4>Navigation</h4><ul><li><a href="#hero">Accueil</a></li><li><a href="#secteurs">Secteurs</a></li><li><a href="#services">Services</a></li><li><a href="equipe.html">Equipe</a></li></ul></div>
-            <div class="footer-links"><h4>Services</h4><ul><li><a href="services.html">Creation web</a></li><li><a href="services.html">Applications</a></li><li><a href="services.html">Marketing digital</a></li><li><a href="services.html">Branding</a></li></ul></div>
-            <div class="footer-links"><h4>Contact</h4><ul><li><i class="fas fa-phone"></i> +243 844 464 423</li><li><i class="fas fa-envelope"></i> contact@sma-agency.com</li><li><i class="fas fa-map-marker-alt"></i> Lubumbashi, RDC</li><li><i class="fas fa-clock"></i> Lun-Ven : 8h-18h</li></ul></div>
+            <div><div class="footer-logo"><img src="images/logo.png" alt="SMA Logo"><span>SMA Agency</span></div><p style="color:var(--text-secondary);margin-bottom:0.4rem;" data-fr="Inventeurs de solutions intelligentes à Lubumbashi." data-en="Inventors of smart solutions in Lubumbashi.">Inventeurs de solutions intelligentes à Lubumbashi.</p><p style="color:var(--text-tertiary);font-size:0.85rem;">Lubumbashi, République Démocratique du Congo</p><div class="footer-social"><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a></div></div>
+            <div class="footer-links"><h4 data-fr="Navigation" data-en="Navigation">Navigation</h4><ul><li><a href="#hero" data-fr="Accueil" data-en="Home">Accueil</a></li><li><a href="#secteurs" data-fr="Secteurs" data-en="Sectors">Secteurs</a></li><li><a href="#services" data-fr="Services" data-en="Services">Services</a></li><li><a href="equipe.html" data-fr="Équipe" data-en="Team">Équipe</a></li></ul></div>
+            <div class="footer-links"><h4 data-fr="Services" data-en="Services">Services</h4><ul><li><a href="services.html" data-fr="Création web" data-en="Web creation">Création web</a></li><li><a href="services.html" data-fr="Applications" data-en="Applications">Applications</a></li><li><a href="services.html" data-fr="Marketing digital" data-en="Digital marketing">Marketing digital</a></li><li><a href="services.html" data-fr="Branding" data-en="Branding">Branding</a></li></ul></div>
+            <div class="footer-links"><h4 data-fr="Contact" data-en="Contact">Contact</h4><ul><li><i class="fas fa-phone"></i> +243 844 464 423</li><li><i class="fas fa-envelope"></i> contact@sma-agency.com</li><li><i class="fas fa-map-marker-alt"></i> Lubumbashi, RDC</li><li><i class="fas fa-clock"></i> Lun-Ven : 8h-18h</li></ul></div>
         </div>
-        <div class="footer-bottom"><p>&copy; 2026 SMA Agency. Tous droits reserves.</p></div>
+        <div class="footer-bottom"><p>&copy; 2026 SMA Agency. <span data-fr="Tous droits réservés." data-en="All rights reserved.">Tous droits réservés.</span></p></div>
     </footer>
 
     <a href="https://wa.me/243844464423" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
     <script>
         (function(){'use strict';
+
+        // ==================== LANGUE ====================
+        let currentLang = localStorage.getItem('sma-lang') || 'fr';
+        
+        function applyLanguage(lang) {
+            document.querySelectorAll('[data-fr][data-en]').forEach(el => {
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = el.getAttribute('data-' + lang);
+                } else {
+                    el.textContent = el.getAttribute('data-' + lang);
+                }
+            });
+            
+            // Mettre à jour le bouton langue
+            const langToggle = document.getElementById('langToggle');
+            if (langToggle) {
+                const flag = lang === 'fr' ? '🇫🇷' : '🇬🇧';
+                const code = lang === 'fr' ? 'FR' : 'EN';
+                langToggle.querySelector('.lang-flag').textContent = flag;
+                langToggle.querySelector('.lang-code').textContent = code;
+            }
+            
+            // Mettre à jour l'attribut lang de la balise html
+            document.documentElement.lang = lang;
+            
+            // Sauvegarder
+            localStorage.setItem('sma-lang', lang);
+            currentLang = lang;
+        }
+        
+        // Appliquer la langue sauvegardée
+        applyLanguage(currentLang);
+        
+        // Bouton langue
+        const langToggle = document.getElementById('langToggle');
+        if (langToggle) {
+            langToggle.addEventListener('click', () => {
+                const newLang = currentLang === 'fr' ? 'en' : 'fr';
+                applyLanguage(newLang);
+            });
+        }
+
+        // ==================== LOGO LOADER ====================
         const loader=document.getElementById('logoLoader');if(loader){window.addEventListener('load',()=>{setTimeout(()=>{loader.classList.add('hidden');setTimeout(()=>loader.remove(),700)},1800)});setTimeout(()=>{if(loader&&!loader.classList.contains('hidden')){loader.classList.add('hidden');setTimeout(()=>loader.remove(),700)}},5000)}
+
+        // ==================== DARK MODE ====================
         const tt=document.getElementById('themeToggle');if(localStorage.getItem('sma-dark-mode')==='true')document.body.classList.add('dark');tt?.addEventListener('click',()=>{document.body.classList.toggle('dark');localStorage.setItem('sma-dark-mode',document.body.classList.contains('dark'))});
+
+        // ==================== MOBILE MENU ====================
         const burger=document.getElementById('menuBurger'),nl=document.getElementById('navLinks');burger?.addEventListener('click',()=>{burger.classList.toggle('active');nl.classList.toggle('active')});nl?.querySelectorAll('a').forEach(l=>l.addEventListener('click',()=>{burger.classList.remove('active');nl.classList.remove('active')}));
         window.addEventListener('scroll',()=>document.getElementById('navbar')?.classList.toggle('scrolled',window.scrollY>50));
-        const sd=[{local:'images/intel.png',fallback:'https://images.unsplash.com/photo-1523803326055-b6b44c32e1a6?w=800&h=550&fit=crop',title:'Innovation Digitale en Afrique',description:'Des solutions intelligentes adaptees au marche congolais'},{local:'images/strategie.webp',fallback:'https://images.unsplash.com/photo-1573164574572-cb89e39749b4?w=800&h=550&fit=crop',title:'Strategie Social Media',description:'Campagnes engageantes pour le public africain'},{local:'images/iapro.png',fallback:'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=800&h=550&fit=crop',title:'IA et Automatisation locale',description:'Booster votre productivite avec l intelligence artificielle'},{local:'images/logiciel.png',fallback:'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=550&fit=crop',title:'Business Africain 2.0',description:'Propulser votre entreprise vers le futur digital'}];
+
+        // ==================== CAROUSEL ====================
+        const sd=[{local:'images/intel.png',fallback:'https://images.unsplash.com/photo-1523803326055-b6b44c32e1a6?w=800&h=550&fit=crop',title:'Innovation Digitale en Afrique',description:'Des solutions intelligentes adaptées au marché congolais'},{local:'images/strategie.webp',fallback:'https://images.unsplash.com/photo-1573164574572-cb89e39749b4?w=800&h=550&fit=crop',title:'Stratégie Social Media',description:'Campagnes engageantes pour le public africain'},{local:'images/iapro.png',fallback:'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=800&h=550&fit=crop',title:'IA et Automatisation locale',description:'Booster votre productivité avec l\'intelligence artificielle'},{local:'images/logiciel.png',fallback:'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=550&fit=crop',title:'Business Africain 2.0',description:'Propulser votre entreprise vers le futur digital'}];
         const sc=document.getElementById('carouselSlides'),dc=document.getElementById('carouselDots'),pb=document.getElementById('carouselPrev'),nb=document.getElementById('carouselNext');
         if(sc&&dc){let cs=0,ai;sd.forEach((s,i)=>{const se=document.createElement('div');se.className='carousel-slide';se.innerHTML=`<img src="${s.local}" alt="${s.title}" loading="${i===0?'eager':'lazy'}" onerror="this.onerror=null;this.src='${s.fallback}';"><div class="carousel-slide-overlay"><h3>${s.title}</h3><p>${s.description}</p></div>`;sc.appendChild(se);const d=document.createElement('span');d.className=`carousel-dot ${i===0?'active':''}`;d.addEventListener('click',()=>gs(i));dc.appendChild(d)});const ad=document.querySelectorAll('.carousel-dot');function gs(i){cs=i;sc.style.transform=`translateX(-${cs*100}%)`;ad.forEach((d,j)=>d.classList.toggle('active',j===cs))}function ns(){gs((cs+1)%sd.length)}function ps(){gs((cs-1+sd.length)%sd.length)}function sa(){ai=setInterval(ns,4500)}function ra(){clearInterval(ai);sa()}pb?.addEventListener('click',()=>{ps();ra()});nb?.addEventListener('click',()=>{ns();ra()});let tx=0;sc.addEventListener('touchstart',e=>{tx=e.touches[0].clientX});sc.addEventListener('touchend',e=>{if(Math.abs(tx-e.changedTouches[0].clientX)>50){tx>e.changedTouches[0].clientX?ns():ps();ra()}});sa();sc.addEventListener('mouseenter',()=>clearInterval(ai));sc.addEventListener('mouseleave',sa)}
-        const sect=[{name:'Ecoles & Universites',icon:'fa-graduation-cap',desc:'Plateformes e-learning intelligentes'},{name:'Magasins & E-commerce',icon:'fa-store',desc:'Boutiques en ligne performantes'},{name:'PME & Startups',icon:'fa-rocket',desc:'Sites vitrine, branding complet'},{name:'ONG & Associations',icon:'fa-hand-holding-heart',desc:'Visibilite, collecte de dons'},{name:'Hotels & Restaurants',icon:'fa-hotel',desc:'Reservation en ligne, menus digitaux'},{name:'Hopitaux & Cliniques',icon:'fa-hospital',desc:'RDV en ligne, information patient'},{name:'Industrie Miniere',icon:'fa-gem',desc:'Communication corporate digitale'},{name:'Autres secteurs',icon:'fa-building',desc:'Solution sur mesure'}];
-        const serv=[{name:'Creation Sites Web',icon:'fa-globe',desc:'Sites vitrine, e-commerce, institutionnels'},{name:'Applications Web',icon:'fa-mobile-screen',desc:'PWAs, dashboards, outils metier'},{name:'Automatisation',icon:'fa-robot',desc:'Chatbots, workflows, CRM intelligents'},{name:'Marketing Digital',icon:'fa-bullhorn',desc:'SEO, SEA, reseaux sociaux'},{name:'Branding & Design',icon:'fa-palette',desc:'Logo, charte graphique complete'},{name:'Community Management',icon:'fa-comments',desc:'Contenu engageant, veille'}];
-        const proc=[{number:1,title:'Decouverte',desc:'Analyse de vos besoins'},{number:2,title:'Strategie',desc:'Plan d action sur mesure'},{number:3,title:'Creation',desc:'Design et developpement'},{number:4,title:'Lancement',desc:'Deploiement et mise en ligne'},{number:5,title:'Suivi',desc:'Optimisation continue'}];
-        const why=[{icon:'fa-bolt',title:'Reactivite',desc:'Disponibilite permanente'},{icon:'fa-medal',title:'Expertise',desc:'Plus de 2 ans en RDC'},{icon:'fa-handshake',title:'Proximite',desc:'Bases a Lubumbashi'},{icon:'fa-chart-line',title:'Performance',desc:'Solutions orientees resultats'},{icon:'fa-shield-halved',title:'Fiabilite',desc:'Respect des delais'},{icon:'fa-wallet',title:'Tarifs adaptes',desc:'Prix competitifs'}];
-        const test=[{stars:5,text:'SMA a completement transforme notre presence en ligne. Leur approche innovante a booste notre activite.',author:'Marie Kabanga',role:'Directrice, Boutique Elegance - Lubumbashi'},{stars:5,text:'De veritables inventeurs de solutions ! L equipe a compris exactement ce dont notre ONG avait besoin.',author:'Dr. Jean Mutombo',role:'Fondateur, Aide Humanitaire RDC'},{stars:5,text:'Notre restaurant a gagne en visibilite grace a leur strategie digitale intelligente.',author:'Sophie Lukusa',role:'Proprietaire, Restaurant Le Saveur'},{stars:5,text:'Un accompagnement de qualite. SMA a su digitaliser notre PME avec brio.',author:'Patrick Mwamba',role:'Gerant, Tech Solutions RDC'},{stars:5,text:'La meilleure agence digitale de la region. Des resultats concrets et mesurables.',author:'Christine Kalenga',role:'CEO, StartUp Innov Congo'},{stars:4,text:'Tres satisfait du site cree pour notre ecole. Design moderne, nos etudiants l adorent !',author:'Prof. Andre Ilunga',role:'Directeur, College Avenir - Lubumbashi'}];
+
+        // ==================== POPULATE CONTENT ====================
+        const sect=[{name:'Écoles & Universités',icon:'fa-graduation-cap',desc:'Plateformes e-learning intelligentes'},{name:'Magasins & E-commerce',icon:'fa-store',desc:'Boutiques en ligne performantes'},{name:'PME & Startups',icon:'fa-rocket',desc:'Sites vitrine, branding complet'},{name:'ONG & Associations',icon:'fa-hand-holding-heart',desc:'Visibilité, collecte de dons'},{name:'Hôtels & Restaurants',icon:'fa-hotel',desc:'Réservation en ligne, menus digitaux'},{name:'Hôpitaux & Cliniques',icon:'fa-hospital',desc:'RDV en ligne, information patient'},{name:'Industrie Minière',icon:'fa-gem',desc:'Communication corporate digitale'},{name:'Autres secteurs',icon:'fa-building',desc:'Solution sur mesure'}];
+        const serv=[{name:'Création Sites Web',icon:'fa-globe',desc:'Sites vitrine, e-commerce, institutionnels'},{name:'Applications Web',icon:'fa-mobile-screen',desc:'PWAs, dashboards, outils métier'},{name:'Automatisation',icon:'fa-robot',desc:'Chatbots, workflows, CRM intelligents'},{name:'Marketing Digital',icon:'fa-bullhorn',desc:'SEO, SEA, réseaux sociaux'},{name:'Branding & Design',icon:'fa-palette',desc:'Logo, charte graphique complète'},{name:'Community Management',icon:'fa-comments',desc:'Contenu engageant, veille'}];
+        const proc=[{number:1,title:'Découverte',desc:'Analyse de vos besoins'},{number:2,title:'Stratégie',desc:"Plan d'action sur mesure"},{number:3,title:'Création',desc:'Design et développement'},{number:4,title:'Lancement',desc:'Déploiement et mise en ligne'},{number:5,title:'Suivi',desc:'Optimisation continue'}];
+        const why=[{icon:'fa-bolt',title:'Réactivité',desc:'Disponibilité permanente'},{icon:'fa-medal',title:'Expertise',desc:'Plus de 2 ans en RDC'},{icon:'fa-handshake',title:'Proximité',desc:'Basés à Lubumbashi'},{icon:'fa-chart-line',title:'Performance',desc:'Solutions orientées résultats'},{icon:'fa-shield-halved',title:'Fiabilité',desc:'Respect des délais'},{icon:'fa-wallet',title:'Tarifs adaptés',desc:'Prix compétitifs'}];
+        const test=[{stars:5,text:'SMA a complètement transformé notre présence en ligne. Leur approche innovante a boosté notre activité.',author:'Marie Kabanga',role:'Directrice, Boutique Élégance - Lubumbashi'},{stars:5,text:"De véritables inventeurs de solutions ! L'équipe a compris exactement ce dont notre ONG avait besoin.",author:'Dr. Jean Mutombo',role:'Fondateur, Aide Humanitaire RDC'},{stars:5,text:'Notre restaurant a gagné en visibilité grâce à leur stratégie digitale intelligente.',author:'Sophie Lukusa',role:'Propriétaire, Restaurant Le Saveur'},{stars:5,text:'Un accompagnement de qualité. SMA a su digitaliser notre PME avec brio.',author:'Patrick Mwamba',role:'Gérant, Tech Solutions RDC'},{stars:5,text:'La meilleure agence digitale de la région. Des résultats concrets et mesurables.',author:'Christine Kalenga',role:'CEO, StartUp Innov Congo'},{stars:4,text:"Très satisfait du site créé pour notre école. Design moderne, nos étudiants l'adorent !",author:'Prof. André Ilunga',role:'Directeur, Collège Avenir - Lubumbashi'}];
         document.getElementById('secteursGrid').innerHTML=sect.map((s,i)=>`<div class="card reveal stagger-${i+1}"><div class="card-icon"><i class="fas ${s.icon}"></i></div><h3>${s.name}</h3><p>${s.desc}</p></div>`).join('');
         document.getElementById('servicesGrid').innerHTML=serv.map((s,i)=>`<div class="card reveal stagger-${i+1}"><div class="card-icon"><i class="fas ${s.icon}"></i></div><h3>${s.name}</h3><p>${s.desc}</p></div>`).join('');
         document.getElementById('processGrid').innerHTML=proc.map((s,i)=>`<div class="process-card reveal stagger-${i+1}"><div class="process-number">${s.number}</div><h3>${s.title}</h3><p style="color:var(--text-tertiary);">${s.desc}</p></div>`).join('');
         document.getElementById('whyUsGrid').innerHTML=why.map((r,i)=>`<div class="why-us-card reveal stagger-${i+1}"><div class="why-us-icon"><i class="fas ${r.icon}"></i></div><h3>${r.title}</h3><p style="color:var(--text-tertiary);">${r.desc}</p></div>`).join('');
         document.getElementById('testimonialsGrid').innerHTML=test.map((t,i)=>`<div class="testimonial-card reveal stagger-${i+1}"><div class="testimonial-quote-icon"><i class="fas fa-quote-right"></i></div><div class="testimonial-stars">${Array(t.stars).fill('<i class="fas fa-star"></i>').join('')}${t.stars<5?Array(5-t.stars).fill('<i class="far fa-star"></i>').join(''):''}</div><p class="testimonial-text">"${t.text}"</p><div class="testimonial-divider"></div><div class="testimonial-author-name">${t.author}</div><div class="testimonial-author-role">${t.role}</div></div>`).join('');
+
+        // ==================== SCROLL REVEAL & COUNTER ====================
         const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});document.querySelectorAll('.reveal, .reveal-scale').forEach(el=>obs.observe(el));
-        const so=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){const el=en.target;const t=parseInt(el.dataset.target);let c=0;const ci=setInterval(()=>{c+=t/112;if(c>=t){el.textContent=t+'+';clearInterval(ci)}else{el.textContent=Math.floor(c)+'+'}},16);so.unobserve(el)}})},{threshold:0.6});document.querySelectorAll('.stat-number[data-target]').forEach(el=>so.observe(el));})();
+        const so=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){const el=en.target;const t=parseInt(el.dataset.target);let c=0;const ci=setInterval(()=>{c+=t/112;if(c>=t){el.textContent=t+'+';clearInterval(ci)}else{el.textContent=Math.floor(c)+'+'}},16);so.unobserve(el)}})},{threshold:0.6});document.querySelectorAll('.stat-number[data-target]').forEach(el=>so.observe(el));
+        })();
     </script>
 </body>
 </html>
