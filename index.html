@@ -3,18 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta name="description" content="SMA - Social Media Agency | Nous inventons des solutions intelligentes pour propulser votre entreprise. Création web, automatisation, marketing digital et branding à Lubumbashi.">
+    <meta name="description" content="SMA - Social Media Agency | Inventeurs de solutions intelligentes. Création web, automatisation, marketing digital et branding à Lubumbashi.">
     <meta name="theme-color" content="#2563eb">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <!-- Open Graph - Affiche le logo quand on partage le lien -->
-    <meta property="og:title" content="SMA • Social Media Agency | Agence Digitale Premium">
+    <!-- ============================================
+    ✅ OPEN GRAPH - POUR QUE LE LOGO S'AFFICHE
+    Remplacez "votre-image-hebergee.jpg" par l'URL
+    de votre logo uploadé sur ImgBB, Cloudinary, etc.
+    ============================================ -->
+    <meta property="og:title" content="SMA • Inventeurs de solutions intelligentes | Agence Digitale Premium">
     <meta property="og:description" content="Nous inventons des solutions intelligentes pour propulser votre entreprise. Création web, automatisation, marketing digital et branding à Lubumbashi.">
-    <meta property="og:image" content="https://sma-agency.netlify.app/images/logo.png">
+    
+    <!-- ⚠️ URL DE L'IMAGE : Remplacez par votre vraie URL d'image -->
+    <meta property="og:image" content="https://sma-agency.netlify.app/images/logo-social.jpg">
+    <meta property="og:image:secure_url" content="https://sma-agency.netlify.app/images/logo-social.jpg">
     <meta property="og:image:width" content="512">
     <meta property="og:image:height" content="512">
-    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:alt" content="SMA Agency Logo">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://sma-agency.netlify.app">
     <meta property="og:locale" content="fr_FR">
@@ -22,11 +30,16 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://sma-agency.netlify.app/images/logo.png">
-    <meta name="twitter:title" content="SMA • Social Media Agency | Agence Digitale Premium">
+    <meta name="twitter:image" content="https://sma-agency.netlify.app/images/logo-social.jpg">
+    <meta name="twitter:image:alt" content="SMA Agency Logo">
+    <meta name="twitter:title" content="SMA • Inventeurs de solutions intelligentes | Agence Digitale Premium">
     <meta name="twitter:description" content="Nous inventons des solutions intelligentes pour propulser votre entreprise.">
 
-    <title>SMA • Social Media Agency | Inventeurs de solutions intelligentes</title>
+    <!-- Favicon (aide aussi pour le partage) -->
+    <link rel="icon" type="image/png" sizes="512x512" href="https://sma-agency.netlify.app/images/logo-social.jpg">
+    <link rel="apple-touch-icon" sizes="512x512" href="https://sma-agency.netlify.app/images/logo-social.jpg">
+
+    <title>SMA • Inventeurs de solutions intelligentes | Agence Digitale Premium</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -358,7 +371,6 @@
             margin-bottom: 2rem; max-width: 500px; line-height: 1.7;
         }
 
-        /* BOUTONS : Découvrir EN HAUT, Commander EN BAS */
         .hero-actions {
             display: flex; flex-direction: column; gap: 0.9rem;
             margin-bottom: 2.5rem; max-width: 400px;
@@ -841,39 +853,33 @@
     <a href="https://wa.me/243844464423" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
     <script>
-        (function() {
-            'use strict';
-            const loader=document.getElementById('logoLoader');
-            if(loader){window.addEventListener('load',()=>{setTimeout(()=>{loader.classList.add('hidden');setTimeout(()=>loader.remove(),700)},1800)});setTimeout(()=>{if(loader&&!loader.classList.contains('hidden')){loader.classList.add('hidden');setTimeout(()=>loader.remove(),700)}},5000)}
-            const themeToggle=document.getElementById('themeToggle');
-            if(localStorage.getItem('sma-dark-mode')==='true')document.body.classList.add('dark');
-            themeToggle?.addEventListener('click',()=>{document.body.classList.toggle('dark');localStorage.setItem('sma-dark-mode',document.body.classList.contains('dark'))});
-            const burger=document.getElementById('menuBurger'),navLinks=document.getElementById('navLinks');
-            burger?.addEventListener('click',()=>{burger.classList.toggle('active');navLinks.classList.toggle('active')});
-            navLinks?.querySelectorAll('a').forEach(l=>l.addEventListener('click',()=>{burger.classList.remove('active');navLinks.classList.remove('active')}));
-            window.addEventListener('scroll',()=>document.getElementById('navbar')?.classList.toggle('scrolled',window.scrollY>50));
-
-            const slidesData=[{local:'images/intel.png',fallback:'https://images.unsplash.com/photo-1523803326055-b6b44c32e1a6?w=800&h=550&fit=crop',title:'Innovation Digitale en Afrique',description:'Des solutions intelligentes adaptées au marché congolais'},{local:'images/strategie.webp',fallback:'https://images.unsplash.com/photo-1573164574572-cb89e39749b4?w=800&h=550&fit=crop',title:'Stratégie Social Media',description:'Campagnes engageantes pour le public africain'},{local:'images/iapro.png',fallback:'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=800&h=550&fit=crop',title:'IA et Automatisation locale',description:'Booster votre productivité avec l\'intelligence artificielle'},{local:'images/logiciel.png',fallback:'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=550&fit=crop',title:'Business Africain 2.0',description:'Propulser votre entreprise vers le futur digital'}];
-            const sc=document.getElementById('carouselSlides'),dc=document.getElementById('carouselDots'),pb=document.getElementById('carouselPrev'),nb=document.getElementById('carouselNext');
-            if(sc&&dc){let cs=0,ai;slidesData.forEach((s,i)=>{const se=document.createElement('div');se.className='carousel-slide';se.innerHTML=`<img src="${s.local}" alt="${s.title}" loading="${i===0?'eager':'lazy'}" onerror="this.onerror=null;this.src='${s.fallback}';"><div class="carousel-slide-overlay"><h3>${s.title}</h3><p>${s.description}</p></div>`;sc.appendChild(se);const d=document.createElement('span');d.className=`carousel-dot ${i===0?'active':''}`;d.addEventListener('click',()=>gs(i));dc.appendChild(d)});const ad=document.querySelectorAll('.carousel-dot');function gs(i){cs=i;sc.style.transform=`translateX(-${cs*100}%)`;ad.forEach((d,j)=>d.classList.toggle('active',j===cs))}function ns(){gs((cs+1)%slidesData.length)}function ps(){gs((cs-1+slidesData.length)%slidesData.length)}function sa(){ai=setInterval(ns,4500)}function ra(){clearInterval(ai);sa()}pb?.addEventListener('click',()=>{ps();ra()});nb?.addEventListener('click',()=>{ns();ra()});let tx=0;sc.addEventListener('touchstart',e=>{tx=e.touches[0].clientX});sc.addEventListener('touchend',e=>{if(Math.abs(tx-e.changedTouches[0].clientX)>50){tx>e.changedTouches[0].clientX?ns():ps();ra()}});sa();sc.addEventListener('mouseenter',()=>clearInterval(ai));sc.addEventListener('mouseleave',sa)}
-
-            const sect=[{name:'Écoles & Universités',icon:'fa-graduation-cap',desc:'Plateformes e-learning intelligentes'},{name:'Magasins & E-commerce',icon:'fa-store',desc:'Boutiques en ligne performantes'},{name:'PME & Startups',icon:'fa-rocket',desc:'Sites vitrine, branding complet'},{name:'ONG & Associations',icon:'fa-hand-holding-heart',desc:'Visibilité, collecte de dons'},{name:'Hôtels & Restaurants',icon:'fa-hotel',desc:'Réservation en ligne, menus digitaux'},{name:'Hôpitaux & Cliniques',icon:'fa-hospital',desc:'RDV en ligne, information patient'},{name:'Industrie Minière',icon:'fa-gem',desc:'Communication corporate digitale'},{name:'Autres secteurs',icon:'fa-building',desc:'Solution sur mesure'}];
-            const serv=[{name:'Création Sites Web',icon:'fa-globe',desc:'Sites vitrine, e-commerce, institutionnels'},{name:'Applications Web',icon:'fa-mobile-screen',desc:'PWAs, dashboards, outils métier'},{name:'Automatisation',icon:'fa-robot',desc:'Chatbots, workflows, CRM intelligents'},{name:'Marketing Digital',icon:'fa-bullhorn',desc:'SEO, SEA, réseaux sociaux'},{name:'Branding & Design',icon:'fa-palette',desc:'Logo, charte graphique complète'},{name:'Community Management',icon:'fa-comments',desc:'Contenu engageant, veille'}];
-            const proc=[{number:1,title:'Découverte',desc:'Analyse de vos besoins'},{number:2,title:'Stratégie',desc:'Plan d\'action sur mesure'},{number:3,title:'Création',desc:'Design et développement'},{number:4,title:'Lancement',desc:'Déploiement et mise en ligne'},{number:5,title:'Suivi',desc:'Optimisation continue'}];
-            const why=[{icon:'fa-bolt',title:'Réactivité',desc:'Disponibilité permanente'},{icon:'fa-medal',title:'Expertise',desc:'Plus de 2 ans en RDC'},{icon:'fa-handshake',title:'Proximité',desc:'Basés à Lubumbashi'},{icon:'fa-chart-line',title:'Performance',desc:'Solutions orientées résultats'},{icon:'fa-shield-halved',title:'Fiabilité',desc:'Respect des délais'},{icon:'fa-wallet',title:'Tarifs adaptés',desc:'Prix compétitifs'}];
-            const test=[{stars:5,text:'SMA a complètement transformé notre présence en ligne. Leur approche innovante a boosté notre activité.',author:'Marie Kabanga',role:'Directrice, Boutique Élégance - Lubumbashi'},{stars:5,text:'De véritables inventeurs de solutions ! L\'équipe a compris exactement ce dont notre ONG avait besoin.',author:'Dr. Jean Mutombo',role:'Fondateur, Aide Humanitaire RDC'},{stars:5,text:'Notre restaurant a gagné en visibilité grâce à leur stratégie digitale intelligente.',author:'Sophie Lukusa',role:'Propriétaire, Restaurant Le Saveur'},{stars:5,text:'Un accompagnement de qualité. SMA a su digitaliser notre PME avec brio.',author:'Patrick Mwamba',role:'Gérant, Tech Solutions RDC'},{stars:5,text:'La meilleure agence digitale de la région. Des résultats concrets et mesurables.',author:'Christine Kalenga',role:'CEO, StartUp Innov Congo'},{stars:4,text:'Très satisfait du site créé pour notre école. Design moderne, nos étudiants l\'adorent !',author:'Prof. André Ilunga',role:'Directeur, Collège Avenir - Lubumbashi'}];
-
-            document.getElementById('secteursGrid').innerHTML=sect.map((s,i)=>`<div class="card reveal stagger-${i+1}"><div class="card-icon"><i class="fas ${s.icon}"></i></div><h3>${s.name}</h3><p>${s.desc}</p></div>`).join('');
-            document.getElementById('servicesGrid').innerHTML=serv.map((s,i)=>`<div class="card reveal stagger-${i+1}"><div class="card-icon"><i class="fas ${s.icon}"></i></div><h3>${s.name}</h3><p>${s.desc}</p></div>`).join('');
-            document.getElementById('processGrid').innerHTML=proc.map((s,i)=>`<div class="process-card reveal stagger-${i+1}"><div class="process-number">${s.number}</div><h3>${s.title}</h3><p style="color:var(--text-tertiary);">${s.desc}</p></div>`).join('');
-            document.getElementById('whyUsGrid').innerHTML=why.map((r,i)=>`<div class="why-us-card reveal stagger-${i+1}"><div class="why-us-icon"><i class="fas ${r.icon}"></i></div><h3>${r.title}</h3><p style="color:var(--text-tertiary);">${r.desc}</p></div>`).join('');
-            document.getElementById('testimonialsGrid').innerHTML=test.map((t,i)=>`<div class="testimonial-card reveal stagger-${i+1}"><div class="testimonial-quote-icon"><i class="fas fa-quote-right"></i></div><div class="testimonial-stars">${Array(t.stars).fill('<i class="fas fa-star"></i>').join('')}${t.stars<5?Array(5-t.stars).fill('<i class="far fa-star"></i>').join(''):''}</div><p class="testimonial-text">"${t.text}"</p><div class="testimonial-divider"></div><div class="testimonial-author-name">${t.author}</div><div class="testimonial-author-role">${t.role}</div></div>`).join('');
-
-            const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
-            document.querySelectorAll('.reveal, .reveal-scale').forEach(el=>obs.observe(el));
-            const so=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){const el=en.target;const t=parseInt(el.dataset.target);let c=0;const ci=setInterval(()=>{c+=t/112;if(c>=t){el.textContent=t+'+';clearInterval(ci)}else{el.textContent=Math.floor(c)+'+'}},16);so.unobserve(el)}})},{threshold:0.6});
-            document.querySelectorAll('.stat-number[data-target]').forEach(el=>so.observe(el));
-        })();
+        (function(){'use strict';
+        const loader=document.getElementById('logoLoader');
+        if(loader){window.addEventListener('load',()=>{setTimeout(()=>{loader.classList.add('hidden');setTimeout(()=>loader.remove(),700)},1800)});setTimeout(()=>{if(loader&&!loader.classList.contains('hidden')){loader.classList.add('hidden');setTimeout(()=>loader.remove(),700)}},5000)}
+        const tt=document.getElementById('themeToggle');
+        if(localStorage.getItem('sma-dark-mode')==='true')document.body.classList.add('dark');
+        tt?.addEventListener('click',()=>{document.body.classList.toggle('dark');localStorage.setItem('sma-dark-mode',document.body.classList.contains('dark'))});
+        const burger=document.getElementById('menuBurger'),nl=document.getElementById('navLinks');
+        burger?.addEventListener('click',()=>{burger.classList.toggle('active');nl.classList.toggle('active')});
+        nl?.querySelectorAll('a').forEach(l=>l.addEventListener('click',()=>{burger.classList.remove('active');nl.classList.remove('active')}));
+        window.addEventListener('scroll',()=>document.getElementById('navbar')?.classList.toggle('scrolled',window.scrollY>50));
+        const sd=[{local:'images/intel.png',fallback:'https://images.unsplash.com/photo-1523803326055-b6b44c32e1a6?w=800&h=550&fit=crop',title:'Innovation Digitale en Afrique',description:'Des solutions intelligentes adaptées au marché congolais'},{local:'images/strategie.webp',fallback:'https://images.unsplash.com/photo-1573164574572-cb89e39749b4?w=800&h=550&fit=crop',title:'Stratégie Social Media',description:'Campagnes engageantes pour le public africain'},{local:'images/iapro.png',fallback:'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=800&h=550&fit=crop',title:'IA et Automatisation locale',description:'Booster votre productivité avec l\'intelligence artificielle'},{local:'images/logiciel.png',fallback:'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=550&fit=crop',title:'Business Africain 2.0',description:'Propulser votre entreprise vers le futur digital'}];
+        const sc=document.getElementById('carouselSlides'),dc=document.getElementById('carouselDots'),pb=document.getElementById('carouselPrev'),nb=document.getElementById('carouselNext');
+        if(sc&&dc){let cs=0,ai;sd.forEach((s,i)=>{const se=document.createElement('div');se.className='carousel-slide';se.innerHTML=`<img src="${s.local}" alt="${s.title}" loading="${i===0?'eager':'lazy'}" onerror="this.onerror=null;this.src='${s.fallback}';"><div class="carousel-slide-overlay"><h3>${s.title}</h3><p>${s.description}</p></div>`;sc.appendChild(se);const d=document.createElement('span');d.className=`carousel-dot ${i===0?'active':''}`;d.addEventListener('click',()=>gs(i));dc.appendChild(d)});const ad=document.querySelectorAll('.carousel-dot');function gs(i){cs=i;sc.style.transform=`translateX(-${cs*100}%)`;ad.forEach((d,j)=>d.classList.toggle('active',j===cs))}function ns(){gs((cs+1)%sd.length)}function ps(){gs((cs-1+sd.length)%sd.length)}function sa(){ai=setInterval(ns,4500)}function ra(){clearInterval(ai);sa()}pb?.addEventListener('click',()=>{ps();ra()});nb?.addEventListener('click',()=>{ns();ra()});let tx=0;sc.addEventListener('touchstart',e=>{tx=e.touches[0].clientX});sc.addEventListener('touchend',e=>{if(Math.abs(tx-e.changedTouches[0].clientX)>50){tx>e.changedTouches[0].clientX?ns():ps();ra()}});sa();sc.addEventListener('mouseenter',()=>clearInterval(ai));sc.addEventListener('mouseleave',sa)}
+        const sect=[{name:'Écoles & Universités',icon:'fa-graduation-cap',desc:'Plateformes e-learning intelligentes'},{name:'Magasins & E-commerce',icon:'fa-store',desc:'Boutiques en ligne performantes'},{name:'PME & Startups',icon:'fa-rocket',desc:'Sites vitrine, branding complet'},{name:'ONG & Associations',icon:'fa-hand-holding-heart',desc:'Visibilité, collecte de dons'},{name:'Hôtels & Restaurants',icon:'fa-hotel',desc:'Réservation en ligne, menus digitaux'},{name:'Hôpitaux & Cliniques',icon:'fa-hospital',desc:'RDV en ligne, information patient'},{name:'Industrie Minière',icon:'fa-gem',desc:'Communication corporate digitale'},{name:'Autres secteurs',icon:'fa-building',desc:'Solution sur mesure'}];
+        const serv=[{name:'Création Sites Web',icon:'fa-globe',desc:'Sites vitrine, e-commerce, institutionnels'},{name:'Applications Web',icon:'fa-mobile-screen',desc:'PWAs, dashboards, outils métier'},{name:'Automatisation',icon:'fa-robot',desc:'Chatbots, workflows, CRM intelligents'},{name:'Marketing Digital',icon:'fa-bullhorn',desc:'SEO, SEA, réseaux sociaux'},{name:'Branding & Design',icon:'fa-palette',desc:'Logo, charte graphique complète'},{name:'Community Management',icon:'fa-comments',desc:'Contenu engageant, veille'}];
+        const proc=[{number:1,title:'Découverte',desc:'Analyse de vos besoins'},{number:2,title:'Stratégie',desc:'Plan d\'action sur mesure'},{number:3,title:'Création',desc:'Design et développement'},{number:4,title:'Lancement',desc:'Déploiement et mise en ligne'},{number:5,title:'Suivi',desc:'Optimisation continue'}];
+        const why=[{icon:'fa-bolt',title:'Réactivité',desc:'Disponibilité permanente'},{icon:'fa-medal',title:'Expertise',desc:'Plus de 2 ans en RDC'},{icon:'fa-handshake',title:'Proximité',desc:'Basés à Lubumbashi'},{icon:'fa-chart-line',title:'Performance',desc:'Solutions orientées résultats'},{icon:'fa-shield-halved',title:'Fiabilité',desc:'Respect des délais'},{icon:'fa-wallet',title:'Tarifs adaptés',desc:'Prix compétitifs'}];
+        const test=[{stars:5,text:'SMA a complètement transformé notre présence en ligne. Leur approche innovante a boosté notre activité.',author:'Marie Kabanga',role:'Directrice, Boutique Élégance - Lubumbashi'},{stars:5,text:'De véritables inventeurs de solutions ! L\'équipe a compris exactement ce dont notre ONG avait besoin.',author:'Dr. Jean Mutombo',role:'Fondateur, Aide Humanitaire RDC'},{stars:5,text:'Notre restaurant a gagné en visibilité grâce à leur stratégie digitale intelligente.',author:'Sophie Lukusa',role:'Propriétaire, Restaurant Le Saveur'},{stars:5,text:'Un accompagnement de qualité. SMA a su digitaliser notre PME avec brio.',author:'Patrick Mwamba',role:'Gérant, Tech Solutions RDC'},{stars:5,text:'La meilleure agence digitale de la région. Des résultats concrets et mesurables.',author:'Christine Kalenga',role:'CEO, StartUp Innov Congo'},{stars:4,text:'Très satisfait du site créé pour notre école. Design moderne, nos étudiants l\'adorent !',author:'Prof. André Ilunga',role:'Directeur, Collège Avenir - Lubumbashi'}];
+        document.getElementById('secteursGrid').innerHTML=sect.map((s,i)=>`<div class="card reveal stagger-${i+1}"><div class="card-icon"><i class="fas ${s.icon}"></i></div><h3>${s.name}</h3><p>${s.desc}</p></div>`).join('');
+        document.getElementById('servicesGrid').innerHTML=serv.map((s,i)=>`<div class="card reveal stagger-${i+1}"><div class="card-icon"><i class="fas ${s.icon}"></i></div><h3>${s.name}</h3><p>${s.desc}</p></div>`).join('');
+        document.getElementById('processGrid').innerHTML=proc.map((s,i)=>`<div class="process-card reveal stagger-${i+1}"><div class="process-number">${s.number}</div><h3>${s.title}</h3><p style="color:var(--text-tertiary);">${s.desc}</p></div>`).join('');
+        document.getElementById('whyUsGrid').innerHTML=why.map((r,i)=>`<div class="why-us-card reveal stagger-${i+1}"><div class="why-us-icon"><i class="fas ${r.icon}"></i></div><h3>${r.title}</h3><p style="color:var(--text-tertiary);">${r.desc}</p></div>`).join('');
+        document.getElementById('testimonialsGrid').innerHTML=test.map((t,i)=>`<div class="testimonial-card reveal stagger-${i+1}"><div class="testimonial-quote-icon"><i class="fas fa-quote-right"></i></div><div class="testimonial-stars">${Array(t.stars).fill('<i class="fas fa-star"></i>').join('')}${t.stars<5?Array(5-t.stars).fill('<i class="far fa-star"></i>').join(''):''}</div><p class="testimonial-text">"${t.text}"</p><div class="testimonial-divider"></div><div class="testimonial-author-name">${t.author}</div><div class="testimonial-author-role">${t.role}</div></div>`).join('');
+        const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+        document.querySelectorAll('.reveal, .reveal-scale').forEach(el=>obs.observe(el));
+        const so=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){const el=en.target;const t=parseInt(el.dataset.target);let c=0;const ci=setInterval(()=>{c+=t/112;if(c>=t){el.textContent=t+'+';clearInterval(ci)}else{el.textContent=Math.floor(c)+'+'}},16);so.unobserve(el)}})},{threshold:0.6});
+        document.querySelectorAll('.stat-number[data-target]').forEach(el=>so.observe(el));})();
     </script>
 </body>
 </html>
