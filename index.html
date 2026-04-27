@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
@@ -9,10 +11,10 @@
     <!-- Open Graph - Affiche le logo quand on partage le lien -->
     <meta property="og:title" content="SMA • Social Media Agency | Agence Digitale Premium">
     <meta property="og:description" content="Stratégie social media, création web, automatisation et branding à Lubumbashi.">
-    <meta property="og:image" content="https://sma-agency.netlify.app/images/logo-social.jpg">
+    <meta property="og:image" content="https://sma-agency.netlify.app/images/logo.png">
     <meta property="og:image:width" content="512">
     <meta property="og:image:height" content="512">
-    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:type" content="image/png">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://sma-agency.netlify.app">
     <meta property="og:locale" content="fr_FR">
@@ -20,13 +22,13 @@
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://sma-agency.netlify.app/images/logo-social.jpg">
+    <meta name="twitter:image" content="https://sma-agency.netlify.app/images/logo.png">
     <meta name="twitter:title" content="SMA • Social Media Agency | Agence Digitale Premium">
     <meta name="twitter:description" content="Stratégie social media, création web, automatisation et branding à Lubumbashi.">
     
-    <!-- Favicon / Icône de partage -->
-    <link rel="icon" type="image/jpeg" sizes="512x512" href="https://sma-agency.netlify.app/images/logo-social.jpg">
-    <link rel="apple-touch-icon" sizes="512x512" href="https://sma-agency.netlify.app/images/logo-social.jpg">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="512x512" href="https://sma-agency.netlify.app/images/logo.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="https://sma-agency.netlify.app/images/logo.png">
     
     <title>SMA • Social Media Agency | Agence Digitale Premium</title>
     
@@ -38,7 +40,6 @@
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-
     <style>
         :root {
             --bg-primary: #f5f7fa;
@@ -236,7 +237,6 @@
         .navbar-link:hover, .navbar-link.active { color: var(--text-primary); }
         .navbar-link:hover::after, .navbar-link.active::after { width: 100%; }
         
-        /* Navbar actions group */
         .navbar-actions-group {
             display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0;
         }
@@ -375,11 +375,6 @@
         }
         .hero-actions .btn { justify-content: center; }
         
-        .hero-actions-separator {
-            text-align: center; color: var(--text-tertiary);
-            font-size: 0.8rem; font-weight: 500;
-        }
-        
         .hero-stats {
             display: flex; gap: 2.5rem; padding-top: 1.8rem;
             border-top: 1px solid var(--border-light); flex-wrap: wrap;
@@ -513,7 +508,7 @@
         }
         .why-us-card:hover .why-us-icon { background: var(--color-primary); color: #fff; transform: rotateY(180deg); }
         
-        /* ==================== TÉMOIGNAGES (sans photos) ==================== */
+        /* ==================== TÉMOIGNAGES ==================== */
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -668,7 +663,6 @@
             .navbar-links.active { display: flex; }
             .menu-burger { display: flex; }
             
-            /* Ordre mobile : [Dark] [Logo] [Burger+Commander] */
             .navbar-container {
                 display: grid;
                 grid-template-columns: auto 1fr auto;
@@ -676,15 +670,7 @@
                 gap: 0.6rem;
             }
             .navbar-logo { justify-self: center; }
-            .navbar-actions-group {
-                justify-self: end;
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-            }
-            .navbar-actions-group .btn-primary {
-                display: none;
-            }
+            .navbar-actions-group { justify-self: end; }
             
             .hero { padding: calc(var(--navbar-height) + 1rem) 1rem 3rem; }
             .hero-title { font-size: 2rem; }
@@ -748,13 +734,11 @@
     <!-- ==================== NAVBAR ==================== -->
     <header class="navbar" id="navbar">
         <div class="navbar-container">
-            <!-- Logo à gauche -->
             <a href="#hero" class="navbar-logo" aria-label="SMA Agency - Accueil">
                 <img src="images/logo.png" alt="SMA Logo">
                 <span class="navbar-logo-text">SMA</span>
             </a>
             
-            <!-- Menu desktop -->
             <nav class="navbar-menu" role="navigation">
                 <ul class="navbar-links" id="navLinks">
                     <li><a href="#hero" class="navbar-link active">Accueil</a></li>
@@ -767,7 +751,6 @@
                 </ul>
             </nav>
             
-            <!-- Actions groupées : Dark mode + Commander + Menu burger -->
             <div class="navbar-actions-group">
                 <button class="btn-icon theme-toggle" id="themeToggle" aria-label="Changer le thème">
                     <i class="fas fa-moon"></i><i class="fas fa-sun"></i>
@@ -801,7 +784,6 @@
                     </h1>
                     <p class="hero-description">Stratégie social media, création de sites web performants, automatisation intelligente et branding impactant pour propulser votre entreprise.</p>
                     
-                    <!-- BOUTONS : Découvrir en HAUT, Commander en BAS -->
                     <div class="hero-actions">
                         <a href="#secteurs" class="btn btn-outline btn-lg">
                             <span>Découvrir nos offres</span>
