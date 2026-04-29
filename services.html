@@ -2,11 +2,40 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="SMA Agency - Secteurs et Services. Des solutions digitales adaptées à chaque domaine d'activité.">
+    <meta name="theme-color" content="#2563eb">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sma-agency.netlify.app/services.html">
+    <meta property="og:title" content="SMA Agency - Secteurs & Services">
+    <meta property="og:description" content="Des solutions digitales adaptées à chaque secteur d'activité.">
+    <meta property="og:image" content="https://i.ibb.co/tM4Z34k2/logo.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:alt" content="Logo SMA Agency">
+    <meta property="og:site_name" content="SMA Agency">
+    <meta property="og:locale" content="fr_FR">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://sma-agency.netlify.app/services.html">
+    <meta name="twitter:title" content="SMA Agency - Secteurs & Services">
+    <meta name="twitter:description" content="Des solutions digitales adaptées à chaque secteur d'activité.">
+    <meta name="twitter:image" content="https://i.ibb.co/tM4Z34k2/logo.png">
+    <meta name="twitter:image:alt" content="Logo SMA Agency">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://i.ibb.co/tM4Z34k2/logo.png">
+    <link rel="apple-touch-icon" href="https://i.ibb.co/tM4Z34k2/logo.png">
+
     <title>SMA Agency - Secteurs & Services</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -39,7 +68,6 @@
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         html { scroll-behavior: smooth; }
         
         body {
@@ -50,171 +78,141 @@
             transition: background 0.4s, color 0.3s;
             overflow-x: hidden;
         }
+
+        /* ==================== LOGO LOADER ==================== */
+        .logo-loader-overlay { position: fixed; inset: 0; background: var(--bg); display: flex; align-items: center; justify-content: center; z-index: 99999; transition: opacity 0.6s ease, visibility 0.6s ease; }
+        .logo-loader-overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        .logo-loader-container { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
+        .logo-loader-wrapper { position: relative; display: flex; align-items: center; justify-content: center; }
+        .logo-loader-ring { width: 150px; height: 150px; position: absolute; border: 3px solid transparent; border-top: 3px solid var(--primary); border-right: 3px solid var(--accent); border-radius: 50%; animation: ringSpin 1.2s linear infinite; }
+        @keyframes ringSpin { to { transform: rotate(360deg); } }
+        .logo-loader-image { width: 100px; height: 100px; object-fit: contain; z-index: 2; animation: logoPulse 1.4s ease-in-out infinite, logoFloat 2.5s ease-in-out infinite; }
+        @keyframes logoPulse { 0%, 100% { transform: scale(1); filter: drop-shadow(0 0 20px rgba(37, 99, 235, 0.3)); } 50% { transform: scale(1.08); filter: drop-shadow(0 0 40px rgba(37, 99, 235, 0.6)); } }
+        @keyframes logoFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+        .logo-loader-text { font-size: 2rem; font-weight: 800; letter-spacing: 4px; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .logo-loader-dots { display: flex; gap: 8px; }
+        .logo-loader-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--primary); animation: dotBounce 1.2s ease-in-out infinite; }
+        .logo-loader-dot:nth-child(2) { animation-delay: 0.2s; background: var(--accent); }
+        .logo-loader-dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes dotBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-16px); } }
+
+        /* ==================== NAVBAR ==================== */
+        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); height: 70px; }
+        .navbar.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .navbar-container { max-width: 1300px; margin: 0 auto; padding: 0 2rem; height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
         
-        .loader {
-            position: fixed; inset: 0; background: var(--bg);
-            display: flex; align-items: center; justify-content: center;
-            z-index: 9999; transition: opacity 0.5s, visibility 0.5s;
-        }
-        .loader.hidden { opacity: 0; visibility: hidden; }
-        .loader-ring {
-            width: 60px; height: 60px;
-            border: 4px solid rgba(37, 99, 235, 0.15);
-            border-top: 4px solid var(--primary);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
+        .logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; transition: transform var(--transition); flex-shrink: 0; }
+        .logo:hover { transform: scale(1.03); }
+        .logo img { width: 40px; height: 40px; object-fit: contain; }
+        .logo span { font-size: 1.5rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
-        .navbar {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            background: var(--glass); backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-        }
-        .navbar-container {
-            max-width: 1300px; margin: 0 auto;
-            padding: 1rem 2rem; display: flex;
-            align-items: center; justify-content: space-between;
-        }
-        .logo {
-            display: flex; align-items: center; gap: 0.5rem;
-            text-decoration: none; font-size: 1.8rem; font-weight: 800;
-            background: linear-gradient(135deg, #2563eb, #06b6d4);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .nav-links {
-            display: flex; gap: 2rem; align-items: center; list-style: none;
-        }
-        .nav-links a {
-            text-decoration: none; color: var(--text);
-            font-weight: 500; font-size: 0.95rem; transition: color 0.2s;
-            position: relative;
-        }
-        .nav-links a::after {
-            content: ''; position: absolute; bottom: -4px; left: 0;
-            width: 0; height: 2px; background: var(--primary);
-            transition: width 0.3s;
-        }
+        .nav-links { display: flex; gap: 1.8rem; align-items: center; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text); font-weight: 500; font-size: 0.92rem; transition: color 0.2s; position: relative; padding: 0.3rem 0; white-space: nowrap; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--primary); border-radius: 10px; transition: width 0.3s; }
         .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+        .navbar-actions-group { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
         
-        .btn-icon {
-            background: transparent; border: 1px solid var(--border);
-            border-radius: 50%; width: 42px; height: 42px;
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer; color: var(--text); transition: all 0.3s;
-        }
+        .btn-icon { background: transparent; border: 1.5px solid var(--border); border-radius: 50%; width: 40px; height: 40px; min-width: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text); transition: all 0.3s; }
+        .btn-icon:hover { border-color: var(--primary); color: var(--primary); }
         
-        .theme-toggle .fa-sun { display: none; }
         .theme-toggle .fa-moon { display: inline; }
-        body.dark .theme-toggle .fa-sun { display: inline; }
+        .theme-toggle .fa-sun { display: none; }
         body.dark .theme-toggle .fa-moon { display: none; }
+        body.dark .theme-toggle .fa-sun { display: inline; }
+
+        /* ==================== BOUTON LANGUE ==================== */
+        .lang-toggle { background: transparent; border: 1.5px solid var(--border); border-radius: 50px; padding: 0.4rem 0.8rem; display: flex; align-items: center; gap: 0.3rem; cursor: pointer; color: var(--text); font-weight: 600; font-size: 0.82rem; transition: all 0.3s; white-space: nowrap; }
+        .lang-toggle:hover { background: var(--surface); border-color: var(--primary); color: var(--primary); }
+
+        .btn { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.65rem 1.4rem; border-radius: 50px; font-weight: 600; font-size: 0.9rem; text-decoration: none; cursor: pointer; border: none; transition: all 0.3s; white-space: nowrap; font-family: 'Inter', sans-serif; }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3); }
+        .btn-whatsapp { background: var(--whatsapp); color: white; }
+        .btn-whatsapp:hover { background: #128C7E; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3); }
+        .btn-lg { padding: 0.9rem 2rem; font-size: 1rem; }
         
-        .section-padding {
-            padding: 6rem 2rem 4rem;
-        }
-        .section-container {
-            max-width: 1300px; margin: 0 auto;
-        }
-        .section-header {
-            text-align: center; margin-bottom: 4rem;
-        }
-        .section-badge {
-            display: inline-block; background: rgba(37, 99, 235, 0.1);
-            color: var(--primary); padding: 0.4rem 1.2rem;
-            border-radius: 50px; font-weight: 600; font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-        .section-title {
-            font-size: 3rem; font-weight: 800; margin-bottom: 1rem;
-        }
-        .gradient-text {
-            background: linear-gradient(135deg, #2563eb, #06b6d4);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .section-description {
-            font-size: 1.1rem; color: var(--text-light); max-width: 600px;
-            margin: 0 auto;
-        }
+        .menu-burger { display: none; flex-direction: column; gap: 4px; background: none; border: none; cursor: pointer; padding: 6px; width: 40px; height: 40px; align-items: center; justify-content: center; }
+        .menu-burger span { width: 24px; height: 2.5px; background: var(--text); border-radius: 3px; transition: all 0.3s; }
+        .menu-burger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .menu-burger.active span:nth-child(2) { opacity: 0; }
+        .menu-burger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
         
-        /* Cards Grid */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 1.5rem;
-        }
-        .card {
-            background: var(--glass);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.35s;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #2563eb, #06b6d4);
-            transform: scaleX(0);
-            transition: transform 0.35s;
-        }
-        .card:hover::before {
-            transform: scaleX(1);
-        }
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-        }
-        .card-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #2563eb, #06b6d4);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .card h3 {
-            font-weight: 700; margin-bottom: 0.5rem;
-        }
-        .card p {
-            font-size: 0.9rem; color: var(--text-light);
-        }
+        /* ==================== SECTIONS ==================== */
+        .section-padding { padding: 7rem 2rem 4rem; }
+        .section-container { max-width: 1300px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-badge { display: inline-block; background: rgba(37, 99, 235, 0.1); color: var(--primary); padding: 0.4rem 1.2rem; border-radius: 50px; font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem; }
+        .section-title { font-size: 3rem; font-weight: 800; margin-bottom: 1rem; }
+        .gradient-text { background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .section-description { font-size: 1.1rem; color: var(--text-light); max-width: 600px; margin: 0 auto; }
         
-        .whatsapp-float {
-            position: fixed; bottom: 30px; right: 30px;
-            width: 60px; height: 60px; background: #25D366;
-            border-radius: 50%; display: flex; align-items: center;
-            justify-content: center; font-size: 1.6rem; color: white;
-            text-decoration: none; z-index: 999;
-            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
-            transition: all 0.3s; animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4); }
-            50% { box-shadow: 0 8px 50px rgba(37, 211, 102, 0.7); }
-        }
-        .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; }
-        .menu-bar { width: 25px; height: 3px; background: var(--text); border-radius: 3px; }
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; }
+        .card { background: var(--glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; text-align: center; transition: all 0.35s; cursor: pointer; position: relative; overflow: hidden; }
+        .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary), var(--accent)); transform: scaleX(0); transition: transform 0.35s; }
+        .card:hover::before { transform: scaleX(1); }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(0,0,0,0.15); }
+        .card-icon { font-size: 2.5rem; margin-bottom: 1rem; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .card h3 { font-weight: 700; margin-bottom: 0.5rem; }
+        .card p { font-size: 0.9rem; color: var(--text-light); }
+        
+        .whatsapp-float { position: fixed; bottom: 28px; right: 28px; width: 58px; height: 58px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; color: white; text-decoration: none; z-index: 999; box-shadow: 0 8px 32px rgba(37, 211, 102, 0.4); transition: all 0.3s; animation: floatPulse 2.5s ease-in-out infinite; }
+        .whatsapp-float:hover { transform: scale(1.12); }
+        @keyframes floatPulse { 0%, 100% { box-shadow: 0 8px 32px rgba(37, 211, 102, 0.4); } 50% { box-shadow: 0 8px 55px rgba(37, 211, 102, 0.7); } }
+        
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .stagger-1 { transition-delay: 0.05s; } .stagger-2 { transition-delay: 0.1s; }
+        .stagger-3 { transition-delay: 0.15s; } .stagger-4 { transition-delay: 0.2s; }
+        .stagger-5 { transition-delay: 0.25s; } .stagger-6 { transition-delay: 0.3s; }
+        .stagger-7 { transition-delay: 0.35s; } .stagger-8 { transition-delay: 0.4s; }
         
         @media (max-width: 768px) {
-            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--glass); backdrop-filter: blur(20px); flex-direction: column; padding: 2rem; }
+            .navbar-container { padding: 0 1rem; }
+            .logo img { width: 34px; height: 34px; }
+            .logo span { font-size: 1.3rem; }
+            .nav-links { display: none; position: fixed; top: 70px; left: 0; right: 0; background: var(--glass); backdrop-filter: blur(20px); flex-direction: column; padding: 1.5rem; gap: 1rem; border-bottom: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.1); z-index: 999; }
             .nav-links.active { display: flex; }
-            .menu-toggle { display: flex; }
+            .menu-burger { display: flex; }
+            .navbar-container { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.5rem; }
+            .logo { justify-self: center; }
+            .navbar-actions-group { justify-self: end; }
             .section-title { font-size: 2rem; }
+            .section-padding { padding: 5rem 1rem 2rem; }
+            .cards-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; }
+            .card { padding: 1.5rem 1rem; }
+            .card-icon { font-size: 2rem; }
+            .card h3 { font-size: 1rem; }
+            .card p { font-size: 0.8rem; }
+            .whatsapp-float { width: 50px; height: 50px; font-size: 1.4rem; bottom: 18px; right: 18px; }
         }
     </style>
 </head>
 <body>
-    <div class="loader" id="loader"><div class="loader-ring"></div></div>
+
+    <!-- ==================== LOGO LOADER ==================== -->
+    <div class="logo-loader-overlay" id="logoLoader">
+        <div class="logo-loader-container">
+            <div class="logo-loader-wrapper">
+                <div class="logo-loader-ring"></div>
+                <img src="images/logo.png" alt="SMA Agency Logo" class="logo-loader-image">
+            </div>
+            <div class="logo-loader-text">SMA</div>
+            <div class="logo-loader-dots">
+                <div class="logo-loader-dot"></div>
+                <div class="logo-loader-dot"></div>
+                <div class="logo-loader-dot"></div>
+            </div>
+        </div>
+    </div>
     
-    <nav class="navbar">
+    <!-- ==================== NAVBAR ==================== -->
+    <nav class="navbar" id="navbar">
         <div class="navbar-container">
-            <a href="index.html" class="logo"><i class="fas fa-bolt"></i> SMA</a>
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="SMA Logo">
+                <span>SMA</span>
+            </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="services.html" class="active">Services</a></li>
@@ -222,48 +220,127 @@
                 <li><a href="equipe.html">Équipe</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-            <div style="display:flex;align-items:center;gap:1rem;">
+            <div class="navbar-actions-group">
+                <!-- Bouton Langue -->
+                <button class="lang-toggle" id="langToggle" aria-label="Changer la langue">
+                    <span>🇫🇷</span> <span>FR</span>
+                </button>
+                <!-- Dark Mode -->
                 <button class="btn-icon theme-toggle" id="themeToggle">
                     <i class="fas fa-sun"></i><i class="fas fa-moon"></i>
                 </button>
-                <button class="menu-toggle" id="menuToggle">
-                    <span class="menu-bar"></span><span class="menu-bar"></span><span class="menu-bar"></span>
+                <!-- Menu Burger -->
+                <button class="menu-burger" id="menuBurger" aria-label="Menu">
+                    <span></span><span></span><span></span>
                 </button>
             </div>
         </div>
     </nav>
     
-    <!-- Secteurs -->
+    <!-- ==================== SECTEURS ==================== -->
     <section class="section-padding" style="padding-top: 7rem;">
         <div class="section-container">
-            <div class="section-header">
-                <span class="section-badge">Expertise</span>
-                <h2 class="section-title">Des solutions pour <span class="gradient-text">chaque secteur</span></h2>
-                <p class="section-description">Nous comprenons les spécificités de votre domaine.</p>
+            <div class="section-header reveal">
+                <span class="section-badge" data-fr="Expertise" data-en="Expertise">Expertise</span>
+                <h2 class="section-title"><span data-fr="Des solutions pour " data-en="Solutions for ">Des solutions pour </span><span class="gradient-text" data-fr="chaque secteur" data-en="every sector">chaque secteur</span></h2>
+                <p class="section-description" data-fr="Nous comprenons les spécificités de votre domaine." data-en="We understand the specifics of your field.">Nous comprenons les spécificités de votre domaine.</p>
             </div>
             <div class="cards-grid" id="secteursGrid"></div>
         </div>
     </section>
     
-    <!-- Services -->
+    <!-- ==================== SERVICES ==================== -->
     <section class="section-padding">
         <div class="section-container">
-            <div class="section-header">
-                <span class="section-badge">Services</span>
-                <h2 class="section-title">Ce que nous <span class="gradient-text">proposons</span></h2>
-                <p class="section-description">Une gamme complète pour votre transformation digitale.</p>
+            <div class="section-header reveal">
+                <span class="section-badge" data-fr="Services" data-en="Services">Services</span>
+                <h2 class="section-title"><span data-fr="Ce que nous " data-en="What we ">Ce que nous </span><span class="gradient-text" data-fr="proposons" data-en="offer">proposons</span></h2>
+                <p class="section-description" data-fr="Une gamme complète pour votre transformation digitale." data-en="A complete range for your digital transformation.">Une gamme complète pour votre transformation digitale.</p>
             </div>
             <div class="cards-grid" id="servicesGrid"></div>
         </div>
         <div style="text-align:center;margin-top:3rem;">
-            <a href="configurateur.html" class="btn btn-primary">
-                <i class="fab fa-whatsapp"></i> Configurer mon projet
+            <a href="configurateur.html" class="btn btn-whatsapp btn-lg reveal">
+                <i class="fab fa-whatsapp"></i> <span data-fr="Configurer mon projet" data-en="Configure my project">Configurer mon projet</span>
             </a>
         </div>
     </section>
     
-    <a href="https://wa.me/243123456789" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <!-- ==================== WHATSAPP FLOAT ==================== -->
+    <a href="https://wa.me/243844464423" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
     
-    <script src="js/app.js"></script>
+    <script>
+        (function(){'use strict';
+
+        // ==================== LANGUE ====================
+        let currentLang = localStorage.getItem('sma-lang') || 'fr';
+        
+        function applyLanguage(lang) {
+            document.querySelectorAll('[data-fr][data-en]').forEach(el => {
+                el.textContent = el.getAttribute('data-' + lang);
+            });
+            const langToggle = document.getElementById('langToggle');
+            if (langToggle) {
+                const flag = lang === 'fr' ? '🇫🇷' : '🇬🇧';
+                const code = lang === 'fr' ? 'FR' : 'EN';
+                langToggle.querySelector('span:first-child').textContent = flag;
+                langToggle.querySelector('span:last-child').textContent = code;
+            }
+            document.documentElement.lang = lang;
+            localStorage.setItem('sma-lang', lang);
+            currentLang = lang;
+        }
+        
+        applyLanguage(currentLang);
+        
+        document.getElementById('langToggle')?.addEventListener('click', () => {
+            applyLanguage(currentLang === 'fr' ? 'en' : 'fr');
+        });
+
+        // ==================== LOGO LOADER ====================
+        const loader = document.getElementById('logoLoader');
+        if(loader){window.addEventListener('load',()=>{setTimeout(()=>{loader.classList.add('hidden');setTimeout(()=>loader.remove(),700)},1800)});setTimeout(()=>{if(loader&&!loader.classList.contains('hidden')){loader.classList.add('hidden');setTimeout(()=>loader.remove(),700)}},5000)}
+
+        // ==================== DARK MODE ====================
+        const tt = document.getElementById('themeToggle');
+        if(localStorage.getItem('sma-dark-mode')==='true')document.body.classList.add('dark');
+        tt?.addEventListener('click',()=>{document.body.classList.toggle('dark');localStorage.setItem('sma-dark-mode',document.body.classList.contains('dark'))});
+
+        // ==================== MOBILE MENU ====================
+        const burger = document.getElementById('menuBurger'), nl = document.getElementById('navLinks');
+        burger?.addEventListener('click',()=>{burger.classList.toggle('active');nl.classList.toggle('active')});
+        nl?.querySelectorAll('a').forEach(l=>l.addEventListener('click',()=>{burger.classList.remove('active');nl.classList.remove('active')}));
+        window.addEventListener('scroll',()=>document.getElementById('navbar')?.classList.toggle('scrolled',window.scrollY>50));
+
+        // ==================== POPULATE CONTENT ====================
+        const secteurs = [
+            { name:'Écoles & Universités', icon:'fa-graduation-cap', desc:'Plateformes e-learning intelligentes' },
+            { name:'Magasins & E-commerce', icon:'fa-store', desc:'Boutiques en ligne performantes' },
+            { name:'PME & Startups', icon:'fa-rocket', desc:'Sites vitrine, branding complet' },
+            { name:'ONG & Associations', icon:'fa-hand-holding-heart', desc:'Visibilité, collecte de dons' },
+            { name:'Hôtels & Restaurants', icon:'fa-hotel', desc:'Réservation en ligne, menus digitaux' },
+            { name:'Hôpitaux & Cliniques', icon:'fa-hospital', desc:'RDV en ligne, information patient' },
+            { name:'Industrie Minière', icon:'fa-gem', desc:'Communication corporate digitale' },
+            { name:'Autres secteurs', icon:'fa-building', desc:'Solution sur mesure' }
+        ];
+        const services = [
+            { name:'Création Sites Web', icon:'fa-globe', desc:'Sites vitrine, e-commerce, institutionnels' },
+            { name:'Applications Web', icon:'fa-mobile-screen', desc:'PWAs, dashboards, outils métier' },
+            { name:'Automatisation', icon:'fa-robot', desc:'Chatbots, workflows, CRM intelligents' },
+            { name:'Marketing Digital', icon:'fa-bullhorn', desc:'SEO, SEA, réseaux sociaux' },
+            { name:'Branding & Design', icon:'fa-palette', desc:'Logo, charte graphique complète' },
+            { name:'Community Management', icon:'fa-comments', desc:'Contenu engageant, veille' }
+        ];
+
+        document.getElementById('secteursGrid').innerHTML = secteurs.map((s,i)=>`<div class="card reveal stagger-${i+1}"><div class="card-icon"><i class="fas ${s.icon}"></i></div><h3>${s.name}</h3><p>${s.desc}</p></div>`).join('');
+        document.getElementById('servicesGrid').innerHTML = services.map((s,i)=>`<div class="card reveal stagger-${i+1}"><div class="card-icon"><i class="fas ${s.icon}"></i></div><h3>${s.name}</h3><p>${s.desc}</p></div>`).join('');
+
+        // ==================== SCROLL REVEAL ====================
+        const obs = new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+        document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+        console.log('🚀 SMA Agency - Services prêt !');
+        })();
+    </script>
 </body>
 </html>
